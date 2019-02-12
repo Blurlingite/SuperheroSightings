@@ -1,0 +1,33 @@
+
+
+body{
+    /*background-color:#ccffff;*/
+        /*background-color:white;*/
+/*        background-image: */
+/*background-image: url('img/superheroBackground.jpg');*/
+/*background-image: ('img/superheroBackground.jpg');*/
+}
+.DtoDisplayLabel {
+  text-align:center;
+}
+
+.outerBoxOnDetailsPage{
+    background-color:coral;
+}
+
+.miniTableTextAlign{
+    text-align:center;
+}
+
+.relativeContainer{
+      position: relative;
+}
+
+.centerContentInContainer{
+  position: absolute;
+  bottom: -300%;
+
+
+
+    
+}

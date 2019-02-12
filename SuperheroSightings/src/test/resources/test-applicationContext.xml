@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+              xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/mvc
+                           http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                           http://www.springframework.org/schema/tx 
+                           http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd"> 
+
+    <!-- Bean definitions go here -->
+    
+    
+    
+    <tx:annotation-driven/>
+
+    <context:component-scan base-package="sg.thecodetasticfour.superherosightingsgroup.dao" />
+    <bean id="dataSource"
+          class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <!--url has SuperheroSightings_test, the test database in mySQL Workbench at the end so we don't delete everything when unit testing in original database, "SuperheroSightings"-->
+        <property name="url"
+                  value="jdbc:mysql://localhost:3306/SuperheroSightings_Test"/>
+        <property name="username" value="root"/>
+        <property name="password" value="mysqlworkbench"/>
+        <property name="initialSize" value="5"/>
+        <property name="maxTotal" value="10"/>
+    </bean>
+
+    <bean id="transactionManager"
+      class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="jdbcTemplate"
+          class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+    <bean id="superpowerDaoTest" 
+          class="com.sg.superherosightings.dao.SuperpowerDaoJdbcTemplateImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    
+    <bean id="personDaoTest" 
+          class="com.sg.superherosightings.dao.PersonDaoJdbcTemplateImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    
+    <bean id="organizationDaoTest" 
+          class="com.sg.superherosightings.dao.OrganizationDaoJdbcTemplateImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    
+    <bean id="locationDaoTest" 
+          class="com.sg.superherosightings.dao.LocationDaoJdbcTemplateImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    
+    <bean id="sightingDaoTest" 
+          class="com.sg.superherosightings.dao.SightingDaoJdbcTemplateImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    
+    <bean id="userDaoTest" 
+          class="com.sg.superherosightings.dao.UserDaoJdbcTemplateImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    
+    
+    
+    
+    <bean id="superpowerServiceLayerTest" 
+          class="com.sg.superherosightings.service.SuperpowerServiceLayerImpl">
+                <constructor-arg ref ="superpowerDaoTest"/>
+
+    </bean>
+    
+    <bean id="personServiceLayerTest" 
+          class="com.sg.superherosightings.service.PersonServiceLayerImpl">
+        
+                <constructor-arg ref ="personDaoTest"/>
+                <constructor-arg ref ="superpowerDaoTest"/>
+                <constructor-arg ref ="organizationDaoTest"/>
+
+    </bean>
+    
+    
+    <bean id="organizationServiceLayerTest" 
+          class="com.sg.superherosightings.service.OrganizationServiceLayerImpl">
+            <constructor-arg ref ="organizationDaoTest"/>
+            <constructor-arg ref ="personDaoTest"/>
+
+    </bean>
+    
+    
+    <bean id="locationServiceLayerTest" 
+          class="com.sg.superherosightings.service.LocationServiceLayerImpl">
+            <constructor-arg ref ="locationDaoTest"/>
+
+    </bean>
+    
+    
+    <bean id="sightingsServiceLayerTest" 
+          class="com.sg.superherosightings.service.SightingServiceLayerImpl">
+            <constructor-arg ref ="sightingDaoTest"/>
+            <constructor-arg ref ="locationDaoTest"/>
+            <constructor-arg ref ="personDaoTest"/>
+    </bean>
+    
+    
+    <bean id="userServiceLayerTest"
+      class="com.sg.superherosightings.service.UserServiceLayerImpl">
+        <constructor-arg ref ="userDaoTest"/>
+    </bean>
+
+    
+</beans>
+    
