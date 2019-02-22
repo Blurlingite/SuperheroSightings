@@ -222,16 +222,16 @@ We include the text 'Edit' and 'Delete' now as placeholders - we will make them 
 
         <td>
             
-<!--            Here we have turned the Edit text into a link, much like we did with the Delete text in the previous step. 
-            The Edit link for each entry in the table goes to the displayEditContactForm controller endpoint and contains the
-            contactId request parameter value associated with the entry. When rendered, the link will look something like
-            this: http://localhost:8080/ContactListSpringMVC/displayEditContactForm?contactId=0
+                                    <!-- Here we have turned the Edit text into a link, much like with the Delete text 
+                                    The Edit link for each entry in the table goes to the displayEditLocationForm controller endpoint and contains the
+                                    theIdOfLocation request parameter value associated with the entry. When rendered, the link will look something like
+                                    this if the ID is 1: http://localhost:8080/SuperheroSightingsSpringMVC/displayEditLocationForm?theIdOfLocation=1
 
-            Notice that the URL pattern is displayEditContactForm and not editContact - in this step, we must get the Contact from
-            the DAO and then display it in the Edit Contact form. The form will submit to the editContact endpoint, which we'll create below. 
-            This is the pattern you should use for edit functionality, because edit functionality always needs two controller endpoints:  
-            one to display the edit form (that's what we're building now) and one to process the data submitted in the edit form (we'll do that next).
--->
+                                    Notice that the URL pattern is displayEditLocationForm and not editLocation -  we must get the Location from
+                                    the DAO and then display it in the Edit Location form. The form will submit to the editLocation endpoint, which we'll create below. 
+                                    This is the pattern you should use for edit functionality, because edit functionality always needs two controller endpoints:  
+                                    one to display the edit form (that's what we're doing here) and one to process the data submitted in the edit form (editLocation in Location Controller).
+                                    -->
 
     <!--We are using sec:authorize to restrict access to editing and deleting features to only admins, since the adding featire is on this jsp also,
     we will need to use sec:authorize on the add form-->

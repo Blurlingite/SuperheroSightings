@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Sighting Details</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet">
     </head>
@@ -64,11 +64,11 @@
 					<div class="col-md-8">
                                         </div>
                                         
-<!--					<div class="col-md-4">
-                                            <a href ="" type="button" class="btn btn-success">
-                                                LInkToEditJSP
+					<div class="col-md-4">
+                                            <a href ="displayEditSightingForm?sightingId=${sightingToDisplay.sightingId}" type="button" class="btn btn-success">
+                                                Edit This Sighting
                                             </a>
-					</div>-->
+					</div>
                                         
                                     </div>
 				</div>

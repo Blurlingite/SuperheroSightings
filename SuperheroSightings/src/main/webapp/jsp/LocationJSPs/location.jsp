@@ -22,7 +22,7 @@ coming to this one first
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Persons</title>
+    <title>Locations</title>
 
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
@@ -32,7 +32,6 @@ coming to this one first
 
   </head>
   <body>
-  <!--<body background="$ {pageContext.request.contextPath}/img/superheroBackground.jpg" background-size ="auto">-->
 
     <div class="container-fluid">
         <hr/>
@@ -70,7 +69,7 @@ coming to this one first
                     <div class="col-md-4">
                         <!--If the user is logged in, (the name is not null) greet them and show the log out link-->             
                         <c:if test="${pageContext.request.userPrincipal.name != null}">
-                            <p>Hello : ${pageContext.request.userPrincipal.name}|                      
+                            <p>Hello : ${pageContext.request.userPrincipal.name} |                      
                                 <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
                             </p>
                         </c:if>
@@ -85,8 +84,6 @@ coming to this one first
         <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <div class="col-md-4">
                         
-                        <!--Users can add locations now don't need sec authorize here-->
-                        <%--<sec:authorize access="hasRole('ROLE_ADMIN')">--%>
 
                             <h2>
                                 Add A Location
@@ -243,7 +240,7 @@ coming to this one first
           
                             </form>
 
-                        </sec:authorize>
+        </sec:authorize>
 
 
 
@@ -257,7 +254,6 @@ coming to this one first
 
 
                     <div class="col-md-1">
-<!--                                    <p> <img src ="$ {pageContext.request.contextPath}/img/superheroBackground.jpg" align="right"/></p>-->
 
                     </div>
 
@@ -270,15 +266,15 @@ coming to this one first
 			</h2>
 
 
-                    <!-- Finally, we need to add code to contacts.jsp to process the List of Contacts that is being made available 
-                        to the page by the controller.  We'll use the JSTL forEach tag to add a row to the My Contacts table for each Contact in the List.
+                    <!-- Finally, we need to add code to location.jsp to process the List of Locations that is being made available 
+                        to the page by the controller.  We'll use the JSTL forEach tag to add a row to the locationTable for each Location in the List.
 
-                            We are using a JSTL forEach tag to process the Contacts in the List provided by the Controller.
-                            Each Contact in the list gets a new table row.
-                            Each row displays the first and last name and company of the Contact.
-                            We include the text 'Edit' and 'Delete' now as placeholders - we will make them functional links in later steps.-->
+                            We are using a JSTL forEach tag to process the Locations in the List provided by the Controller.
+                            Each Location in the list gets a new table row.
+                            Each row displays the name, address, and description of the Location.
+                    -->
 
-                        <table id="contactTable" class="table table-hover">
+                        <table id="locationTable" class="table table-hover">
                             
                             
                             <tr>
@@ -292,7 +288,7 @@ coming to this one first
     
     
                             <c:forEach var="currentLocation" items="${locationList}">
-                            <!--the forEach adds an extra row for each contact in the contactList with these td tags-->
+                            <!--the forEach adds an extra row for each location in the locationList with these td tags-->
                             
                                 <tr>
                                     
@@ -301,9 +297,9 @@ coming to this one first
                                         
                                         
                                     <!--"?” in URL acts as separator, it indicates end of URL resource path and start of query parameters-->
-                                    <!--Enclose the name in an anchor tag (for clickable link) That link needs the right method name where it's coming from (displayContactDetails) and the 
-                                    ID of the contact (contactId=) dynamically
-                                    The contactId is passed into the request here so that in the Contact Controller, the request you pass in has the contactId
+                                    <!--Enclose the name in an anchor tag (for clickable link) That link needs the right method name where it's coming from (displayLocationDetails) and the 
+                                    ID of the location (locationId=) dynamically
+                                    The locationId is passed into the request here so that in the Location Controller, the request you pass in has the lopcationId
                                     -->
                                         <a href="displayLocationDetails?theLocationId=${currentLocation.locationId}">
                                         <c:out value="${currentLocation.locationName}"/> 
@@ -338,15 +334,15 @@ coming to this one first
                                     <td>
                                         
             
-                                    <!-- Here we have turned the Edit text into a link, much like we did with the Delete text in the previous step. 
-                                    The Edit link for each entry in the table goes to the displayEditContactForm controller endpoint and contains the
-                                    contactId request parameter value associated with the entry. When rendered, the link will look something like
-                                    this: http://localhost:8080/ContactListSpringMVC/displayEditContactForm?contactId=0
+                                    <!-- Here we have turned the Edit text into a link, much like with the Delete text 
+                                    The Edit link for each entry in the table goes to the displayEditLocationForm controller endpoint and contains the
+                                    theIdOfLocation request parameter value associated with the entry. When rendered, the link will look something like
+                                    this if the ID is 1: http://localhost:8080/SuperheroSightingsSpringMVC/displayEditLocationForm?theIdOfLocation=1
 
-                                    Notice that the URL pattern is displayEditContactForm and not editContact - in this step, we must get the Contact from
-                                    the DAO and then display it in the Edit Contact form. The form will submit to the editContact endpoint, which we'll create below. 
+                                    Notice that the URL pattern is displayEditLocationForm and not editLocation -  we must get the Location from
+                                    the DAO and then display it in the Edit Location form. The form will submit to the editLocation endpoint, which we'll create below. 
                                     This is the pattern you should use for edit functionality, because edit functionality always needs two controller endpoints:  
-                                    one to display the edit form (that's what we're building now) and one to process the data submitted in the edit form (we'll do that next).
+                                    one to display the edit form (that's what we're doing here) and one to process the data submitted in the edit form (editLocation in Location Controller).
                                     -->
 
                                     <sec:authorize access="hasRole('ROLE_ADMIN')">

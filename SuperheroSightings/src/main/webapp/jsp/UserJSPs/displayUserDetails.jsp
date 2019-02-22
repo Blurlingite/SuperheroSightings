@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>User Details</title>
                 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet"> 
                 <link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet">
     </head>
@@ -70,9 +70,9 @@
                                         </div>
                                         
 					<div class="col-md-4">
-<!--                                            <a href ="" type="button" class="btn btn-success">
-                                                LInkToEditJSP
-                                            </a>-->
+                                            <a href="displayEditUserForm?userNameOfUser=${userToDisplay.userName}" type="button" class="btn btn-success">
+                                                Edit This User
+                                            </a>
 					</div>
                                         
                                     </div>

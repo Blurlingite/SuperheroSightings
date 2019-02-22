@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="6" failures="0" name="com.sg.superherosightings.dao.SuperheroSightingsLocationDaoJdbcTemplateImplTest" time="0.507" errors="0" skipped="0">
+<testsuite tests="6" failures="0" name="com.sg.superherosightings.dao.SuperheroSightingsLocationDaoJdbcTemplateImplTest" time="0.559" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/lib"/>
     <property name="java.vm.version" value="25.181-b13"/>
     <property name="gopherProxySet" value="false"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="/Users/vishnukdawah/Documents/bitbucket/vishnu-dawah-individual-work/DDWA/Milestone5DDWA/Assignments/SuperheroSightings"/>
+    <property name="maven.multiModuleProjectDirectory" value="/Users/vishnukdawah/Documents/github/SuperheroSightings/SuperheroSightings"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=":"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/Users/vishnukdawah/Documents/bitbucket/vishnu-dawah-individual-work/DDWA/Milestone5DDWA/Assignments/SuperheroSightings"/>
+    <property name="user.dir" value="/Users/vishnukdawah/Documents/github/SuperheroSightings/SuperheroSightings"/>
     <property name="java.runtime.version" value="1.8.0_181-b13"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/lib/endorsed"/>
@@ -65,10 +65,10 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsLocationDaoJdbcTemplateImplTest" name="testCreateGetLocation" time="0.082"/>
-  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsLocationDaoJdbcTemplateImplTest" name="testDeleteLocation" time="0.083"/>
-  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsLocationDaoJdbcTemplateImplTest" name="testGetAllLocations" time="0.095"/>
-  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsLocationDaoJdbcTemplateImplTest" name="testGetLocationById" time="0.08"/>
-  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsLocationDaoJdbcTemplateImplTest" name="testUpdateLocation" time="0.083"/>
-  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsLocationDaoJdbcTemplateImplTest" name="testSetJdbcTemplate" time="0.084"/>
+  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsLocationDaoJdbcTemplateImplTest" name="testCreateGetLocation" time="0.079"/>
+  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsLocationDaoJdbcTemplateImplTest" name="testDeleteLocation" time="0.109"/>
+  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsLocationDaoJdbcTemplateImplTest" name="testGetAllLocations" time="0.1"/>
+  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsLocationDaoJdbcTemplateImplTest" name="testGetLocationById" time="0.105"/>
+  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsLocationDaoJdbcTemplateImplTest" name="testUpdateLocation" time="0.088"/>
+  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsLocationDaoJdbcTemplateImplTest" name="testSetJdbcTemplate" time="0.078"/>
 </testsuite>

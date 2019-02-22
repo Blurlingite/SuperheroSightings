@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Edit Superpower</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">        
         <link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet">
     </head>
@@ -40,12 +40,6 @@
                                 </ul>
                             </div>
                                     
-                          <!--If the user is logged in, (the name is not null) greet them and show the log out link-->
-                    <c:if test="${pageContext.request.userPrincipal.name != null}">
-                        <p>Hello : ${pageContext.request.userPrincipal.name}
-        |                   <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
-                        </p>
-                    </c:if>     
                                     
                         </div>
                             
@@ -55,9 +49,12 @@
                             
                             
                         <div class="col-md-4">
-                            <h2>
-                                Login Goes Here
-                            </h2>
+	                          <!--If the user is logged in, (the name is not null) greet them and show the log out link-->
+                    <c:if test="${pageContext.request.userPrincipal.name != null}">
+                        <p>Hello : ${pageContext.request.userPrincipal.name}
+        |                   <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
+                        </p>
+                    </c:if> 
                         </div>
                                 
                     </div>

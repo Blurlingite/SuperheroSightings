@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Location Details</title>
                 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet"> 
                 <link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet">
     </head>
@@ -66,11 +66,13 @@
 					<div class="col-md-8">
                                         </div>
                                         
-<!--					<div class="col-md-4">
-                                            <a href ="" type="button" class="btn btn-success">
-                                                LInkToEditJSP
+                                        <div class="col-md-4">
+                                            <a href ="displayEditLocationForm?theIdOfLocation=${locationToDisplay.locationId}" type="button" class="btn btn-success">
+                                                Edit This Location
                                             </a>
-					</div>-->
+                                        </div>
+                                        
+
                                         
                                     </div>
 				</div>
@@ -176,14 +178,14 @@
 
                                                                     <c:forEach var="currentSighting" items="${allSightingsByLocation}">
 
-                                                                    <!--the forEach adds an extra row for each contact in the contactList with these td tags-->
+                                                                    <!--the forEach adds an extra row for each sighting in the allSightingsByLocation (list of sightings) with these td tags-->
                         
                      
                                                                         <tr>
 
                                                                             <td>
                                                                                 <a href="displaySighting?sightingId=${currentSighting.sightingId}">
-                                                                                    <!--< c:out value="$ {currentSighting.sightingDate}"/></a>-->
+                                                                                    
                                                                                     <c:out value="${currentSighting.justTheSightingDate}"/></a>
 
                                                                             </td>
@@ -192,9 +194,16 @@
                                     
                                                                             <td>
                                                                             <!--"?” in URL acts as separator, it indicates end of URL resource path and start of query parameters-->
-                                                                            <!--Enclose the name in an anchor tag (for clickable link) That link needs the right method name where it's coming from (displayContactDetails) and the
-                                                                            ID of the contact (contactId=) dynamically
-                                                                            The contactId is passed into the request here so that in the Contact Controller, the request you pass in has the contactId
+                                                                            <!--Enclose the name in an anchor tag (for clickable link) That link needs the right method name where it's coming from (displayPersonDetails) and the
+                                                                            ID of the person (thePersonId=) dynamically
+                                                                            The person Id is passed into the request here so that in the Person Controller, the request you pass in has the person Id
+                                                                            
+                                                                            currentSighting.person.firstName
+                                                                            currentSighting is the current Sighting DTO
+                                                                            person is the Person DTO on that Sighting DTO
+                                                                            firstName is the field on the PersonDTO
+                                                                            
+                                                                            We access the firstname from Person DTO that is from SightingDTO 
                                                                             -->
                                                                                 <a href="displayPersonDetails?thePersonId=${currentSighting.person.personId}">
                                                                                     <c:out value="${currentSighting.person.firstName}"/>

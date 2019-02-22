@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Superpower Details</title>
                 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet"> 
                 <link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet">
     </head>
@@ -65,11 +65,11 @@
 					<div class="col-md-8">
                                         </div>
                                         
-<!--					<div class="col-md-4">
-                                            <a href ="" type="button" class="btn btn-success">
-                                                LInkToEditJSP
+					<div class="col-md-4">
+                                            <a href ="displayEditPowerForm?powerId=${powerToDisplay.superpowerId}" type="button" class="btn btn-success">
+                                                Edit This Superpower
                                             </a>
-					</div>-->
+					</div>
                                         
                                     </div>
 				</div>
