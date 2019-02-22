@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="7" failures="0" name="com.sg.superherosightings.dao.SuperheroSightingsOrganizationDaoJdbcTemplateImplTest" time="0.836" errors="0" skipped="0">
+<testsuite tests="7" failures="0" name="com.sg.superherosightings.dao.SuperheroSightingsOrganizationDaoJdbcTemplateImplTest" time="0.956" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/lib"/>
@@ -65,11 +65,11 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsOrganizationDaoJdbcTemplateImplTest" name="testDeleteOrganization" time="0.128"/>
-  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsOrganizationDaoJdbcTemplateImplTest" name="testGetAllOrganizations" time="0.117"/>
-  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsOrganizationDaoJdbcTemplateImplTest" name="testCreateGetOrganization" time="0.119"/>
-  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsOrganizationDaoJdbcTemplateImplTest" name="testUpdateOrganization" time="0.136"/>
-  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsOrganizationDaoJdbcTemplateImplTest" name="testFindOrganizationsForPerson" time="0.121"/>
-  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsOrganizationDaoJdbcTemplateImplTest" name="testFindOrganizationsForUser" time="0.115"/>
-  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsOrganizationDaoJdbcTemplateImplTest" name="testSetJdbcTemplate" time="0.1"/>
+  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsOrganizationDaoJdbcTemplateImplTest" name="testDeleteOrganization" time="0.156"/>
+  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsOrganizationDaoJdbcTemplateImplTest" name="testGetAllOrganizations" time="0.136"/>
+  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsOrganizationDaoJdbcTemplateImplTest" name="testCreateGetOrganization" time="0.135"/>
+  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsOrganizationDaoJdbcTemplateImplTest" name="testUpdateOrganization" time="0.151"/>
+  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsOrganizationDaoJdbcTemplateImplTest" name="testFindOrganizationsForPerson" time="0.135"/>
+  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsOrganizationDaoJdbcTemplateImplTest" name="testFindOrganizationsForUser" time="0.132"/>
+  <testcase classname="com.sg.superherosightings.dao.SuperheroSightingsOrganizationDaoJdbcTemplateImplTest" name="testSetJdbcTemplate" time="0.111"/>
 </testsuite>

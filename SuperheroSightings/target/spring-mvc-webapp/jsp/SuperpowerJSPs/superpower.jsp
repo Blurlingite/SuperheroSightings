@@ -29,8 +29,9 @@ Customized the rendering of views based on the user that is logged into the appl
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Superpowers</title>
-                <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">   
-                <link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet">
+                
+                <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+       <link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet" type="text/css">
                 
                 
 <!--<script>
@@ -273,9 +274,9 @@ We include the text 'Edit' and 'Delete' now as placeholders - we will make them 
     </div>
 <!--</div>-->
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
+    <script src="${pageContext.request.userPrincipal.name}/js/jquery.min.js"></script>
+    <script src="${pageContext.request.userPrincipal.name}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.userPrincipal.name}/js/scripts.js"></script>
   </body>
 </html>
 

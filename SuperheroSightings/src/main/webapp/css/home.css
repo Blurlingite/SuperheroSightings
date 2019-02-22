@@ -1,12 +1,17 @@
 
 
 body{
-    /*background-color:#ccffff;*/
-        /*background-color:white;*/
-/*        background-image: */
-/*background-image: url('img/superheroBackground.jpg');*/
-/*background-image: ('img/superheroBackground.jpg');*/
+    
+    /*
+        The ../ allows you to move out of the css folder and into the parent directory (Web Pages folder)
+        Because when you link to css in the jsp you are first taken to the css folder, and then here to home.css
+        If you try to access the img folder without the ../, the file path will be css/img/[imageName], but the img folder is not in the css folder
+        So what you want is Web Pages/img/[imageName] and that's why we need the ../ as part of the url
+    */
+    background-image: url("../img/city.jpg");
+    background-size: cover;
 }
+
 .DtoDisplayLabel {
   text-align:center;
 }
