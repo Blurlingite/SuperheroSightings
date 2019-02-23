@@ -30,26 +30,8 @@ Customized the rendering of views based on the user that is logged into the appl
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Superpowers</title>
                 
-                <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-       <link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet" type="text/css">
-                
-                
-<!--<script>
-function validateSuperpowerInputs() {
-  var x, text;
-
-  // Get the value of the input field with id="numb"
-  x = document.getElementById("validateSuperpowerName");
-
-  // If x is Not a Number or less than one or greater than 10
-  if (typeof x != boolean) {
-    text = "Input not valid";
-  } else {
-    text = "Input OK";
-  }
-  document.getElementById("validationError").innerHTML = text;
-}
-</script>-->
+        <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet" type="text/css">
                 
 
     </head>
@@ -165,11 +147,6 @@ function validateSuperpowerInputs() {
 
 
 
-
-
-
-
-
                     <div class="col-md-1">
                     </div>
 
@@ -273,7 +250,6 @@ We include the text 'Edit' and 'Delete' now as placeholders - we will make them 
             </div>
 	</div>
     </div>
-<!--</div>-->
 
     <script src="${pageContext.request.userPrincipal.name}/js/jquery.min.js"></script>
     <script src="${pageContext.request.userPrincipal.name}/js/bootstrap.min.js"></script>

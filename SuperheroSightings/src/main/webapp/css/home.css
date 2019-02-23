@@ -63,8 +63,16 @@ body{
     /*font-family: athabasca, Times, serif;*/
 }
 
-#locationAddress{
+.size15FontForCellsWithTooMuchText{
         font-size: 15px;
 
+}
+
+.formStyling{
+    background-color: pink;
+}
+
+.submitButtons{
+    background-color: #43d1af;
 }
 

@@ -96,7 +96,7 @@ coming to this one first
        
                             <!--The action tells us which controller endpoint to go to-->
 
-                            <form class="form-horizontal" 
+                            <form class="form-horizontal formStyling" 
                                   role="form" method="POST" 
                                   action="addLocation">
 
@@ -232,7 +232,7 @@ coming to this one first
                 
                     
                                     <div class="col-md-offset-4 col-md-8">
-                                        <input type="submit" class="btn btn-default" value="Add Location"/>
+                                        <input class="submitButtons" type="submit" class="btn btn-default" value="Add Location"/>
                                     </div>
             
                     
@@ -309,7 +309,7 @@ coming to this one first
                                     </td>
             
             
-                                    <td id ="locationAddress" class = "tableText">
+                                    <td class = "tableText size15FontForCellsWithTooMuchText">
                                         
                                         
                                         <c:out value ="${currentLocation.locationStreet} ${currentLocation.locationCity} ${currentLocation.locationState} ${currentLocation.locationZipcode} ${currentLocation.locationCountry}"/> 
@@ -322,7 +322,7 @@ coming to this one first
                                     </td>
             
         
-                                    <td id ="locationDescription">
+                                    <td class="tableText size15FontForCellsWithTooMuchText">
                                         
                                         
                                         <c:out value="${currentLocation.locationDescription}"/>

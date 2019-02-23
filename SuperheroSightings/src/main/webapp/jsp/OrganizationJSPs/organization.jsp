@@ -361,7 +361,7 @@
         
         
         
-                                    <td>
+                                    <td class="tableText">
                                         
                                         <c:set var = "heroOrNot" scope = "session" value = "${currentOrganization.isItAHeroOrganization}"/>
       
@@ -383,7 +383,7 @@
         
         
         
-                                    <td>
+                                    <td class="tableText size15FontForCellsWithTooMuchText">
            
                                         <c:out value="${currentOrganization.organizationStreet}"/> <c:out value="${currentOrganization.organizationCity}"/> <c:out value="${currentOrganization.organizationState}"/>, <c:out value="${currentOrganization.organizationZipcode}"/> <c:out value=" ${currentOrganization.organizationCountry}"/>
         
@@ -391,7 +391,7 @@
         
         
         
-                                    <td>
+                                    <td class="tableText size15FontForCellsWithTooMuchText">
             
                                         <c:out value="${currentOrganization.organizationDescription}"/>
         

@@ -219,7 +219,7 @@
                                    
                                     
                                     
-                                    <td>
+                                    <td class ="tableText">
                                         
                                         <c:set var = "heroOrNot" scope = "session" value = "${currentSighting.isHeroSighting}"/>
       
@@ -291,7 +291,6 @@
             </div>
 	</div>
     </div>
-<!--</div>-->
 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

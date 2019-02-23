@@ -207,26 +207,17 @@ We include the text 'Edit' and 'Delete' now as placeholders - we will make them 
     
 <c:forEach var="currentUser" items="${userList}">
     <tr>
-<!--        <td>
 
-            <a href="displayUserDetails?theUsername=$ {currentUser.userName}">
-            < c:out value="$ {currentUser.userId}"/> 
-            </a>
-            
-        </td>-->
-        
-
-        
         
         <td>
-                        <a href="displayUserDetails?theUsername=${currentUser.userName}">
+                        <a class="tableLinks" href="displayUserDetails?theUsername=${currentUser.userName}">
 
                         <c:out value="${currentUser.userName}"/>
                         </a>
         </td>
         
         
-        <td>
+        <td class="tableText">
             
               <c:out value="${currentUser.firstName}"/>
 
@@ -235,7 +226,7 @@ We include the text 'Edit' and 'Delete' now as placeholders - we will make them 
         </td>
         
         
-        <td>
+        <td class="tableText">
             
             <c:out value="${currentUser.lastName}"/>
 
@@ -256,7 +247,7 @@ We include the text 'Edit' and 'Delete' now as placeholders - we will make them 
 
         <sec:authorize access="hasRole('ROLE_ADMIN')">
 
-            <a href="displayEditUserForm?userNameOfUser=${currentUser.userName}">
+            <a class="tableLinks" href="displayEditUserForm?userNameOfUser=${currentUser.userName}">
             Edit
             </a>
                     </sec:authorize>
@@ -265,7 +256,7 @@ We include the text 'Edit' and 'Delete' now as placeholders - we will make them 
         <td>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
 
-            <a href="deleteUser?theUsername=${currentUser.userName}">
+            <a class="tableLinks" href="deleteUser?theUsername=${currentUser.userName}">
             Delete
             </a>
                     </sec:authorize>
@@ -281,7 +272,6 @@ We include the text 'Edit' and 'Delete' now as placeholders - we will make them 
             </div>
 	</div>
     </div>
-<!--</div>-->
 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

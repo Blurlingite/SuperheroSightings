@@ -112,7 +112,6 @@
                                     <div class="form-group">
                 <label for="add-person-isHero" class="col-md-4 control-label">Person Type</label>
                 <div class="col-md-8">
-                    <!--<input type="radio" class="form-control" name="isHero" placeholder="isHero"/>-->
                     
                       <input type="radio" name="isHero" value="true"> Superhero<br>  <input type="radio" name="isHero" value="false"> Supervillain<br>
                        
@@ -201,7 +200,7 @@ We include the text 'Edit' and 'Delete' now as placeholders - we will make them 
     <tr>
         <th width="40%">Name</th>
         <th width="30%">Superhero/Supervillian/Human</th>
-        <th width="30%">Description</th>
+        <th width="30%">Person Description</th>
         <th width="15%"></th>
         <th width="15%"></th>
     </tr>
@@ -224,7 +223,7 @@ We include the text 'Edit' and 'Delete' now as placeholders - we will make them 
         </td>
         
         
-        <td>
+        <td class ="tableText">
                 <c:set var = "heroOrNot" scope = "session" value = "${currentPerson.isHero}"/>
       <c:if test = "${heroOrNot == true}">
          <p><c:out value = "Superhero"/><p>
@@ -233,11 +232,10 @@ We include the text 'Edit' and 'Delete' now as placeholders - we will make them 
                    <c:if test = "${heroOrNot == false}">
          <p><c:out value = "Supervillian"/><p>
       </c:if>
-                 <%--<c:out value="${currentPerson.isHero}"/>--%>
         </td>
         
         
-        <td>
+        <td class="tableText size15FontForCellsWithTooMuchText">
                 <c:out value="${currentPerson.descriptionOfPerson}"/>
         </td>
         
@@ -280,7 +278,6 @@ We include the text 'Edit' and 'Delete' now as placeholders - we will make them 
             </div>
 	</div>
     </div>
-<!--</div>-->
 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
