@@ -73,7 +73,7 @@
                 <div class = col-md-12>
                     <div class="col-md-4">
 
-                        <h2>
+                        <h2 class = "addEntityForm">
                             Add A Sighting
                         </h2>
 
@@ -188,7 +188,7 @@
 			</h2>
                         
                         
-                        <table id="sightingTable" class="table table-hover">
+                        <table id="sightingTable" class="table table-hover entityTable">
                             <tr>
                                 <th width="26%">Date</th>
                                 <th width="5">Type</th>
@@ -208,7 +208,7 @@
                                 <tr>
 
                                     <td>
-                                        <a href="displaySighting?sightingId=${currentSighting.sightingId}">
+                                        <a class="tableLinks" href="displaySighting?sightingId=${currentSighting.sightingId}">
                                             <c:out value="${currentSighting.justTheSightingDate}"/>
                                             <%--<c:out value="${currentSighting.justTheSightingDate}"/>--%>
 
@@ -242,12 +242,12 @@
                                     
                                     <td>
                                         
-                                    <a href="displayPersonDetails?thePersonId=${currentSighting.person.personId}"><c:out value="${currentSighting.person.firstName}"/><c:out value="${currentSighting.person.lastName}"/></a>
+                                    <a class="tableLinks" href="displayPersonDetails?thePersonId=${currentSighting.person.personId}"><c:out value="${currentSighting.person.firstName}"/><c:out value="${currentSighting.person.lastName}"/></a>
                                     </td>
 
 
                                     <td>
-                                        <a href="displayLocationDetails?theLocationId=${currentSighting.location.locationId}"><c:out value="${currentSighting.location.locationName}"/></a>
+                                        <a class="tableLinks" href="displayLocationDetails?theLocationId=${currentSighting.location.locationId}"><c:out value="${currentSighting.location.locationName}"/></a>
                                     </td>
 
 
@@ -268,7 +268,7 @@
 
         <sec:authorize access="hasRole('ROLE_ADMIN')">
 
-                                        <a href="displayEditSightingForm?sightingId=${currentSighting.sightingId}">
+                                        <a class="tableLinks" href="displayEditSightingForm?sightingId=${currentSighting.sightingId}">
                                             Edit
                                         </a>
         </sec:authorize>
@@ -276,7 +276,7 @@
                                     <td>
                                                 <sec:authorize access="hasRole('ROLE_ADMIN')">
 
-                                        <a href="deleteSighting?sightingIdToDelete=${currentSighting.sightingId}">
+                                        <a class="tableLinks" href="deleteSighting?sightingIdToDelete=${currentSighting.sightingId}">
                                             Delete
                                         </a>
                                                 </sec:authorize>

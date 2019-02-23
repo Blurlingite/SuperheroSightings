@@ -67,7 +67,7 @@
         <sec:authorize access="hasRole('ROLE_ADMIN')">
 
                     <div class="col-md-4">
-                        <h2>
+                        <h2 class = "addEntityForm">
                             Add A User 
                         </h2>
 
@@ -193,7 +193,7 @@ We are using a JSTL forEach tag to process the Superpowers in the List provided 
 Each Superpower in the list gets a new table row.
 Each row displays info of the Superpower.
 We include the text 'Edit' and 'Delete' now as placeholders - we will make them functional links in later steps.-->
-<table id="userTable" class="table table-hover">
+<table id="userTable" class="table table-hover entityTable">
     <tr>
         <!--<th width="17%">User No.</th>-->
         <th width="17%">Username</th>

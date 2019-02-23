@@ -85,7 +85,7 @@ coming to this one first
                     <div class="col-md-4">
                         
 
-                            <h2>
+                            <h2 class = "addEntityForm">
                                 Add A Location
                             </h2>
 
@@ -274,7 +274,7 @@ coming to this one first
                             Each row displays the name, address, and description of the Location.
                     -->
 
-                        <table id="locationTable" class="table table-hover">
+                        <table id="locationTable" class="table table-hover entityTable">
                             
                             
                             <tr>
@@ -301,7 +301,7 @@ coming to this one first
                                     ID of the location (locationId=) dynamically
                                     The locationId is passed into the request here so that in the Location Controller, the request you pass in has the lopcationId
                                     -->
-                                        <a href="displayLocationDetails?theLocationId=${currentLocation.locationId}">
+                                        <a class="tableLinks" href="displayLocationDetails?theLocationId=${currentLocation.locationId}">
                                         <c:out value="${currentLocation.locationName}"/> 
                                         </a>
                                         
@@ -309,7 +309,7 @@ coming to this one first
                                     </td>
             
             
-                                    <td>
+                                    <td id ="locationAddress" class = "tableText">
                                         
                                         
                                         <c:out value ="${currentLocation.locationStreet} ${currentLocation.locationCity} ${currentLocation.locationState} ${currentLocation.locationZipcode} ${currentLocation.locationCountry}"/> 
@@ -322,7 +322,7 @@ coming to this one first
                                     </td>
             
         
-                                    <td>
+                                    <td id ="locationDescription">
                                         
                                         
                                         <c:out value="${currentLocation.locationDescription}"/>
@@ -347,7 +347,7 @@ coming to this one first
 
                                     <sec:authorize access="hasRole('ROLE_ADMIN')">
 
-                                        <a href="displayEditLocationForm?theIdOfLocation=${currentLocation.locationId}">
+                                        <a  class="tableLinks" href="displayEditLocationForm?theIdOfLocation=${currentLocation.locationId}">
                                             Edit
                                         </a>
                                             
@@ -362,7 +362,7 @@ coming to this one first
                                         
                                         <sec:authorize access="hasRole('ROLE_ADMIN')">
   
-                                            <a href="deleteLocation?theLocationId=${currentLocation.locationId}">
+                                            <a  class="tableLinks" href="deleteLocation?theLocationId=${currentLocation.locationId}">
                                                 Delete
                                             </a>
                                             

@@ -83,7 +83,7 @@
 
                             <div class="col-md-4">
                                 
-                                <h2>
+                                <h2 class = "addEntityForm">
                                     Add An Organization
                                 </h2>
 
@@ -321,7 +321,7 @@
 
 
  
-                        <table id="locationTable" class="table table-hover">
+                        <table id="locationTable" class="table table-hover entityTable">
                             
                             <tr>
                                 <th width="15%">Organization Name</th>
@@ -350,7 +350,7 @@
             
                                         -->
             
-                                        <a href="displayOrganizationDetails?theOrganizantionId=${currentOrganization.organizationId}">
+                                        <a class="tableLinks" href="displayOrganizationDetails?theOrganizantionId=${currentOrganization.organizationId}">
             
                                             <c:out value="${currentOrganization.organizationName}"/> 
             
@@ -402,7 +402,7 @@
 
                                         <sec:authorize access="hasRole('ROLE_ADMIN')">
 
-                                            <a href="displayEditOrganizationForm?theIdOfOrganization=${currentOrganization.organizationId}">
+                                            <a class="tableLinks" href="displayEditOrganizationForm?theIdOfOrganization=${currentOrganization.organizationId}">
                                                  Edit
                                             </a>
                                         </sec:authorize>
@@ -414,7 +414,7 @@
                                         <sec:authorize access="hasRole('ROLE_ADMIN')">
 
             
-                                            <a href="deleteOrganization?theOrganizantionId=${currentOrganization.organizationId}">
+                                            <a class="tableLinks" href="deleteOrganization?theOrganizantionId=${currentOrganization.organizationId}">
             
                                                 Delete
             

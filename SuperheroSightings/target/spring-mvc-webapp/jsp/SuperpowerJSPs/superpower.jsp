@@ -103,7 +103,7 @@ function validateSuperpowerInputs() {
                         <!--The ROLE_ADMIN is in the database's Authorities table, and gets here in Java through User DTO, DAO and service layer-->
         <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <div class="col-md-4">
-                        <h2>
+                        <h2 class = "addEntityForm">
                             Add A Superpower
                         </h2>
 
@@ -191,10 +191,10 @@ We are using a JSTL forEach tag to process the Superpowers in the List provided 
 Each Superpower in the list gets a new table row.
 Each row displays info of the Superpower.
 We include the text 'Edit' and 'Delete' now as placeholders - we will make them functional links in later steps.-->
-<table id="superpowerTable" class="table table-hover">
+<table id="superpowerTable" class="table table-hover entityTable">
     <tr>
-        <th width="40%">Superpower Name</th>
-        <th width="30%">Superpower Description</th>
+        <th width="30%">Superpower Name</th>
+        <th width="40%">Superpower Description</th>
         <th width="15%"></th>
         <th width="15%"></th>
     </tr>
@@ -210,14 +210,15 @@ We include the text 'Edit' and 'Delete' now as placeholders - we will make them 
             ID of the contact (contactId=) dynamically
             The contactId is passed into the request here so that in the Contact Controller, the request you pass in has the contactId
             -->
-            <a href="displaySuperpowerDetails?theSuperpowerId=${currentSuperpower.superpowerId}">
+            <a class ="tableLinks" href="displaySuperpowerDetails?theSuperpowerId=${currentSuperpower.superpowerId}">
             <c:out value="${currentSuperpower.superpowerName}"/> 
             </a>
             
         </td>
         
-        <td>
-                        <c:out value="${currentSuperpower.superpowerDescription}"/>
+        <td class="tableText">
+            
+            <c:out value="${currentSuperpower.superpowerDescription}"/>
 
         </td>
 
@@ -241,7 +242,7 @@ We include the text 'Edit' and 'Delete' now as placeholders - we will make them 
 
            <sec:authorize access="hasRole('ROLE_ADMIN')">
                
-            <a href="displayEditPowerForm?powerId=${currentSuperpower.superpowerId}">
+            <a  class="tableLinks" href="displayEditPowerForm?powerId=${currentSuperpower.superpowerId}">
             Edit
             </a>
             
@@ -255,7 +256,7 @@ We include the text 'Edit' and 'Delete' now as placeholders - we will make them 
     <!--The ROLE_ADMIN is in the database's Authorities table, and gets here in Java through User DTO, DAO and service layer--> 
            <sec:authorize access="hasRole('ROLE_ADMIN')">
 
-            <a href="deleteSuperpower?superpowerId=${currentSuperpower.superpowerId}">
+            <a  class="tableLinks" href="deleteSuperpower?superpowerId=${currentSuperpower.superpowerId}">
             Delete
             </a>
             

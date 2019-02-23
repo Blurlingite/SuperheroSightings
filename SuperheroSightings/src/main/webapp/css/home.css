@@ -1,4 +1,9 @@
+ @font-face {
+font-family: athabasca;
+src: url(../fonts/text/athabasca-cd-el.ttf);
+src: url(fonts/text/athabasca-cd-el.ttf);
 
+}
 
 body{
     
@@ -32,7 +37,34 @@ body{
   position: absolute;
   bottom: -300%;
 
+}
 
-
+.addEntityForm{
+    background-color: purple;
+    color: red;
+    text-align:center;
     
 }
+
+.entityTable{
+    /*background-color:graytext;*/
+
+    background-color:#eeb249;
+    margin-top: 45px;
+    box-shadow: -15px 27px 69px rgba(0,0,0,.30);
+    margin-bottom: 50px;
+}
+
+ /*table text and <a> tag styling*/
+.tableText, .tableLinks{
+    color:#4957ee;
+    font-size: 22px;
+    font-weight: 900;
+    /*font-family: athabasca, Times, serif;*/
+}
+
+#locationAddress{
+        font-size: 15px;
+
+}
+

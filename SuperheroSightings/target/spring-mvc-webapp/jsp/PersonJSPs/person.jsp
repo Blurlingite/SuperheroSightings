@@ -76,7 +76,7 @@
                             <sec:authorize access="hasRole('ROLE_ADMIN')">
 
                     <div class="col-md-4">
-                        <h2>
+                        <h2 class = "addEntityForm">
                             Add A Person
                         </h2>
 
@@ -197,7 +197,7 @@ We are using a JSTL forEach tag to process the Contacts in the List provided by 
 Each Contact in the list gets a new table row.
 Each row displays the first and last name and company of the Contact.
 We include the text 'Edit' and 'Delete' now as placeholders - we will make them functional links in later steps.-->
-<table id="contactTable" class="table table-hover">
+<table id="contactTable" class="table table-hover entityTable">
     <tr>
         <th width="40%">Name</th>
         <th width="30%">Superhero/Supervillian/Human</th>
@@ -217,7 +217,7 @@ We include the text 'Edit' and 'Delete' now as placeholders - we will make them 
             ID of the contact (contactId=) dynamically
             The contactId is passed into the request here so that in the Contact Controller, the request you pass in has the contactId
             -->
-            <a href="displayPersonDetails?thePersonId=${currentPerson.personId}">
+            <a class="tableLinks" href="displayPersonDetails?thePersonId=${currentPerson.personId}">
             <c:out value="${currentPerson.firstName}"/><c:out value="${currentPerson.lastName}"/> 
             </a>
             
@@ -257,7 +257,7 @@ We include the text 'Edit' and 'Delete' now as placeholders - we will make them 
 
         <sec:authorize access="hasRole('ROLE_ADMIN')">
 
-            <a href="displayEditPersonForm?personId=${currentPerson.personId}">
+            <a class="tableLinks" href="displayEditPersonForm?personId=${currentPerson.personId}">
             Edit
             </a>
         </sec:authorize>
@@ -265,7 +265,7 @@ We include the text 'Edit' and 'Delete' now as placeholders - we will make them 
         <td>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
 
-            <a href="deletePerson?personIdToDelete=${currentPerson.personId}">
+            <a class="tableLinks" href="deletePerson?personIdToDelete=${currentPerson.personId}">
             Delete
             </a>
                     </sec:authorize>
