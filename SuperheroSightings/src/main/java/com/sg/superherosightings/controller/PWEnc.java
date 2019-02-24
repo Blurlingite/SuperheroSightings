@@ -5,8 +5,6 @@ Create a new Java class called PWEnc in the controller package and insert the fo
  */
 package com.sg.superherosightings.controller;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**

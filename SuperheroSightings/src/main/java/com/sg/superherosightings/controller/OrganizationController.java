@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import sg.thecodetasticfour.superherosightingsgroup.dao.SuperheroSightingsPersistenceException;
 import sg.thecodetasticfour.superherosightingsgroup.dto.Organization;
 import sg.thecodetasticfour.superherosightingsgroup.dto.Person;
-import sg.thecodetasticfour.superherosightingsgroup.dto.Superpower;
 import sg.thecodetasticfour.superherosightingsgroup.dto.User;
 import sg.thecodetasticfour.superherosightingsgroup.service.EntityNotFoundException;
 import sg.thecodetasticfour.superherosightingsgroup.service.SuperheroSightingsOrganizationServiceLayer;
@@ -50,7 +49,7 @@ public class OrganizationController {
     
     
     
-        @RequestMapping(value="/organizationHome", method=RequestMethod.GET)
+    @RequestMapping(value="/organizationHome", method=RequestMethod.GET)
     public String organizationHome(HttpServletRequest request, Model model) throws SuperheroSightingsPersistenceException{
         
         List<Organization> organizationList = organizationService.getAllOrganizations();
@@ -68,10 +67,8 @@ public class OrganizationController {
 
 
 
-
     
-    
-        @RequestMapping(value="/addOrganization", method=RequestMethod.POST)
+    @RequestMapping(value="/addOrganization", method=RequestMethod.POST)
     public String addOrganization(HttpServletRequest request) throws SuperheroSightingsPersistenceException, EntityNotFoundException{
         
         
@@ -122,7 +119,6 @@ public class OrganizationController {
         addThisOrganization.setOrganizationAdmins(allUsersInOrganization);
 
         
-        
         organizationService.createOrganization(addThisOrganization);
         
         
@@ -161,7 +157,7 @@ public class OrganizationController {
     
     
     
-        @RequestMapping(value = "/displayEditOrganizationForm", method = RequestMethod.GET)
+    @RequestMapping(value = "/displayEditOrganizationForm", method = RequestMethod.GET)
     public String displayEditOrganizationForm(HttpServletRequest request, Model model) throws EntityNotFoundException {
         
        
@@ -195,7 +191,7 @@ public class OrganizationController {
         return "/OrganizationJSPs/editOrganization";
     }
     
-        @RequestMapping(value = "/editOrganization", method = RequestMethod.POST)
+    @RequestMapping(value = "/editOrganization", method = RequestMethod.POST)
     public String editOrganization(HttpServletRequest r, @ModelAttribute("getOrganizationToEdit") Organization organization) throws SuperheroSightingsPersistenceException, EntityNotFoundException {
 
         String[] personIdStrings = r.getParameterValues("personsSelectedByUserOnEditPage");
@@ -219,15 +215,6 @@ public class OrganizationController {
             usersToAddToOrganization.add(currentUser);
         }
         
-//        List<String> usernames = organization.getAllUserNamesForUserListInOrganizationDTO();
-//        
-//        List<User> usersToSetToOrganization = new ArrayList<>();
-//        
-//        for(String currentUsername : usernames){
-//            
-//            User currentUser = userService.getUserByUsername(currentUsername);
-//            usersToSetToOrganization.add(currentUser);
-//        }
         
         organization.setListOfPersons(personsToAddToOrganization);
         organization.setOrganizationAdmins(usersToAddToOrganization);
@@ -239,7 +226,7 @@ public class OrganizationController {
     }
     
     
-        @RequestMapping(value="/deleteOrganization", method=RequestMethod.GET)
+    @RequestMapping(value="/deleteOrganization", method=RequestMethod.GET)
     public String deleteOrganization(HttpServletRequest request, Model model) throws SuperheroSightingsPersistenceException{
         
 
@@ -254,11 +241,7 @@ public class OrganizationController {
     }
     
     
-    
-      
-      
-   
-    
+
    
 }
     

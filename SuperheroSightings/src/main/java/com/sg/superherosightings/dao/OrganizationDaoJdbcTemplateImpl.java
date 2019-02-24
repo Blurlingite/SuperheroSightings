@@ -33,13 +33,15 @@ public class OrganizationDaoJdbcTemplateImpl implements SuperheroSightingsOrgani
     
     
 
-private static final String SQL_INSERT_ORGANIZATION = "INSERT INTO Organizations(OrganizationName, isHeroOrganization, OrganizationDescription, OrganizationCountry, OrganizationState, OrganizationCity, OrganizationStreet, OrganizationZipCode) " 
+private static final String SQL_INSERT_ORGANIZATION = 
+          "INSERT INTO Organizations(OrganizationName, isHeroOrganization, OrganizationDescription, OrganizationCountry, OrganizationState, OrganizationCity, OrganizationStreet, OrganizationZipCode) " 
         + "VALUES(?,?,?,?,?,?,?,?);";   
 private static final String SQL_SELECT_ORGANIZATION_BY_ID = "SELECT * FROM Organizations WHERE OrganizationID = ?;"; 
 
 private static final String SQL_SELECT_ALL_ORGANIZATIONS = "SELECT * FROM Organizations;"; 
 
-private static final String SQL_UPDATE_ORGANIZATION = "UPDATE Organizations SET OrganizationName = ?, isHeroOrganization = ?,"
+private static final String SQL_UPDATE_ORGANIZATION = 
+          "UPDATE Organizations SET OrganizationName = ?, isHeroOrganization = ?,"
         + " OrganizationDescription = ?, OrganizationCountry = ?, OrganizationState = ?, OrganizationCity = ?, OrganizationStreet = ?,"
         + " OrganizationZipCode = ?  WHERE OrganizationID = ?;";
 
@@ -50,8 +52,7 @@ private static final String SQL_INSERT_ORGANIZATION_MEMBERS = "INSERT INTO Organ
 private static final String SQL_DELETE_ORGANIZATION_MEMBERS = "DELETE FROM OrganizationMembers WHERE OrganizationID = ?;";
 
 private static final String SQL_GET_ORGANIZATIONS_BY_PERSON_ID = 
-        
-        "SELECT o.* " 
+          "SELECT o.* " 
         + "FROM Organizations o "
         + "JOIN OrganizationMembers om on om.OrganizationID = o.OrganizationID "
         + "WHERE om.PersonID = ?;";
@@ -62,10 +63,10 @@ private static final String SQL_INSERT_ORGANIZATION_ADMINS = "INSERT INTO Organi
 private static final String SQL_DELETE_ORGANIZATION_ADMINS = "DELETE FROM OrganizationAdmins WHERE OrganizationID = ?;";
 
 private static final String SQL_SELECT_ORGANIZATIONS_BY_USER_ID = 
-        "SELECT o.* "
-      + "FROM Organizations o "
-      + "JOIN OrganizationAdmins oa ON o.OrganizationID = oa.OrganizationID "
-      + "WHERE oa.UserID = ?;";
+          "SELECT o.* "
+        + "FROM Organizations o "
+        + "JOIN OrganizationAdmins oa ON o.OrganizationID = oa.OrganizationID "
+        + "WHERE oa.UserID = ?;";
 
 
     @Override
@@ -82,7 +83,9 @@ private static final String SQL_SELECT_ORGANIZATIONS_BY_USER_ID =
         insertOrganizationMembers(organization);
 
         insertOrganizationAdmins(organization);
+        
         return organization;
+        
     }
 
     @Override
@@ -102,7 +105,7 @@ private static final String SQL_SELECT_ORGANIZATIONS_BY_USER_ID =
     @Override
     public List<Organization> getAllOrganizations() throws SuperheroSightingsPersistenceException {
         
-           return jdbcTemplate.query(SQL_SELECT_ALL_ORGANIZATIONS, new OrganizationMapper());
+        return jdbcTemplate.query(SQL_SELECT_ALL_ORGANIZATIONS, new OrganizationMapper());
 
     }
 
@@ -135,9 +138,7 @@ private static final String SQL_SELECT_ORGANIZATIONS_BY_USER_ID =
         
         // delete Person from Person table in database
         jdbcTemplate.update(SQL_DELETE_ORGANIZATION_BY_ID, organizationId);
-        
-        
-        
+                
     }
 
     @Override
@@ -145,6 +146,7 @@ private static final String SQL_SELECT_ORGANIZATIONS_BY_USER_ID =
         
         List<Organization> o = jdbcTemplate.query(SQL_GET_ORGANIZATIONS_BY_PERSON_ID, new OrganizationMapper(), person.getPersonId());
         return o;
+        
     }
 
    
@@ -160,6 +162,7 @@ private static final String SQL_SELECT_ORGANIZATIONS_BY_USER_ID =
                             organizationId, 
                             currentPerson.getPersonId());
         }
+        
     }
     
     
@@ -171,15 +174,16 @@ private static final String SQL_SELECT_ORGANIZATIONS_BY_USER_ID =
         
         for (User currentUser : userList) {
             jdbcTemplate.update(SQL_INSERT_ORGANIZATION_ADMINS, 
-                            organizationId, 
-                            currentUser.getUserId());
+                    organizationId, 
+                    currentUser.getUserId());
         }
+        
     }
 
     @Override
     public List<Organization> findOrganizationsForUser(User user) throws SuperheroSightingsPersistenceException {
        
-       return jdbcTemplate.query(SQL_SELECT_ORGANIZATIONS_BY_USER_ID, 
+        return jdbcTemplate.query(SQL_SELECT_ORGANIZATIONS_BY_USER_ID, 
                new OrganizationMapper(), 
                user.getUserId());
         
@@ -211,6 +215,5 @@ private static final String SQL_SELECT_ORGANIZATIONS_BY_USER_ID =
             
         }
     
-
     
 }

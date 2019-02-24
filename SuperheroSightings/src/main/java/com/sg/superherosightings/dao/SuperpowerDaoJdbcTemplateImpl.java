@@ -27,8 +27,6 @@ public class SuperpowerDaoJdbcTemplateImpl implements SuperheroSightingsSuperpow
     private JdbcTemplate jdbcTemplate;
 
     
-    
-
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -46,10 +44,11 @@ public class SuperpowerDaoJdbcTemplateImpl implements SuperheroSightingsSuperpow
     // Join the bridge table, PersonSuperpowers with Superpowers table by the SuperpowerID in PersonSuperpowers.
     // The WHERE specifies the PersonID in PersonSuperpowers, since 1 person can have many superpowers, so we are using that person's ID to 
     // get all those superpowers
-    private static final String SQL_SELECT_SUPERPOWERS_BY_PERSON_ID = "SELECT sp.SuperpowerID, sp.Superpower, sp.SuperpowerDescription "
-    + "FROM Superpowers sp "
-    + "JOIN PersonSuperpowers psp on sp.SuperpowerID = psp.SuperpowerID WHERE "
-    + "psp.PersonID = ?";
+    private static final String SQL_SELECT_SUPERPOWERS_BY_PERSON_ID = 
+            "SELECT sp.SuperpowerID, sp.Superpower, sp.SuperpowerDescription "
+          + "FROM Superpowers sp "
+          + "JOIN PersonSuperpowers psp on sp.SuperpowerID = psp.SuperpowerID WHERE "
+          + "psp.PersonID = ?";
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
@@ -60,7 +59,9 @@ public class SuperpowerDaoJdbcTemplateImpl implements SuperheroSightingsSuperpow
         int superpowerId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
         
         superpower.setSuperpowerId(superpowerId);
+        
         return superpower;
+        
     }
 
     @Override
@@ -71,6 +72,7 @@ public class SuperpowerDaoJdbcTemplateImpl implements SuperheroSightingsSuperpow
         }catch(EmptyResultDataAccessException ex){
             return null;
         }
+        
     }
 
     @Override
@@ -98,7 +100,7 @@ public class SuperpowerDaoJdbcTemplateImpl implements SuperheroSightingsSuperpow
     }
 
     
-        // This method will join the bridge table with the Superpowers table in the database to pull all the superpowers that a person has, with that
+    // This method will join the bridge table with the Superpowers table in the database to pull all the superpowers that a person has, with that
     // person's ID
     @Override
     public List<Superpower> findSuperpowersForPerson(Person person){
@@ -110,22 +112,22 @@ public class SuperpowerDaoJdbcTemplateImpl implements SuperheroSightingsSuperpow
     }
     
         // lets netbeans access the Superpower table in the database
-    private static final class SuperpowerMapper implements RowMapper<Superpower>{
+        private static final class SuperpowerMapper implements RowMapper<Superpower>{
 
-        @Override
-        public Superpower mapRow(ResultSet rs, int i) throws SQLException {
+            @Override
+            public Superpower mapRow(ResultSet rs, int i) throws SQLException {
            
-            Superpower sp = new Superpower();
+                Superpower sp = new Superpower();
           
-            sp.setSuperpowerId(rs.getInt("SuperpowerID"));
-            sp.setSuperpowerName(rs.getString("Superpower"));
-            sp.setSuperpowerDescription(rs.getString("SuperpowerDescription"));
+                sp.setSuperpowerId(rs.getInt("SuperpowerID"));
+                sp.setSuperpowerName(rs.getString("Superpower"));
+                sp.setSuperpowerDescription(rs.getString("SuperpowerDescription"));
             
-            return sp;
+                return sp;
             
-        }
+            }
         
-    }
+        }
 
    
 }

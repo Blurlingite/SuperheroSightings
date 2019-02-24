@@ -31,7 +31,8 @@ public class LocationDaoJdbcTemplateImpl implements SuperheroSightingsLocationDa
         this.jdbcTemplate = jdbcTemplate;
     }
     
-    private static final String SQL_INSERT_LOCATION = "INSERT INTO Location(LocationName, LocationDescription, LocationCountry,"
+    private static final String SQL_INSERT_LOCATION = 
+              "INSERT INTO Location(LocationName, LocationDescription, LocationCountry,"
             + " LocationState, LocationCity, LocationStreet, LocationZipCode, Latitude, Longitude)"
             + " VALUES(?,?,?,?,?,?,?,?,?);"; 
     
@@ -39,24 +40,25 @@ public class LocationDaoJdbcTemplateImpl implements SuperheroSightingsLocationDa
     
     private static final String SQL_SELECT_ALL_LOCATIONS = "SELECT * FROM Location;";
     
-    private static final String SQL_UPDATE_LOCATION = "UPDATE Location SET LocationName = ?, LocationDescription = ?, LocationCountry = ?,"
+    private static final String SQL_UPDATE_LOCATION = 
+              "UPDATE Location SET LocationName = ?, LocationDescription = ?, LocationCountry = ?,"
             + " LocationState = ?, LocationCity = ?, LocationStreet = ?, LocationZipCode = ?, Latitude = ?, Longitude = ?"
             + " WHERE LocationID = ?;";
     
     private static final String SQL_DELETE_LOCATION = "DELETE FROM Location WHERE LocationID = ?;";
     
     private static final String SQL_SELECT_LOCATION_BY_SIGHTING_ID = 
-             "SELECT l.* " 
-             + "FROM Sightings s " 
-             + "JOIN Location l ON l.LocationID = s.LocationID " 
-             + "WHERE SightingID = ?;";
+              "SELECT l.* " 
+            + "FROM Sightings s " 
+            + "JOIN Location l ON l.LocationID = s.LocationID " 
+            + "WHERE SightingID = ?;";
     
     
-        private static final String SQL_SELECT_ALL_LOCATIONS_BY_PERSON_ID = 
-                "SELECT DISTINCT l.* " 
-                +"FROM Location l "
-                +"JOIN Sightings s ON s.LocationID = l.LocationID " 
-                +"WHERE s.PersonID = ?;";
+    private static final String SQL_SELECT_ALL_LOCATIONS_BY_PERSON_ID = 
+             "SELECT DISTINCT l.* " 
+            +"FROM Location l "
+            +"JOIN Sightings s ON s.LocationID = l.LocationID " 
+            +"WHERE s.PersonID = ?;";
                 
 
     
@@ -113,51 +115,50 @@ public class LocationDaoJdbcTemplateImpl implements SuperheroSightingsLocationDa
     }
 
     @Override
-        public Location findLocationForSighting(Sighting sighting) throws SuperheroSightingsPersistenceException {
+    public Location findLocationForSighting(Sighting sighting) throws SuperheroSightingsPersistenceException {
             
-            int sightingId = sighting.getSightingId();
+        int sightingId = sighting.getSightingId();
            
-          return jdbcTemplate.queryForObject(SQL_SELECT_LOCATION_BY_SIGHTING_ID, new LocationMapper(), sightingId);
+        return jdbcTemplate.queryForObject(SQL_SELECT_LOCATION_BY_SIGHTING_ID, new LocationMapper(), sightingId);
            
         }
 
     @Override
     public List<Location> findAllLocationsPersonWasSightedAt(int personId) throws SuperheroSightingsPersistenceException {
         
-        
         List<Location> locationList = jdbcTemplate.query(SQL_SELECT_ALL_LOCATIONS_BY_PERSON_ID, new LocationMapper(), personId);
         
         return locationList;
-    }
-
-    
-
-    
-    private static final class LocationMapper implements RowMapper<Location>{
-
-        @Override
-        public Location mapRow(ResultSet rs, int i) throws SQLException {
-           
-            Location loc = new Location();
-          
-            loc.setLocationId(rs.getInt("LocationID"));
-            loc.setLocationName(rs.getString("LocationName"));
-            loc.setLocationDescription(rs.getString("LocationDescription"));
-            loc.setLocationCountry(rs.getString("LocationCountry"));
-            loc.setLocationState(rs.getString("LocationState"));
-            loc.setLocationCity(rs.getString("LocationCity"));
-            loc.setLocationStreet(rs.getString("LocationStreet"));
-            loc.setLocationZipcode(rs.getString("LocationZipCode"));
-            loc.setLatitude(rs.getBigDecimal("Latitude"));
-            loc.setLongitude(rs.getBigDecimal("Longitude"));
-            
-            return loc;
-            
-        }
         
     }
+
     
+
     
+        private static final class LocationMapper implements RowMapper<Location>{
+
+            @Override
+            public Location mapRow(ResultSet rs, int i) throws SQLException {
+           
+                Location loc = new Location();
+          
+                loc.setLocationId(rs.getInt("LocationID"));
+                loc.setLocationName(rs.getString("LocationName"));
+                loc.setLocationDescription(rs.getString("LocationDescription"));
+                loc.setLocationCountry(rs.getString("LocationCountry"));
+                loc.setLocationState(rs.getString("LocationState"));
+                loc.setLocationCity(rs.getString("LocationCity"));
+                loc.setLocationStreet(rs.getString("LocationStreet"));
+                loc.setLocationZipcode(rs.getString("LocationZipCode"));
+                loc.setLatitude(rs.getBigDecimal("Latitude"));
+                loc.setLongitude(rs.getBigDecimal("Longitude"));
+            
+                return loc;
+            
+            }
+        
+        }
     
+ 
     
 }

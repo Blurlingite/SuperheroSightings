@@ -7,11 +7,8 @@ package com.sg.superherosightings.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,17 +30,16 @@ import sg.thecodetasticfour.superherosightingsgroup.service.EntityAlreadyExistsE
 @Controller
 public class UserController {
     
-//Create a private PasswordEncoder class variable. Make sure you import the org.springframework.security.crypto.password.PasswordEncoder. 
-    //There is another PasswordEncoder interface in the Spring Security library but it has been deprecated and you will get a weird variable with a strikethrough in it
+// Create a private PasswordEncoder class variable. Make sure you import the org.springframework.security.crypto.password.PasswordEncoder. 
+// There is another PasswordEncoder interface in the Spring Security library but it has been deprecated and you will get a weird variable with a strikethrough in it
    private PasswordEncoder encoder;
-//   boolean trueRole = true;
    
    
     SuperheroSightingsUserServiceLayer userService;
     SuperheroSightingsOrganizationServiceLayer organizationService;
 
-//    Have Spring use auto-wired constructor injection to hand our class an instance of the PasswordEncoder.
-    //The BCryptPasswordEncoder spring-security.xml bean entry that we created in the last step will be handed to us at 
+    // Have Spring use auto-wired constructor injection to hand our class an instance of the PasswordEncoder.
+    // The BCryptPasswordEncoder spring-security.xml bean entry that we created in the last step will be handed to us at 
     // runtime (BCryptPasswordEncoder implements PasswordEncoder).
     
     
@@ -76,11 +72,9 @@ public class UserController {
 
 
 
-
     
     @RequestMapping(value="/addUser", method=RequestMethod.POST)
     public String addUser(HttpServletRequest request, String userName, String userPassword, String firstName, String lastName, String email, Boolean isEnabled, Model model) throws EntityNotFoundException{
-        
         
         String[] organizationsChosenByUser = request.getParameterValues("organizationsSelectedByUser");
         List<Organization> allOrganizationsFromUser = new ArrayList<>();
@@ -93,16 +87,15 @@ public class UserController {
         }
         
         
-//        We must take the incoming password variable (in the parameter of this method) and hash it using the password encoder
-// then we will set that password to the user (make sure in ur database to have the password field set to a reasoable amount like 100 for example,
-// because it will be long
+    // We must take the incoming password variable (in the parameter of this method) and hash it using the password encoder
+    // then we will set that password to the user (make sure in ur database to have the password field set to a reasoable amount like 100 for example,
+    // because it will be long
         String hashedPasswordUsingEncoderInThisMethodsConstructor = encoder.encode(userPassword);
         User u = new User();
         
         u.setUserName(userName);
         u.setUserPassword(hashedPasswordUsingEncoderInThisMethodsConstructor);
 
-//        u.setUserPassword(userPassword);
         u.setFirstName(firstName);
         u.setLastName(lastName);
         u.setEmail(email);
@@ -112,40 +105,18 @@ public class UserController {
          // All users have ROLE_USER, only add ROLE_ADMIN if the is an Admin 
         // box is checked
         u.addAuthority("ROLE_USER");
-//        if (null != request.getParameter("isEnabled")) {
-//            u.addAuthority("ROLE_ADMIN");
-//        }
 
-//        // to control display of user's role
-//         trueRole = true; 
         
-//Uncomment here
         if (true == isEnabled) {
-//            trueRole = true;
-//            u.setTrueRole(true);
+
             u.addAuthority("ROLE_ADMIN");
         }else if(false == isEnabled){
-//            trueRole = false;
-//            u.setTrueRole(false);
+
             u.addAuthority("ROLE_USER");
             u.setIsEnabled(true);
         }
 
-//        if (true != isEnabled) {
-//            u.addAuthority("ROLE_ADMIN");
-//        }else if(false != isEnabled){
-//            u.addAuthority("ROLE_USER");
-//            u.setIsEnabled(true);
-//        }
-// End uncomment here
 
-
-        // All users have ROLE_USER, only add ROLE_ADMIN if the isAdmin 
-        // box is checked
-//        u.addAuthority("ROLE_USER");
-//        if (null != request.getParameter("isAdmin")) {
-//            u.addAuthority("ROLE_ADMIN");
-//        }
         
         try {
             userService.createUser(u);
@@ -155,7 +126,6 @@ public class UserController {
            return "redirect:/handleUserExceptions";
         }
         
-//       model.addAttribute("trueRole", trueRole);
 
         return "redirect:/userHome";
         
@@ -231,8 +201,6 @@ public class UserController {
             user.addAuthority("ROLE_USER");
         }
         
-        
-        
 
         
         user.setUserOrganizations(organizationsToSetToUser);
@@ -270,24 +238,6 @@ public class UserController {
     
         
 
-    
-    
-    
-    
-        
-    
-    
-    
-    
-        
-    
-    
-    
-    
-        
-    
-    
-    
     
     
 }

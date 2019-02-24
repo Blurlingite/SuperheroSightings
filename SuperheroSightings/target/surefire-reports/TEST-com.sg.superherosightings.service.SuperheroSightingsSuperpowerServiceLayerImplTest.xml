@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="7" failures="0" name="com.sg.superherosightings.service.SuperheroSightingsSuperpowerServiceLayerImplTest" time="0.497" errors="0" skipped="0">
+<testsuite tests="7" failures="0" name="com.sg.superherosightings.service.SuperheroSightingsSuperpowerServiceLayerImplTest" time="0.523" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/lib"/>
@@ -65,11 +65,11 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsSuperpowerServiceLayerImplTest" name="testSetGlobalSuperpower" time="0.065"/>
-  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsSuperpowerServiceLayerImplTest" name="testCreateSuperpower" time="0.07"/>
-  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsSuperpowerServiceLayerImplTest" name="testGetAllSuperpowers" time="0.065"/>
-  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsSuperpowerServiceLayerImplTest" name="testGetGlobalSuperpower" time="0.058"/>
-  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsSuperpowerServiceLayerImplTest" name="testGetSuperpowerById" time="0.085"/>
-  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsSuperpowerServiceLayerImplTest" name="testDeleteSuperpower" time="0.089"/>
-  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsSuperpowerServiceLayerImplTest" name="testUpdateSuperpower" time="0.065"/>
+  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsSuperpowerServiceLayerImplTest" name="testSetGlobalSuperpower" time="0.068"/>
+  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsSuperpowerServiceLayerImplTest" name="testCreateSuperpower" time="0.077"/>
+  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsSuperpowerServiceLayerImplTest" name="testGetAllSuperpowers" time="0.069"/>
+  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsSuperpowerServiceLayerImplTest" name="testGetGlobalSuperpower" time="0.075"/>
+  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsSuperpowerServiceLayerImplTest" name="testGetSuperpowerById" time="0.075"/>
+  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsSuperpowerServiceLayerImplTest" name="testDeleteSuperpower" time="0.065"/>
+  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsSuperpowerServiceLayerImplTest" name="testUpdateSuperpower" time="0.094"/>
 </testsuite>

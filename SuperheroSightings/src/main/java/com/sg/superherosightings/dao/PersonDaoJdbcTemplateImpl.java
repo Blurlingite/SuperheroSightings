@@ -27,7 +27,8 @@ import sg.thecodetasticfour.superherosightingsgroup.dto.Superpower;
  */
 public class PersonDaoJdbcTemplateImpl implements SuperheroSightingsPersonDao {
     
-    private static final String SQL_INSERT_PERSON = "INSERT INTO Person(FirstName, LastName, isHero, PersonDescription)" 
+    private static final String SQL_INSERT_PERSON = 
+              "INSERT INTO Person(FirstName, LastName, isHero, PersonDescription)" 
             + "VALUES(?,?,?,?);";
     
     private static final String SQL_GET_PERSON_BY_ID = "SELECT * FROM Person WHERE PersonID = ?;";
@@ -42,30 +43,30 @@ public class PersonDaoJdbcTemplateImpl implements SuperheroSightingsPersonDao {
 
     private static final String SQL_DELETE_PERSON_SUPERPOWERS = "DELETE FROM PersonSuperpowers WHERE PersonID = ?";
     
-     private static final String SQL_GET_PERSON_FOR_SIGHTING = 
-             "SELECT p.* " 
-             + "FROM Sightings s " 
-             + "JOIN Person p ON p.PersonID = s.PersonId " 
-             + "WHERE SightingID = ?;";
+    private static final String SQL_GET_PERSON_FOR_SIGHTING = 
+              "SELECT p.* " 
+            + "FROM Sightings s " 
+            + "JOIN Person p ON p.PersonID = s.PersonId " 
+            + "WHERE SightingID = ?;";
 
 
-           // this should be in Person Dao because you are getting a List of Persons. You get Persons from the Person Dao
-private static final String SQL_SELECT_PERSONS_BY_ORGANIZATION_ID = 
-        "SELECT p.PersonID, p.FirstName, p.LastName, p.isHero, p.PersonDescription " 
-        + "FROM Person p " 
-        + "JOIN OrganizationMembers om ON p.PersonID = om.PersonID " 
-        + "WHERE om.OrganizationID = ?;";     
+    // this should be in Person Dao because you are getting a List of Persons. You get Persons from the Person Dao
+    private static final String SQL_SELECT_PERSONS_BY_ORGANIZATION_ID = 
+              "SELECT p.PersonID, p.FirstName, p.LastName, p.isHero, p.PersonDescription " 
+            + "FROM Person p " 
+            + "JOIN OrganizationMembers om ON p.PersonID = om.PersonID " 
+            + "WHERE om.OrganizationID = ?;";     
                 
-  private static final String SQL_INSERT_ORGANIZATION_MEMBERS = "INSERT INTO OrganizationMembers(OrganizationID, PersonID) VALUES(?,?);";
+    private static final String SQL_INSERT_ORGANIZATION_MEMBERS = "INSERT INTO OrganizationMembers(OrganizationID, PersonID) VALUES(?,?);";
 
 
-  private static final String SQL_DELETE_ORGANIZATION_MEMBERS = "DELETE FROM OrganizationMembers WHERE PersonID = ?";
+    private static final String SQL_DELETE_ORGANIZATION_MEMBERS = "DELETE FROM OrganizationMembers WHERE PersonID = ?";
 
-  private static final String SQL_SELECT_PERSONS_BY_SUPERPOWER = 
-        "SELECT p.* " 
-      + "FROM Person p " 
-      + "JOIN PersonSuperpowers ps ON p.PersonID = ps.PersonID " 
-      + "WHERE ps.SuperpowerID = ?;";
+    private static final String SQL_SELECT_PERSONS_BY_SUPERPOWER = 
+              "SELECT p.* " 
+            + "FROM Person p " 
+            + "JOIN PersonSuperpowers ps ON p.PersonID = ps.PersonID " 
+            + "WHERE ps.SuperpowerID = ?;";
 
     
     private JdbcTemplate jdbcTemplate;
@@ -86,16 +87,15 @@ private static final String SQL_SELECT_PERSONS_BY_ORGANIZATION_ID =
         // this will insert the person's ID and the IDs of each superpower that person has into the bridge table, PersonSuperpowers
         insertPersonSuperpowers(person);
         
-//        if(person.getListOfOrganizations() != null){
-//            insertPersonIntoOrganizationMembers(person);
-//        }
         // a person doesn't have to be a part of any organizations, so we will 
         // only add that person to the OrganizationMembers bridge table if the list of organizations variable on Person DTO is not null
         // if it is null, then we don't need to make an entry in OrganizationMembers bridge table because there are no organizations
         if(person.getListOfOrganizations() != null){
             insertOrganizationMembers(person);
         }
+        
         return person;
+        
     }
 
     @Override
@@ -110,12 +110,13 @@ private static final String SQL_SELECT_PERSONS_BY_ORGANIZATION_ID =
         }catch(EmptyResultDataAccessException ex){  // thrown if the data was empty?
             return null;
         }
+        
     }
 
     @Override
     public List<Person> getAllPersons() throws SuperheroSightingsPersistenceException {
       
-          return jdbcTemplate.query(SQL_GET_ALL_PERSONS, new PersonMapper());
+        return jdbcTemplate.query(SQL_GET_ALL_PERSONS, new PersonMapper());
 
     }
 
@@ -136,6 +137,7 @@ private static final String SQL_SELECT_PERSONS_BY_ORGANIZATION_ID =
         if(person.getListOfOrganizations() != null){
             insertOrganizationMembers(person);
         }
+        
     }
 
     @Override
@@ -146,6 +148,7 @@ private static final String SQL_SELECT_PERSONS_BY_ORGANIZATION_ID =
         
         // delete Person from Person table in database
         jdbcTemplate.update(SQL_DELETE_PERSON_BY_ID, personId);
+        
     }
     
 
@@ -156,7 +159,6 @@ private static final String SQL_SELECT_PERSONS_BY_ORGANIZATION_ID =
     // For every Person there is a list of superpowers, so add them all to the bridge table in the database
     private void insertPersonSuperpowers(Person person){
         
-        // Why are these final?
         final int personId = person.getPersonId();    // person ID of the person you passed in, for easier re-use it is assigned to a variable
         final List<Superpower> superpowers = person.getListOfSuperpowers();  // all the superpowers assigned to the Person DTO's list variable
         
@@ -168,8 +170,7 @@ private static final String SQL_SELECT_PERSONS_BY_ORGANIZATION_ID =
             jdbcTemplate.update(SQL_INSERT_PERSON_SUPERPOWERS, 
                             personId, 
                             currentSuperpower.getSuperpowerId());
-    }
-        
+        }
         
     }
     
@@ -182,9 +183,8 @@ private static final String SQL_SELECT_PERSONS_BY_ORGANIZATION_ID =
         
         for (Organization currentOrganization : organizations) {
             jdbcTemplate.update(SQL_INSERT_ORGANIZATION_MEMBERS, 
-                            currentOrganization.getOrganizationId(), personId);
-    }
-        
+                    currentOrganization.getOrganizationId(), personId);
+        }
         
     }
     
@@ -193,13 +193,16 @@ private static final String SQL_SELECT_PERSONS_BY_ORGANIZATION_ID =
     @Override
     public List<Person> getAllPersonsSightedAtLocation(List<Sighting> sightingList) throws SuperheroSightingsPersistenceException {
        
-       List<Person> personsFromSightings = new ArrayList<>();
+        List<Person> personsFromSightings = new ArrayList<>();
         
         for(Sighting currentSighting : sightingList){
+            
             personsFromSightings.add(currentSighting.getPerson());
+            
         }
         
         return personsFromSightings;
+        
     }
 
 
@@ -220,7 +223,7 @@ private static final String SQL_SELECT_PERSONS_BY_ORGANIZATION_ID =
            
         return jdbcTemplate.queryForObject(SQL_GET_PERSON_FOR_SIGHTING, new PersonMapper(), sightingId);
            
-       }
+    }
     
     
     @Override
@@ -228,7 +231,6 @@ private static final String SQL_SELECT_PERSONS_BY_ORGANIZATION_ID =
         
         return jdbcTemplate.query(SQL_SELECT_PERSONS_BY_SUPERPOWER, new PersonMapper(), superpower.getSuperpowerId());
 
-        
     }
     
     
@@ -250,30 +252,28 @@ private static final String SQL_SELECT_PERSONS_BY_ORGANIZATION_ID =
     
     
         // lets netbeans access the Person table in the database
-    private static final class PersonMapper implements RowMapper<Person>{
+        private static final class PersonMapper implements RowMapper<Person>{
 
-        @Override
-        public Person mapRow(ResultSet rs, int i) throws SQLException {
+            @Override
+            public Person mapRow(ResultSet rs, int i) throws SQLException {
            
-            Person p = new Person();
+                Person p = new Person();
             
-            p.setPersonId(rs.getInt("PersonID"));  // PersonID is exactly how that column appears in the database
-            p.setFirstName(rs.getString("FirstName"));
-            p.setLastName(rs.getString("LastName"));
-            p.setIsHero(rs.getBoolean("isHero"));
-            p.setDescriptionOfPerson(rs.getString("PersonDescription"));
+                p.setPersonId(rs.getInt("PersonID"));  // PersonID is exactly how that column appears in the database
+                p.setFirstName(rs.getString("FirstName"));
+                p.setLastName(rs.getString("LastName"));
+                p.setIsHero(rs.getBoolean("isHero"));
+                p.setDescriptionOfPerson(rs.getString("PersonDescription"));
             
-            return p;
+                return p;
             
+            }
+        
+        
         }
-        
-        
-        
-    }
     
     
-  
-    }
+}
         
     
     

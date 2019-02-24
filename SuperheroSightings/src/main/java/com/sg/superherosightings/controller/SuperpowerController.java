@@ -74,7 +74,7 @@ public class SuperpowerController {
     }
     
     // When you click on a Superpower's name it will take you here and then display the superpower's info on a JSP called displaySuperpowerDetails
-        @RequestMapping(value = "/displaySuperpowerDetails", method = RequestMethod.GET)
+    @RequestMapping(value = "/displaySuperpowerDetails", method = RequestMethod.GET)
     public String displaySuperpowerDetails(HttpServletRequest request, Model model) throws EntityNotFoundException {
         
         String superpowerIdAsAString = request.getParameter("theSuperpowerId");
@@ -102,18 +102,11 @@ public class SuperpowerController {
         return "/SuperpowerJSPs/editSuperpower";
     }
     
-    
-    
-    
-    
+
     
     
     @RequestMapping(value = "/editSuperpower", method = RequestMethod.POST)
     public String editSuperpower(@Valid @ModelAttribute("getPowerToEdit") Superpower superpower, BindingResult result) {
-
-//            if (result.hasErrors()) {
-//        return "redirect:/editSuperpower";
-//    }
         
         superpowerService.updateSuperpower(superpower);
 
@@ -125,7 +118,6 @@ public class SuperpowerController {
     
     @RequestMapping(value="/deleteSuperpower", method=RequestMethod.GET)
     public String deleteSuperpower(HttpServletRequest request, Model model){
-        
 
        String superpowerIdString = request.getParameter("superpowerId");
        
@@ -136,8 +128,6 @@ public class SuperpowerController {
         return "redirect:/SuperpowerJSPs/superpowerHome";
         
     }
-    
-    
     
     
     
@@ -153,8 +143,6 @@ public class SuperpowerController {
         
     }
     
-    
-    
-    
+     
     
 }

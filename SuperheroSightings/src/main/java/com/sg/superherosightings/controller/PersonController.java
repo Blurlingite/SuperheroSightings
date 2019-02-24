@@ -23,7 +23,6 @@ import sg.thecodetasticfour.superherosightingsgroup.dto.Superpower;
 import sg.thecodetasticfour.superherosightingsgroup.service.EntityNotFoundException;
 import sg.thecodetasticfour.superherosightingsgroup.service.SuperheroSightingsLocationServiceLayer;
 import sg.thecodetasticfour.superherosightingsgroup.service.SuperheroSightingsPersonServiceLayer;
-import sg.thecodetasticfour.superherosightingsgroup.service.SuperheroSightingsSightingServiceLayer;
 import sg.thecodetasticfour.superherosightingsgroup.service.SuperheroSightingsSuperpowerServiceLayer;
 
 /**
@@ -73,9 +72,6 @@ public class PersonController {
 
 
 
-
-
-
     
     @RequestMapping(value="/addPerson", method=RequestMethod.POST)
     public String addPerson(HttpServletRequest request, Model model) throws EntityNotFoundException, SuperheroSightingsPersistenceException{
@@ -115,9 +111,6 @@ public class PersonController {
             
             allOrganizationsToAddToPerson.add(currentOrganization);
         }
-        
-        
-        
         
         
         
@@ -175,7 +168,7 @@ public class PersonController {
     }
     
     
-        @RequestMapping(value="/displayEditPersonForm", method=RequestMethod.GET)
+    @RequestMapping(value="/displayEditPersonForm", method=RequestMethod.GET)
     public String displayEditPersonForm(HttpServletRequest request, Model model) throws EntityNotFoundException, SuperheroSightingsPersistenceException{
         
         String personIdString = request.getParameter("personId");
@@ -237,19 +230,11 @@ public class PersonController {
     }
     
     
-    
-    
-    
 
     
     
     
-    
-    
-    
-    
-    
-        @RequestMapping(value="/deletePerson", method=RequestMethod.GET)
+    @RequestMapping(value="/deletePerson", method=RequestMethod.GET)
     public String deletePerson(HttpServletRequest request, Model model) throws EntityNotFoundException{
         
         String personIdString = request.getParameter("personIdToDelete");
@@ -263,7 +248,7 @@ public class PersonController {
     
     
       
-            @RequestMapping(value = "/handlePersonExceptions", method = RequestMethod.GET)
+    @RequestMapping(value = "/handlePersonExceptions", method = RequestMethod.GET)
     public String handlePersonExceptions(HttpServletRequest request){
 
         // get the message from a controller endpoint that redirected you here and use it to set message in service layer

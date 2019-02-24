@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -35,7 +34,7 @@ public class SightingDaoJdbcTemplateImpl implements SuperheroSightingsSightingDa
     
     
     private static final String SQL_INSERT_SIGHTING = 
-            "INSERT INTO Sightings(isHeroSighting, PersonID, LocationID, SightingDate) "
+              "INSERT INTO Sightings(isHeroSighting, PersonID, LocationID, SightingDate) "
             + "VALUES(?,?,?, ?);";
     
     private static final String SQL_SELECT_SIGHTING_BY_ID = 
@@ -44,36 +43,29 @@ public class SightingDaoJdbcTemplateImpl implements SuperheroSightingsSightingDa
             + "WHERE SightingID = ?;";
     
     private static final String SQL_SELECT_ALL_SIGHTINGS = 
-            "SELECT * "
+              "SELECT * "
             + "FROM Sightings";
     
     private static final String SQL_UPDATE_SIGHTING =
-    "UPDATE Sightings SET isHeroSighting = ?, PersonID = ?, LocationID = ?,  SightingDate = ? "
+              "UPDATE Sightings SET isHeroSighting = ?, PersonID = ?, LocationID = ?,  SightingDate = ? "
             + "WHERE SightingID = ?;";
     
     private static final String SQL_DELETE_SIGHTING = 
-            "DELETE FROM Sightings "
+              "DELETE FROM Sightings "
             + "WHERE SightingID = ?";
     
     
     private static final String SQL_SELECT_LATEST_TEN_SIGHTINGS = 
-            "SELECT * "
+              "SELECT * "
             + "FROM Sightings "
             + "ORDER BY SightingDate DESC LIMIT 10;";
 
 
     private static final String SQL_SELECT_ALL_SIGHTINGS_BY_LOCATION = 
-            "SELECT * " 
+              "SELECT * " 
             + "FROM Sightings " 
             + "WHERE LocationID = ?";
     
-    
-    
-//    private static final String SQL_SELECT_ALL_SIGHTINGS_BY_DATE = 
-//        "SELECT * FROM Sightings "
-//            + "WHERE SightingDate >= ? "
-//            + "  AND SightingDate  < ? + INTERVAL 1 DAY;";
-
     
     private static final String SQL_SELECT_ALL_SIGHTINGS_BY_DATE = 
             "SELECT * " 
@@ -90,20 +82,22 @@ public class SightingDaoJdbcTemplateImpl implements SuperheroSightingsSightingDa
                 sighting.getPerson().getPersonId(), 
                 sighting.getLocation().getLocationId(),
                 sighting.getJustTheSightingDate()
-//                sighting.getSightingDate()
         );
        
         
         int sightingId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
 
         sighting.setSightingId(sightingId);
+        
         return sighting;
+        
     }
 
     @Override
     public Sighting getSightingById(int sightingId) throws SuperheroSightingsPersistenceException {
        
         Sighting retrievedSighting = new Sighting();
+        
         try{
             retrievedSighting = jdbcTemplate.queryForObject(SQL_SELECT_SIGHTING_BY_ID, new SightingMapper(),sightingId);
         }catch(EmptyResultDataAccessException ex){
@@ -111,11 +105,14 @@ public class SightingDaoJdbcTemplateImpl implements SuperheroSightingsSightingDa
         }
         
         return retrievedSighting;
+        
     }
 
     @Override
     public List<Sighting> getAllSightings() throws SuperheroSightingsPersistenceException {
+        
         return jdbcTemplate.query(SQL_SELECT_ALL_SIGHTINGS, new SightingMapper());
+        
     }
 
     @Override
@@ -126,8 +123,6 @@ public class SightingDaoJdbcTemplateImpl implements SuperheroSightingsSightingDa
                 sighting.getPerson().getPersonId(), 
                 sighting.getLocation().getLocationId(),
                 sighting.getJustTheSightingDate(),
-
-//                sighting.getSightingDate(), 
                 sighting.getSightingId());
 
     }
@@ -144,6 +139,7 @@ public class SightingDaoJdbcTemplateImpl implements SuperheroSightingsSightingDa
     public List<Sighting> getLatestTenSightings() throws SuperheroSightingsPersistenceException {
        
         return jdbcTemplate.query(SQL_SELECT_LATEST_TEN_SIGHTINGS, new SightingMapper());
+        
     }
     
     
@@ -151,27 +147,28 @@ public class SightingDaoJdbcTemplateImpl implements SuperheroSightingsSightingDa
     // To fulfill this requirement: The system must be able to report all of the superheroes sighted at a particular location
     @Override 
     public List<Sighting> getAllSightingsByLocation(int locationId) throws SuperheroSightingsPersistenceException{
+        
         return jdbcTemplate.query(SQL_SELECT_ALL_SIGHTINGS_BY_LOCATION, new SightingMapper(), locationId);
+    
     }
 
     @Override
     public List<Sighting> getAllSightingsByDate(LocalDateTime dateSelected) throws SuperheroSightingsPersistenceException {
         
-//        convert LocalDateTime to a LocalDate to be used in query
+        // convert LocalDateTime to a LocalDate to be used in query
         LocalDate dateToQueryBy = dateSelected.toLocalDate();
-        
         
         String dateToLookFor = dateToQueryBy.toString();
         
         return jdbcTemplate.query(SQL_SELECT_ALL_SIGHTINGS_BY_DATE, new SightingMapper(), dateToLookFor, dateToLookFor);
+    
     }
     
     
 
     @Override
     public List<Sighting> getAllSightingsByLocalDate(LocalDate ld) throws SuperheroSightingsPersistenceException {
-//               convert LocalDateTime to a LocalDate to be used in query
-        
+
         String dateToLookFor = ld.toString();
         
         return jdbcTemplate.query(SQL_SELECT_ALL_SIGHTINGS_BY_DATE, new SightingMapper(), dateToLookFor, dateToLookFor);
@@ -179,23 +176,21 @@ public class SightingDaoJdbcTemplateImpl implements SuperheroSightingsSightingDa
     }
     
 
-      private static final class SightingMapper implements RowMapper<Sighting>{
+        private static final class SightingMapper implements RowMapper<Sighting>{
 
-        @Override
-        public Sighting mapRow(ResultSet rs, int i) throws SQLException {
+            @Override
+            public Sighting mapRow(ResultSet rs, int i) throws SQLException {
            
-            Sighting s = new Sighting();
+                Sighting s = new Sighting();
           
-            s.setSightingId(rs.getInt("SightingID"));
-            s.setIsHeroSighting(rs.getBoolean("isHeroSighting"));
-            s.setJustTheSightingDate(rs.getTimestamp("SightingDate").toLocalDateTime().toLocalDate());   // have to getTimestamp then convert to LocalDateTime with toLocalDateTime()
-
-//            s.setSightingDate(rs.getTimestamp("SightingDate").toLocalDateTime());   // have to getTimestamp then convert to LocalDateTime with toLocalDateTime()
+                s.setSightingId(rs.getInt("SightingID"));
+                s.setIsHeroSighting(rs.getBoolean("isHeroSighting"));
+                s.setJustTheSightingDate(rs.getTimestamp("SightingDate").toLocalDateTime().toLocalDate());   // have to getTimestamp then convert to LocalDateTime with toLocalDateTime()
            
-            return s;
+                return s;
             
-        }
+            }
         
-    }
+        }
     
 }
