@@ -6,9 +6,6 @@ package com.sg.superherosightings.dao;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -25,9 +22,7 @@ import sg.thecodetasticfour.superherosightingsgroup.dao.SuperheroSightingsPerson
 import sg.thecodetasticfour.superherosightingsgroup.dao.SuperheroSightingsSightingDao;
 import sg.thecodetasticfour.superherosightingsgroup.dao.SuperheroSightingsSuperpowerDao;
 import sg.thecodetasticfour.superherosightingsgroup.dto.Location;
-import sg.thecodetasticfour.superherosightingsgroup.dto.Person;
 import sg.thecodetasticfour.superherosightingsgroup.dto.Sighting;
-import sg.thecodetasticfour.superherosightingsgroup.dto.Superpower;
 
 /**
  *
@@ -67,12 +62,17 @@ public class SuperheroSightingsLocationDaoJdbcTemplateImplTest {
         List<Sighting> sightingList = sightingDaoTest.getAllSightings();
 
         for(Location currentLocation : locationList){
+            
             locationDaoTest.deleteLocation(currentLocation.getLocationId());
+            
         }
         
         for(Sighting currentSighting : sightingList){
+            
             sightingDaoTest.deleteSighting(currentSighting.getSightingId());
+            
         }
+        
     }
     
     @After
@@ -87,7 +87,7 @@ public class SuperheroSightingsLocationDaoJdbcTemplateImplTest {
     }
 
     /**
-     * Test of createLocation method, of class SuperheroSightingsLocationDaoJdbcTemplateImpl.
+     * Test of createLocation and getLocationById methods, of class SuperheroSightingsLocationDaoJdbcTemplateImpl.
      */
     @Test
     public void testCreateGetLocation() throws Exception {
@@ -119,14 +119,9 @@ public class SuperheroSightingsLocationDaoJdbcTemplateImplTest {
 //                assertEquals(loc, fromDao);
 
         assertEquals(loc.getLocationId(), fromDao.getLocationId());
+        
     }
 
-    /**
-     * Test of getLocationById method, of class SuperheroSightingsLocationDaoJdbcTemplateImpl.
-     */
-    @Test
-    public void testGetLocationById() throws Exception {
-    }
 
     /**
      * Test of getAllLocations method, of class SuperheroSightingsLocationDaoJdbcTemplateImpl.

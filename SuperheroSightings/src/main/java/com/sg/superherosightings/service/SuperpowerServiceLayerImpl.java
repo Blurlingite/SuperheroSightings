@@ -33,10 +33,15 @@ public class SuperpowerServiceLayerImpl implements SuperheroSightingsSuperpowerS
     public Superpower createSuperpower(Superpower superpower) {
 
         try {
+            
              return superpowerDao.createSuperpower(superpower);
+             
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(SuperpowerServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
             return null;
+            
         }
         
     }
@@ -45,36 +50,57 @@ public class SuperpowerServiceLayerImpl implements SuperheroSightingsSuperpowerS
     public Superpower getSuperpowerById(int superpowerId) throws EntityNotFoundException {
         
         Superpower s = new Superpower();
+        
         try {
+            
             s = superpowerDao.getSuperpowerById(superpowerId);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(SuperpowerServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         
         if(s == null){
+            
             throw new EntityNotFoundException("Could not find that Superpower");
+            
         }
+        
         return s;
+        
     }
 
     @Override
     public List<Superpower> getAllSuperpowers() {
+        
         List<Superpower> listOfSuperpowers = new ArrayList<>();
+        
         try {
+            
             listOfSuperpowers = superpowerDao.getAllSuperpowers();
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(SuperpowerServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
+        
         return listOfSuperpowers;
+        
     }
 
     @Override
     public void updateSuperpower(Superpower superpower) {
         
         try {
+            
             superpowerDao.updateSuperpower(superpower);
+        
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(SuperpowerServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         
     }
@@ -83,25 +109,33 @@ public class SuperpowerServiceLayerImpl implements SuperheroSightingsSuperpowerS
     public void deleteSuperpower(int superpowerId) {
        
         try {
+            
             superpowerDao.deleteSuperpower(superpowerId);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(SuperpowerServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
+        
     }
 
     @Override
     public List<Superpower> findSuperpowersForPerson(Person person) {
         
         try {
+            
             return superpowerDao.findSuperpowersForPerson(person);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(SuperpowerServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
             return null;
+            
         }
         
     }
 
-
-  
     
 }

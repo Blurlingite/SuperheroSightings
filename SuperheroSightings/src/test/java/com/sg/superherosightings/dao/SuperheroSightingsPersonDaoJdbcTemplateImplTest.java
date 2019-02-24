@@ -8,7 +8,6 @@ package com.sg.superherosightings.dao;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -79,17 +78,20 @@ public class SuperheroSightingsPersonDaoJdbcTemplateImplTest {
         for(Person currentPerson : listOfPersons){
             
             personDaoTest.deletePerson(currentPerson.getPersonId());
+            
         }
         
         for(Superpower currentSuperpower : listOfSuperpowers){
             
             spTest.deleteSuperpower(currentSuperpower.getSuperpowerId());
+            
         }
         
         
         for(Location currentLocation : listOfLocations){
             
             locDaoTest.deleteLocation(currentLocation.getLocationId());
+            
         }
                 
                 
@@ -97,6 +99,7 @@ public class SuperheroSightingsPersonDaoJdbcTemplateImplTest {
         for(Sighting currentSighting : listOfSightings){
             
             sightingDaoTest.deleteSighting(currentSighting.getSightingId());
+            
         }
         
     }
@@ -143,6 +146,7 @@ public class SuperheroSightingsPersonDaoJdbcTemplateImplTest {
         Person fromDao = personDaoTest.getPersonById(testPerson.getPersonId());
 
         assertEquals(testPerson.getPersonId(), fromDao.getPersonId());
+        
     }
 
 
@@ -192,7 +196,6 @@ public class SuperheroSightingsPersonDaoJdbcTemplateImplTest {
         personList = personDaoTest.getAllPersons();
         
         assertEquals(1, personList.size());
-
         
     }
 
@@ -240,9 +243,6 @@ public class SuperheroSightingsPersonDaoJdbcTemplateImplTest {
 
         assertEquals("UUUUU", testPerson.getFirstName());
         
-        
-
-
     }
 
     /**
@@ -293,12 +293,8 @@ public class SuperheroSightingsPersonDaoJdbcTemplateImplTest {
         
         assertEquals(0,personList.size());
         
-        
-        
-        
+
     }
-    
-    
     
     
      /**
@@ -344,7 +340,6 @@ public class SuperheroSightingsPersonDaoJdbcTemplateImplTest {
         locDaoTest.createLocation(loc);
         
         
-//        LocalDateTime dt = LocalDateTime.parse("2016-10-31 23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         LocalDate dt = LocalDate.parse("2016-10-31", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         
@@ -352,7 +347,6 @@ public class SuperheroSightingsPersonDaoJdbcTemplateImplTest {
         testSighting.setIsHeroSighting(true);
         testSighting.setPerson(p);
         testSighting.setLocation(loc);
-//        testSighting.setSightingDate(dt);
         testSighting.setJustTheSightingDate(dt);
         
         sightingDaoTest.createSighting(testSighting);
@@ -371,7 +365,7 @@ public class SuperheroSightingsPersonDaoJdbcTemplateImplTest {
     @Test
     public void findPersonsForOrganization() throws Exception {
         
-                Superpower s = new Superpower();
+        Superpower s = new Superpower();
         s.setSuperpowerId(22);
         s.setSuperpowerName("Nature Power");
         s.setSuperpowerDescription("Can control nature");
@@ -408,7 +402,6 @@ public class SuperheroSightingsPersonDaoJdbcTemplateImplTest {
         
         assertNotNull(personDaoTest.findPersonsForOrganization(o));
     
-        
     }
     
     
@@ -455,7 +448,6 @@ public class SuperheroSightingsPersonDaoJdbcTemplateImplTest {
         locDaoTest.createLocation(loc);
         
         
-//        LocalDateTime dt = LocalDateTime.parse("2016-10-31 23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         LocalDate dt = LocalDate.parse("2016-10-31", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         
@@ -464,18 +456,14 @@ public class SuperheroSightingsPersonDaoJdbcTemplateImplTest {
         testSighting.setPerson(p);
         testSighting.setLocation(loc);
         testSighting.setJustTheSightingDate(dt);
-//        testSighting.setSightingDate(dt);
         
         sightingDaoTest.createSighting(testSighting);
         
         Person personFromSighting = personDaoTest.findPersonForSighting(testSighting);
         
         assertNotNull(personFromSighting);
+        
     }
-    
-    
-
-    
     
     
 }

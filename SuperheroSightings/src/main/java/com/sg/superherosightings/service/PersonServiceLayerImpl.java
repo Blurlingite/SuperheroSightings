@@ -44,18 +44,23 @@ public class PersonServiceLayerImpl implements SuperheroSightingsPersonServiceLa
 
 
     
-    
     @Override
     public Person createPerson(Person person) {
         
         Person p = new Person();
+        
         try {
+            
             p = personDao.createPerson(person);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(PersonServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         
         return p;
+        
     }
 
 
@@ -64,11 +69,15 @@ public class PersonServiceLayerImpl implements SuperheroSightingsPersonServiceLa
     public Person getPersonById(int personId) throws EntityNotFoundException {
         
         Person personRetrieved = new Person();
+        
         try {
+            
             personRetrieved = personDao.getPersonById(personId);
             
             if(personRetrieved == null){
+                
                 throw new EntityNotFoundException("Could not find Person");
+                
             }
            // Let's get it that list of superpowers by going into the bridge table and pulling out each superpower where 
             //the person's ID is the one passed in
@@ -76,50 +85,69 @@ public class PersonServiceLayerImpl implements SuperheroSightingsPersonServiceLa
             //to that Person DTO
             personRetrieved.setListOfSuperpowers(superpowerDao.findSuperpowersForPerson(personRetrieved));
             personRetrieved.setListOfOrganizations(organizationDao.findOrganizationsForPerson(personRetrieved));
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(PersonServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         
 
-        
         return personRetrieved;
+        
     }
 
     @Override
     public List<Person> getAllPersons() {
         
         List<Person> allPersons = new ArrayList<>();
+        
         try {
+            
             allPersons = personDao.getAllPersons();
             
         // use associateSuperpowersWithPersons() to first find each person's superpowers using findSuperpowersForPerson() in an enhanced for loop
         // Then assign those superpowers to each person they belong to, so the Person DTO will not have a null List<Superpower> field here on the java side
             associateSuperpowersAndOrganizationsWithPersons(allPersons);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(PersonServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         
         return allPersons;
+        
     }
 
     @Override
     public void updatePerson(Person person) {
         
         try {
+            
             personDao.updatePerson(person);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(PersonServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
+        
     }
 
     @Override
     public void deletePerson(int personId) {
         
         try {
+            
             personDao.deletePerson(personId);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(PersonServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
+        
     }
     
     
@@ -127,6 +155,7 @@ public class PersonServiceLayerImpl implements SuperheroSightingsPersonServiceLa
     private List<Person> associateSuperpowersAndOrganizationsWithPersons(List<Person> personList){
         
         for (Person currentPerson : personList) {
+            
             try {
                 // find all the superpowers assigned to that person with the helper method findSuperpowersForPerson()
                 // and then set those superpowers to the person using the setter method in the Person DTO
@@ -135,84 +164,117 @@ public class PersonServiceLayerImpl implements SuperheroSightingsPersonServiceLa
                 
                 List<Organization> listOfOrganizations = organizationDao.findOrganizationsForPerson(currentPerson);
                 currentPerson.setListOfOrganizations(listOfOrganizations);
+                
             } catch (SuperheroSightingsPersistenceException ex) {
+                
                 Logger.getLogger(PersonServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+                
             }
-    }
+            
+        }
+        
         return personList;
+        
     }
 
     @Override
     public List<Person> getAllPersonsSightedAtLocation(List<Sighting> sightingList) {
+        
         try {
+            
             return personDao.getAllPersonsSightedAtLocation(sightingList);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(PersonServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
             return null;
+            
         }
+        
     }
 
     @Override
     public void setPersonsFromSightingsByLocation(List<Person> personList) {
-       this.personsFromSightingsByLocation = personList;
+       
+        this.personsFromSightingsByLocation = personList;
+        
     }
 
     @Override
     public List<Person> getPersonsFromSightingsByLocation() {
-       return personsFromSightingsByLocation;
+       
+        return personsFromSightingsByLocation;
+        
     }
 
     @Override
     public Person findPersonForSighting(Sighting sighting) {
          
         try {
+            
             Person p = personDao.findPersonForSighting(sighting);
             p.setListOfSuperpowers(superpowerDao.findSuperpowersForPerson(p));
             
             return p;
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(PersonServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
-                    return null;
+            
+            return null;
 
         }
+        
     }
 
     @Override
     public void setGlobalPersonList(List<Person> personList) {
        
         this.globalPersonList = personList;
+        
     }
 
     @Override
     public List<Person> getGlobalPersonList() {
        
         return globalPersonList;
+        
     }
 
     @Override
     public List<Person> findPersonsForOrganization(Organization organization) {
+        
         try {
+            
             return personDao.findPersonsForOrganization(organization);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(PersonServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
-                    return null;
+            
+            return null;
+            
         }
+        
     }
 
     @Override
     public List<Person> findPersonsForSuperpower(Superpower superpower) {
         
         try {
+            
             return personDao.findPersonsForSuperpower(superpower);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(PersonServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
             return null;
+            
         }
         
     }
-    
-    
-    
     
     
 }

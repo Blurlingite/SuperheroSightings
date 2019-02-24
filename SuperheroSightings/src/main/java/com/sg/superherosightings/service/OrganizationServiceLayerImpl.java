@@ -35,15 +35,16 @@ public class OrganizationServiceLayerImpl implements SuperheroSightingsOrganizat
     }
 
 
-
-
     
     @Override
     public Organization createOrganization(Organization Organization){
        
         try {
+            
             return organizationDao.createOrganization(Organization);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(OrganizationServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
@@ -56,10 +57,15 @@ public class OrganizationServiceLayerImpl implements SuperheroSightingsOrganizat
     public Organization getOrganizationById(int organizationId) throws EntityNotFoundException{
         
         Organization organization = new Organization();
+        
         try {
+            
             organization = organizationDao.getOrganizationById(organizationId);
+            
             if(organization == null){
+                
                 throw new EntityNotFoundException("Could not find that Organization");
+                
             }
 
             List<Person> allPersonsForOrganization = personDao.findPersonsForOrganization(organization);
@@ -67,11 +73,15 @@ public class OrganizationServiceLayerImpl implements SuperheroSightingsOrganizat
             
             List<User> usersOfOrganization = userDao.findUsersForOrganization(organization);
             organization.setOrganizationAdmins(usersOfOrganization);
+            
             return organization;
                              
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(OrganizationServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
-                return null;
+            
+            return null;
+            
         }
         
 
@@ -81,9 +91,13 @@ public class OrganizationServiceLayerImpl implements SuperheroSightingsOrganizat
     public List<Organization> getAllOrganizations(){
         
         try {
+            
             return associatePersonsWithOrganizations(organizationDao.getAllOrganizations());
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(OrganizationServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
             return null;
 
         }
@@ -94,9 +108,13 @@ public class OrganizationServiceLayerImpl implements SuperheroSightingsOrganizat
     public void updateOrganization(Organization Organization)   {
 
         try {
+            
             organizationDao.updateOrganization(Organization);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(OrganizationServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
 
     }
@@ -105,19 +123,28 @@ public class OrganizationServiceLayerImpl implements SuperheroSightingsOrganizat
     public void deleteOrganization(int organizationId) {
         
         try {
+            
             organizationDao.deleteOrganization(organizationId);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(OrganizationServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
+        
     }
 
     @Override
     public List<Organization> findOrganizationsForPerson(Person person) {
        
         try {
+            
             return organizationDao.findOrganizationsForPerson(person);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(OrganizationServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
             return null;
 
         }
@@ -129,6 +156,7 @@ public class OrganizationServiceLayerImpl implements SuperheroSightingsOrganizat
         for (Organization currentOrganization : organizationList) {
            
             currentOrganization.setListOfPersons(personDao.findPersonsForOrganization(currentOrganization));
+            
         }
        
         return organizationList;
@@ -139,14 +167,18 @@ public class OrganizationServiceLayerImpl implements SuperheroSightingsOrganizat
     public List<Organization> findOrganizationsForUser(User user) {
         
         try {
+            
             return organizationDao.findOrganizationsForUser(user);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(OrganizationServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
             return null;
+            
         }
 
     }
-
 
     
 }

@@ -61,7 +61,9 @@ public class SuperheroSightingsOrganizationDaoJdbcTemplateImplTest {
         List<Organization> organizationList = organizationDaoTest.getAllOrganizations();
         
         for(Organization currentOrganization : organizationList){
+            
             organizationDaoTest.deleteOrganization(currentOrganization.getOrganizationId());
+            
         }
 
         List<User> testListOfUsers = userDaoTest.getAllUsers();
@@ -69,6 +71,7 @@ public class SuperheroSightingsOrganizationDaoJdbcTemplateImplTest {
         for(User u : testListOfUsers){
             
             userDaoTest.deleteUser(u.getUserName());
+            
         }
 
     }
@@ -85,7 +88,7 @@ public class SuperheroSightingsOrganizationDaoJdbcTemplateImplTest {
     }
 
     /**
-     * Test of createOrganization method, of class SuperheroSightingsOrganizationDaoJdbcTemplateImpl.
+     * Test of createOrganization and getOrganizationById methods, of class SuperheroSightingsOrganizationDaoJdbcTemplateImpl.
      */
     @Test
     public void testCreateGetOrganization() throws Exception {
@@ -156,7 +159,9 @@ public class SuperheroSightingsOrganizationDaoJdbcTemplateImplTest {
         List<Person> personsFromOrganization = personDaoTest.findPersonsForOrganization(fromDao);
         
         for(Person p : personsFromOrganization){
+            
             p.setListOfSuperpowers(superpowerDaoTest.findSuperpowersForPerson(p));
+            
         }
         
         fromDao.setListOfPersons(personsFromOrganization);
@@ -166,8 +171,6 @@ public class SuperheroSightingsOrganizationDaoJdbcTemplateImplTest {
 
         assertEquals(o.getOrganizationId(), fromDao.getOrganizationId());
 
-        
-
     }
 
 
@@ -176,7 +179,6 @@ public class SuperheroSightingsOrganizationDaoJdbcTemplateImplTest {
      */
     @Test
     public void testGetAllOrganizations() throws Exception {
-        
         
         List<Organization> organizationList = organizationDaoTest.getAllOrganizations();
         assertEquals(0, organizationList.size());
@@ -217,8 +219,6 @@ public class SuperheroSightingsOrganizationDaoJdbcTemplateImplTest {
         u.setLastName("Doe");
         u.setEmail("jdoe@gmail.com");
         u.setAuthorities(userAuthorities);
-        
-        
         
         userDaoTest.createUser(u);
         
@@ -376,8 +376,7 @@ public class SuperheroSightingsOrganizationDaoJdbcTemplateImplTest {
         
         List<User> listOfUsers = new ArrayList<>();
         listOfUsers.add(u);
-        
-        
+
         
         Organization o = new Organization();
         o.setOrganizationId(11);
@@ -403,7 +402,6 @@ public class SuperheroSightingsOrganizationDaoJdbcTemplateImplTest {
         organizationList = organizationDaoTest.getAllOrganizations();
         assertEquals(0, organizationList.size());
 
-        
     }
 
     /**
@@ -455,7 +453,6 @@ public class SuperheroSightingsOrganizationDaoJdbcTemplateImplTest {
         
         List<User> listOfUsers = new ArrayList<>();
         listOfUsers.add(u);
-        
         
         
         Organization o = new Organization();
@@ -581,14 +578,7 @@ public class SuperheroSightingsOrganizationDaoJdbcTemplateImplTest {
         
         List<Organization> organizationListTest = organizationDaoTest.findOrganizationsForUser(u);
         
-       
-        
-        
     }
     
-    
-    
-    
-    
-    
+      
 }

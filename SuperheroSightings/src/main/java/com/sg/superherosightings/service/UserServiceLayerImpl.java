@@ -34,9 +34,6 @@ public class UserServiceLayerImpl implements SuperheroSightingsUserServiceLayer 
 
 
     
-    
-    
-    
     @Override
     public User createUser(User user) throws EntityAlreadyExistsException {
 
@@ -44,6 +41,7 @@ public class UserServiceLayerImpl implements SuperheroSightingsUserServiceLayer 
             
             // if the username already exists in the database throw an exception
             if(userDao.getUserByUsername(user.getUserName()) != null){
+                
                 throw new EntityAlreadyExistsException(    
                 "That Username already exists!");
            
@@ -51,9 +49,11 @@ public class UserServiceLayerImpl implements SuperheroSightingsUserServiceLayer 
             
             
              return userDao.createUser(user);
+             
         } catch (SuperheroSightingsPersistenceException ex) {
-//            Logger.getLogger(SuperpowerServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
             return null;
+            
         }
         
     }
@@ -62,20 +62,28 @@ public class UserServiceLayerImpl implements SuperheroSightingsUserServiceLayer 
     public User getUserByUsername(String username) throws EntityNotFoundException {
         
         User u = new User();
+        
         try {
+            
             u = userDao.getUserByUsername(username);
              
             List<Organization> organizationsForUser = organizationDao.findOrganizationsForUser(u);
             u.setUserOrganizations(organizationsForUser);
             
         } catch (SuperheroSightingsPersistenceException ex) {
-//            Logger.getLogger(SuperpowerServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
+            Logger.getLogger(SuperpowerServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         
         if(u == null){
+            
             throw new EntityNotFoundException("Could not find that User");
+            
         }
-        return u;    
+        
+        return u; 
+        
     }
 
     @Override
@@ -84,9 +92,13 @@ public class UserServiceLayerImpl implements SuperheroSightingsUserServiceLayer 
         List<User> listOfUsers = new ArrayList<>();
         
         try {
+            
             listOfUsers = userDao.getAllUsers();
+            
         } catch (SuperheroSightingsPersistenceException ex) {
-//            Logger.getLogger(SuperpowerServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
+            Logger.getLogger(SuperpowerServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+        
         }
         
         return listOfUsers;
@@ -97,29 +109,43 @@ public class UserServiceLayerImpl implements SuperheroSightingsUserServiceLayer 
     public void updateUser(User user) {
         
         try {
+            
             userDao.updateUser(user);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
-//            Logger.getLogger(SuperpowerServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
+            Logger.getLogger(SuperpowerServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
+        
     }
 
     @Override
     public void deleteUser(String username) {
         
         try {
+            
             userDao.deleteUser(username);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
-//            Logger.getLogger(SuperpowerServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
+            Logger.getLogger(SuperpowerServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+        
         }
+        
     }
 
     @Override
     public List<User> findUsersForOrganization(Organization organization) {
         
         try {
+            
             return userDao.findUsersForOrganization(organization);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
-//            Logger.getLogger(OrganizationServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
+            Logger.getLogger(OrganizationServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
             return null;
 
         }

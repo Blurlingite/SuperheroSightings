@@ -6,7 +6,6 @@ package com.sg.superherosightings.dao;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +65,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         for(Sighting currentSighting : testListOfSightings){
             
             sightingDaoTest.deleteSighting(currentSighting.getSightingId());
+            
         }
 
     }
@@ -124,7 +124,6 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         locDaoTest.createLocation(loc);
         
         
-//        LocalDateTime dt = LocalDateTime.parse("2016-10-31 23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         LocalDate dt = LocalDate.parse("2016-10-31", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         
@@ -133,18 +132,15 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         testSighting.setPerson(p);
         testSighting.setLocation(loc);
         testSighting.setJustTheSightingDate(dt);
-//        testSighting.setSightingDate(dt);
         
         sightingDaoTest.createSighting(testSighting);
-//        
+       
         Sighting fromDao = sightingDaoTest.getSightingById(testSighting.getSightingId());
         
-    // ERROR!!!!! superpower list in Person is null
-  
         fromDao.setPerson(p);
 
-    // ERROR!!!!! superpower list in Person is null
         assertEquals(testSighting.getSightingId(), fromDao.getSightingId());
+        
     }
 
 
@@ -195,7 +191,6 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         locDaoTest.createLocation(loc);
         
         
-//        LocalDateTime dt = LocalDateTime.parse("2016-10-31 23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         LocalDate dt = LocalDate.parse("2016-10-31", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         
@@ -204,13 +199,13 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         testSighting.setPerson(p);
         testSighting.setLocation(loc);
         testSighting.setJustTheSightingDate(dt);
-//        testSighting.setSightingDate(dt);
         
         sightingDaoTest.createSighting(testSighting);
 
         listOfSightings = sightingDaoTest.getAllSightings();
 
         assertEquals(1, listOfSightings.size());
+        
     }
 
     /**
@@ -256,7 +251,6 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         locDaoTest.createLocation(loc);
         
         
-//        LocalDateTime dt = LocalDateTime.parse("2016-10-31 23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         LocalDate dt = LocalDate.parse("2016-10-31", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         
@@ -265,12 +259,8 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         testSighting.setPerson(p);
         testSighting.setLocation(loc);
         testSighting.setJustTheSightingDate(dt);
-//        testSighting.setSightingDate(dt);
         
         sightingDaoTest.createSighting(testSighting);
-        
-        
-        
         
         
         
@@ -286,6 +276,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         
         // assert that the name of the superpower changed
         assertEquals(false, testSighting.getIsHeroSighting());
+        
     }
 
     /**
@@ -331,7 +322,6 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         locDaoTest.createLocation(loc);
         
         
-//        LocalDateTime dt = LocalDateTime.parse("2016-10-31 23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         LocalDate dt = LocalDate.parse("2016-10-31", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         
@@ -340,7 +330,6 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         testSighting.setPerson(p);
         testSighting.setLocation(loc);
         testSighting.setJustTheSightingDate(dt);
-//        testSighting.setSightingDate(dt);
         
         sightingDaoTest.createSighting(testSighting);
   
@@ -353,6 +342,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         listOfSightings = sightingDaoTest.getAllSightings();
         
         assertEquals(0, listOfSightings.size());
+        
     }
     
     
@@ -400,7 +390,6 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         locDaoTest.createLocation(loc);
         
         
-//        LocalDateTime dt = LocalDateTime.parse("2016-10-31 23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         LocalDate dt = LocalDate.parse("2016-10-31", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         // Easter egg for Randall and Amanda
@@ -409,7 +398,6 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         testSightingUno.setPerson(p);
         testSightingUno.setLocation(loc);
         testSightingUno.setJustTheSightingDate(dt);
-//        testSightingUno.setSightingDate(dt);
         
         
         
@@ -417,14 +405,12 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         testSightingDos.setIsHeroSighting(true);
         testSightingDos.setPerson(p);
         testSightingDos.setLocation(loc);
-//        testSightingDos.setSightingDate(dt);
         testSightingDos.setJustTheSightingDate(dt);
         
         Sighting testSightingTres = new Sighting();
         testSightingTres.setIsHeroSighting(true);
         testSightingTres.setPerson(p);
         testSightingTres.setLocation(loc);
-//        testSightingTres.setSightingDate(dt);
         testSightingTres.setJustTheSightingDate(dt);
         
         
@@ -432,7 +418,6 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         testSightingCuatro.setIsHeroSighting(true);
         testSightingCuatro.setPerson(p);
         testSightingCuatro.setLocation(loc);
-//        testSightingCuatro.setSightingDate(dt);
         testSightingCuatro.setJustTheSightingDate(dt);
         
         
@@ -440,42 +425,36 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         testSightingCinco.setIsHeroSighting(true);
         testSightingCinco.setPerson(p);
         testSightingCinco.setLocation(loc);
-//        testSightingCinco.setSightingDate(dt);
         testSightingCinco.setJustTheSightingDate(dt);
         
         Sighting testSightingSeis = new Sighting();
         testSightingSeis.setIsHeroSighting(true);
         testSightingSeis.setPerson(p);
         testSightingSeis.setLocation(loc);
-//        testSightingSeis.setSightingDate(dt);
         testSightingSeis.setJustTheSightingDate(dt);
         
         Sighting testSightingSiete = new Sighting();
         testSightingSiete.setIsHeroSighting(true);
         testSightingSiete.setPerson(p);
         testSightingSiete.setLocation(loc);
-//        testSightingSiete.setSightingDate(dt);
         testSightingSiete.setJustTheSightingDate(dt);
         
         Sighting testSightingOcho = new Sighting();
         testSightingOcho.setIsHeroSighting(true);
         testSightingOcho.setPerson(p);
         testSightingOcho.setLocation(loc);
-//        testSightingOcho.setSightingDate(dt);
         testSightingOcho.setJustTheSightingDate(dt);
         
         Sighting testSightingNueve = new Sighting();
         testSightingNueve.setIsHeroSighting(true);
         testSightingNueve.setPerson(p);
         testSightingNueve.setLocation(loc);
-//        testSightingNueve.setSightingDate(dt);
         testSightingNueve.setJustTheSightingDate(dt);
         
         Sighting testSightingDiez = new Sighting();
         testSightingDiez.setIsHeroSighting(true);
         testSightingDiez.setPerson(p);
         testSightingDiez.setLocation(loc);
-//        testSightingDiez.setSightingDate(dt);
         testSightingDiez.setJustTheSightingDate(dt);
         
         testSightingUno = sightingDaoTest.createSighting(testSightingUno);
@@ -494,7 +473,6 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         
         Ten = sightingDaoTest.getLatestTenSightings();
         assertEquals(10, Ten.size());
-
         
     }
     
@@ -542,7 +520,6 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         locDaoTest.createLocation(loc);
         
         
-//        LocalDateTime dt = LocalDateTime.parse("2016-10-31 23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         LocalDate dt = LocalDate.parse("2016-10-31", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         
@@ -550,7 +527,6 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         testSighting.setIsHeroSighting(true);
         testSighting.setPerson(p);
         testSighting.setLocation(loc);
-//        testSighting.setSightingDate(dt);
         testSighting.setJustTheSightingDate(dt);
         
         sightingDaoTest.createSighting(testSighting);
@@ -562,8 +538,6 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         
         assertEquals(testSighting.getSightingId(), fromDao.getSightingId());
         assertEquals(1,sightingsByLocation.size());
-        
-        
         
     }
     
@@ -610,7 +584,6 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         locDaoTest.createLocation(loc);
         
         
-//        LocalDateTime dt = LocalDateTime.parse("2016-10-31 23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         LocalDate dt = LocalDate.parse("2016-10-31", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         
@@ -618,7 +591,6 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         testSighting.setIsHeroSighting(true);
         testSighting.setPerson(p);
         testSighting.setLocation(loc);
-//        testSighting.setSightingDate(dt);
         testSighting.setJustTheSightingDate(dt);
         
         sightingDaoTest.createSighting(testSighting);
@@ -629,8 +601,6 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         assertEquals(testSighting.getSightingDate(), fromDao.getSightingDate());
         
     }
-    
-            
-            
+           
     
 }

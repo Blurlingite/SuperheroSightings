@@ -17,7 +17,6 @@ import sg.thecodetasticfour.superherosightingsgroup.dao.SuperheroSightingsPerson
 import sg.thecodetasticfour.superherosightingsgroup.dao.SuperheroSightingsSightingDao;
 import sg.thecodetasticfour.superherosightingsgroup.dao.SuperheroSightingsSuperpowerDao;
 import sg.thecodetasticfour.superherosightingsgroup.dto.Location;
-import sg.thecodetasticfour.superherosightingsgroup.dto.Organization;
 import sg.thecodetasticfour.superherosightingsgroup.dto.Person;
 import sg.thecodetasticfour.superherosightingsgroup.dto.Sighting;
 import sg.thecodetasticfour.superherosightingsgroup.dto.Superpower;
@@ -46,18 +45,19 @@ public class SightingServiceLayerImpl implements SuperheroSightingsSightingServi
 
     
     
-    
-
-
-    
     @Override
     public Sighting createSighting(Sighting sighting) {
        
         try {
+            
             return sightingDao.createSighting(sighting);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(SightingServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
             return null;
+            
         }
         
     }
@@ -68,45 +68,64 @@ public class SightingServiceLayerImpl implements SuperheroSightingsSightingServi
         Sighting retrievedSighting = new Sighting();
 
         try {
+            
             retrievedSighting = sightingDao.getSightingById(sightingId);
+            
             if(retrievedSighting == null){
+                
                 throw new EntityNotFoundException("Could not find Sighting");
+                
             }
+            
             Location loc = locationDao.findLocationForSighting(retrievedSighting);
             Person p = personDao.findPersonForSighting(retrievedSighting);
             // must find the superpowers for person in database and set it each time you have a new Person DTO
             p.setListOfSuperpowers(superpowerDao.findSuperpowersForPerson(p));
             retrievedSighting.setPerson(p);
             retrievedSighting.setLocation(loc);
+            
             return retrievedSighting;
 
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(SightingServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
             return null;
+            
         }
         
-
     }
 
     @Override
     public List<Sighting> getAllSightings() {
         
         try {
+            
             List<Sighting> allSightings = sightingDao.getAllSightings();
+            
             return associatePersonsAndLocationsWithSightings(allSightings);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(SightingServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
             return null;
+            
         }
+        
     }
 
     @Override
     public void updateSighting(Sighting sighting) {
         
         try {
+            
             sightingDao.updateSighting(sighting);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(SightingServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         
     }
@@ -115,9 +134,13 @@ public class SightingServiceLayerImpl implements SuperheroSightingsSightingServi
     public void deleteSighting(int sightingId) {
         
         try {
+            
             sightingDao.deleteSighting(sightingId);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(SightingServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         
     }
@@ -128,12 +151,16 @@ public class SightingServiceLayerImpl implements SuperheroSightingsSightingServi
     public List<Sighting> getLatestTenSightings() {
         
         try {
+            
             List<Sighting> allSightings = sightingDao.getLatestTenSightings();
             
             // find Person and Location for each Sighting so they are not null
             return associatePersonsAndLocationsWithSightings(allSightings);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(SightingServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
             return null;
 
         }
@@ -144,21 +171,28 @@ public class SightingServiceLayerImpl implements SuperheroSightingsSightingServi
     public List<Sighting> getAllSightingsByLocation(int locationId) {
         
         try {
+            
             List<Sighting> sightingsByLocation = sightingDao.getAllSightingsByLocation(locationId);
+            
             return associatePersonsAndLocationsWithSightings(sightingsByLocation);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(SightingServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            
             return null;
+            
         }
+        
     }
     
     
     
-        private List<Sighting> associatePersonsAndLocationsWithSightings(List<Sighting> sightingList) throws SuperheroSightingsPersistenceException{
+    private List<Sighting> associatePersonsAndLocationsWithSightings(List<Sighting> sightingList) throws SuperheroSightingsPersistenceException{
         
         for (Sighting currentSighting : sightingList) {
 
-//            set Person
+            //  set Person
                 Person personToSetToSighting = personDao.findPersonForSighting(currentSighting);
                 List<Superpower> superpowersForPerson = superpowerDao.findSuperpowersForPerson(personToSetToSighting);
                 
@@ -168,49 +202,55 @@ public class SightingServiceLayerImpl implements SuperheroSightingsSightingServi
                 
                 currentSighting.setPerson(personToSetToSighting);
                 
-//                set Location
-
+            // set Location
                 Location locationToSetToSighting = locationDao.findLocationForSighting(currentSighting);
                 currentSighting.setLocation(locationToSetToSighting);
-    }
+                
+        }
         
         return sightingList;
+        
     }
 
     @Override
     public List<Sighting> getAllSightingsByDate(LocalDateTime dateSelected) {
         
         try {
+            
             List<Sighting> sightingList = sightingDao.getAllSightingsByDate(dateSelected);
             
             // associate Person and Location so they aren't null
             return  associatePersonsAndLocationsWithSightings(sightingList);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(SightingServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
-                        return null;
+            
+            return null;
 
         }
+        
     }
 
     @Override
     public List<Sighting> getAllSightingsByLocalDate(LocalDate ld) {
        
         try {
+            
             List<Sighting> sightingList = sightingDao.getAllSightingsByLocalDate(ld);
             
             // associate Person and Location so they aren't null
             return  associatePersonsAndLocationsWithSightings(sightingList);
+            
         } catch (SuperheroSightingsPersistenceException ex) {
+            
             Logger.getLogger(SightingServiceLayerImpl.class.getName()).log(Level.SEVERE, null, ex);
-                        return null;
+             
+            return null;
 
         }
         
     }
-
- 
-
-    
     
     
 }
