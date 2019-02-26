@@ -58,21 +58,38 @@ public class SuperheroSightingsOrganizationDaoJdbcTemplateImplTest {
         personDaoTest = ctx.getBean("personDaoTest", SuperheroSightingsPersonDao.class);
         userDaoTest = ctx.getBean("userDaoTest", SuperheroSightingsUserDao.class);
         
-        List<Organization> organizationList = organizationDaoTest.getAllOrganizations();
-        
-        for(Organization currentOrganization : organizationList){
+        List<Organization> testOrganizationList = organizationDaoTest.getAllOrganizations();
+        List<Superpower> testSuperpowerList = superpowerDaoTest.getAllSuperpowers(); 
+        List<Person> testPersonList = personDaoTest.getAllPersons();
+        List<User> testListOfUsers = userDaoTest.getAllUsers();
+
+        for(Organization currentOrganization : testOrganizationList){
             
             organizationDaoTest.deleteOrganization(currentOrganization.getOrganizationId());
             
         }
+        
+        for(Superpower currentSuperpower : testSuperpowerList){
+            
+            superpowerDaoTest.deleteSuperpower(currentSuperpower.getSuperpowerId());
+            
+        }
+        
+        for(Person currentPerson : testPersonList){
+            
+            personDaoTest.deletePerson(currentPerson.getPersonId());
+            
+        }
 
-        List<User> testListOfUsers = userDaoTest.getAllUsers();
         
         for(User u : testListOfUsers){
             
             userDaoTest.deleteUser(u.getUserName());
             
         }
+        
+        
+        
 
     }
     
@@ -165,11 +182,10 @@ public class SuperheroSightingsOrganizationDaoJdbcTemplateImplTest {
         }
         
         fromDao.setListOfPersons(personsFromOrganization);
-//        fromDao.setOrganizationAdmins(listOfUsers);
+        fromDao.setOrganizationAdmins(listOfUsers);
         
-//        assertEquals(o, fromDao);
+        assertEquals(o, fromDao);
 
-        assertEquals(o.getOrganizationId(), fromDao.getOrganizationId());
 
     }
 
@@ -321,8 +337,13 @@ public class SuperheroSightingsOrganizationDaoJdbcTemplateImplTest {
         
         Organization fromDao = organizationDaoTest.getOrganizationById(o.getOrganizationId());
         
+        fromDao.setOrganizationAdmins(listOfUsers);
+        fromDao.setListOfPersons(listOfPersons);
         // assert that it is the same organization by their ID
         assertEquals(o.getOrganizationId(), fromDao.getOrganizationId());
+        
+                assertEquals(o, fromDao);
+
        
         // assert that the name of the organization is no longer "Test Organization"
         assertNotEquals("Test Organization", fromDao.getOrganizationDescription());

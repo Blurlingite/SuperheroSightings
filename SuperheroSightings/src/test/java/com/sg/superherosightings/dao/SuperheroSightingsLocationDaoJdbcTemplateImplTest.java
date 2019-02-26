@@ -1,11 +1,17 @@
 /*
-        ERROR WITH CREATEGET() HAD TO USE ID IN ASSERTEQUALS
+NOTE: Because list variables on DTOs only get assigned in the service layer, I cannot accurately test them in the
+Dao tests because the assert will fail if the lists are not equal, and they cannot be null.
+
+Will move all Dao tests to the Service Layer tests
 
  */
 package com.sg.superherosightings.dao;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -22,7 +28,9 @@ import sg.thecodetasticfour.superherosightingsgroup.dao.SuperheroSightingsPerson
 import sg.thecodetasticfour.superherosightingsgroup.dao.SuperheroSightingsSightingDao;
 import sg.thecodetasticfour.superherosightingsgroup.dao.SuperheroSightingsSuperpowerDao;
 import sg.thecodetasticfour.superherosightingsgroup.dto.Location;
+import sg.thecodetasticfour.superherosightingsgroup.dto.Person;
 import sg.thecodetasticfour.superherosightingsgroup.dto.Sighting;
+import sg.thecodetasticfour.superherosightingsgroup.dto.Superpower;
 
 /**
  *
@@ -58,20 +66,37 @@ public class SuperheroSightingsLocationDaoJdbcTemplateImplTest {
         superpowerDaoTest = ctx.getBean("superpowerDaoTest",SuperheroSightingsSuperpowerDao.class);
         
         
-        List<Location> locationList = locationDaoTest.getAllLocations();
-        List<Sighting> sightingList = sightingDaoTest.getAllSightings();
+        List<Location> testLocationList = locationDaoTest.getAllLocations();
+        List<Sighting> testSightingList = sightingDaoTest.getAllSightings();
+        List<Person> testPersonList = personDaoTest.getAllPersons();
+        List<Superpower> testSuperpowerList = superpowerDaoTest.getAllSuperpowers();
 
-        for(Location currentLocation : locationList){
+
+
+        for(Location currentLocation : testLocationList){
             
             locationDaoTest.deleteLocation(currentLocation.getLocationId());
             
         }
         
-        for(Sighting currentSighting : sightingList){
+        for(Sighting currentSighting : testSightingList){
             
             sightingDaoTest.deleteSighting(currentSighting.getSightingId());
             
         }
+        
+        for(Person currentPerson : testPersonList){
+            
+            personDaoTest.deletePerson(currentPerson.getPersonId());
+            
+        }
+        
+        for(Superpower currentSuperpower : testSuperpowerList){
+            
+            superpowerDaoTest.deleteSuperpower(currentSuperpower.getSuperpowerId());
+            
+        }
+        
         
     }
     
@@ -94,6 +119,8 @@ public class SuperheroSightingsLocationDaoJdbcTemplateImplTest {
         
         //For some reason the last assert was not working because loc was not equal to fromDao, so I used their IDs instead in the assertEquals
         
+        // need to instantiate a Big Decimal object otherwise the test will round the big decimal and the assert will fail
+        BigDecimal expected = new BigDecimal("1321.5073");
         
         Location loc = new Location();
         loc.setLocationId(11);
@@ -104,19 +131,15 @@ public class SuperheroSightingsLocationDaoJdbcTemplateImplTest {
         loc.setLocationCity("City");
         loc.setLocationStreet("Street");
         loc.setLocationZipcode("Zipcode");
-        loc.setLatitude(new BigDecimal(2.22).setScale(2, RoundingMode.HALF_UP));
-        loc.setLongitude(BigDecimal.ONE);
+        loc.setLatitude(expected);
+        loc.setLongitude(expected);
         
         locationDaoTest.createLocation(loc);
         
         Location fromDao = locationDaoTest.getLocationById(loc.getLocationId());
-        BigDecimal roundedLatitude = fromDao.getLatitude().setScale(2, RoundingMode.HALF_UP);
-        BigDecimal roundedLongitude = fromDao.getLongitude().setScale(2, RoundingMode.HALF_UP);
 
-        fromDao.setLatitude(roundedLatitude);
-        fromDao.setLongitude(roundedLongitude);
         
-//                assertEquals(loc, fromDao);
+        assertEquals(loc, fromDao);
 
         assertEquals(loc.getLocationId(), fromDao.getLocationId());
         
@@ -215,65 +238,66 @@ public class SuperheroSightingsLocationDaoJdbcTemplateImplTest {
 
     }
     
-    
+
     /**
      * Test of testFindLocationForSighting method, of class SuperheroSightingsLocationDaoJdbcTemplateImpl.
      */
-//    @Test
-//    public void testFindLocationForSighting() throws Exception {
-//        
-//        Superpower s = new Superpower();
-//        s.setSuperpowerId(22);
-//        s.setSuperpowerName("Nature Power");
-//        s.setSuperpowerDescription("Can control nature");
-//        
-//        // add the superpower to the Superpowers table, otherwise you can't add it to PersonSuperpowers bridge table which will give you an error
-//        superpowerDaoTest.createSuperpower(s);
-//        
-//        List<Superpower> superpowerlist = new ArrayList<>();
-//        superpowerlist.add(s);
-//        
-//        
-//        Person p = new Person();
-//        p.setFirstName("George");
-//        p.setLastName("Shelley");
-//        p.setIsHero(Boolean.TRUE);
-//        p.setDescriptionOfPerson("Fake description");
-//        p.setListOfSuperpowers(superpowerlist);
-//        
-//        personDaoTest.createPerson(p);
-//        
-//        
-//        Location loc = new Location();
-//        loc.setLocationId(11);
-//        loc.setLocationName("Test Location");
-//        loc.setLocationDescription("Test Desc.");
-//        loc.setLocationCountry("Country");
-//        loc.setLocationState("State");
-//        loc.setLocationCity("City");
-//        loc.setLocationStreet("Street");
-//        loc.setLocationZipcode("Zipcode");
-//        loc.setLatitude(new BigDecimal(2.22).setScale(2, RoundingMode.HALF_UP));
-//        loc.setLongitude(BigDecimal.ONE);
-//        
-//        locationDaoTest.createLocation(loc);
-//        
-//        
-//        LocalDateTime dt = LocalDateTime.parse("2016-10-31 23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-//
-//        
-//        Sighting testSighting = new Sighting();
-//        testSighting.setIsHeroSighting(true);
-//        testSighting.setPerson(p);
-//        testSighting.setLocation(loc);
-//        testSighting.setSightingDate(dt);
-//        
-//        sightingDaoTest.createSighting(testSighting);
-//       
-//        Location fromDao = locationDaoTest.findLocationForSighting(testSighting);
-//        
-//        assertEquals(loc.getLocationId(), fromDao.getLocationId());
-// 
-//    }
+    @Test
+    public void testFindLocationForSighting() throws Exception {
+        
+        
+        
+        Superpower s = new Superpower();
+        s.setSuperpowerId(22);
+        s.setSuperpowerName("Nature Power");
+        s.setSuperpowerDescription("Can control nature");
+        
+        // add the superpower to the Superpowers table, otherwise you can't add it to PersonSuperpowers bridge table which will give you an error
+        superpowerDaoTest.createSuperpower(s);
+        
+        List<Superpower> superpowerlist = new ArrayList<>();
+        superpowerlist.add(s);
+        
+        
+        Person p = new Person();
+        p.setFirstName("George");
+        p.setLastName("Shelley");
+        p.setIsHero(Boolean.TRUE);
+        p.setDescriptionOfPerson("Fake description");
+        p.setListOfSuperpowers(superpowerlist);
+        
+        personDaoTest.createPerson(p);
+        
+        
+        Location loc = new Location();
+        loc.setLocationId(11);
+        loc.setLocationName("Test Location");
+        loc.setLocationDescription("Test Desc.");
+        loc.setLocationCountry("Country");
+        loc.setLocationState("State");
+        loc.setLocationCity("City");
+        loc.setLocationStreet("Street");
+        loc.setLocationZipcode("Zipcode");
+        loc.setLatitude(new BigDecimal(2.22).setScale(2, RoundingMode.HALF_UP));
+        loc.setLongitude(BigDecimal.ONE);
+        
+        locationDaoTest.createLocation(loc);
+        
+        
+        LocalDate date= LocalDate.parse("2016-10-31", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        
+        Sighting testSighting = new Sighting();
+        testSighting.setIsHeroSighting(true);
+        testSighting.setPerson(p);
+        testSighting.setLocation(loc);
+        testSighting.setJustTheSightingDate(date);
+        
+        sightingDaoTest.createSighting(testSighting);
+       
+        Location fromDao = locationDaoTest.findLocationForSighting(testSighting);
+        
+        assertEquals(loc.getLocationId(), fromDao.getLocationId());
+ 
+    }
        
 }

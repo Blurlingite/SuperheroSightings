@@ -34,9 +34,9 @@ import sg.thecodetasticfour.superherosightingsgroup.dto.Superpower;
 public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
     
     SuperheroSightingsSightingDao sightingDaoTest;
-    SuperheroSightingsSuperpowerDao spDaoTest;
-    SuperheroSightingsPersonDao pDaoTest;
-    SuperheroSightingsLocationDao locDaoTest;
+    SuperheroSightingsSuperpowerDao superpowerDaoTest;
+    SuperheroSightingsPersonDao personDaoTest;
+    SuperheroSightingsLocationDao locationDaoTest;
 
     
     public SuperheroSightingsSightingDaoJdbcTemplateImplTest() {
@@ -55,16 +55,40 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         
         ApplicationContext ctx = new ClassPathXmlApplicationContext("test-applicationContext.xml");
         sightingDaoTest = ctx.getBean("sightingDaoTest", SuperheroSightingsSightingDao.class);
-        spDaoTest = ctx.getBean("superpowerDaoTest", SuperheroSightingsSuperpowerDao.class);
-        pDaoTest = ctx.getBean("personDaoTest", SuperheroSightingsPersonDao.class);
-        locDaoTest = ctx.getBean("locationDaoTest", SuperheroSightingsLocationDao.class);
+        superpowerDaoTest = ctx.getBean("superpowerDaoTest", SuperheroSightingsSuperpowerDao.class);
+        personDaoTest = ctx.getBean("personDaoTest", SuperheroSightingsPersonDao.class);
+        locationDaoTest = ctx.getBean("locationDaoTest", SuperheroSightingsLocationDao.class);
         
         
-       List<Sighting> testListOfSightings = sightingDaoTest.getAllSightings();
+       List<Sighting> testSightingList = sightingDaoTest.getAllSightings();
+       List<Superpower> testSuperpowerList = superpowerDaoTest.getAllSuperpowers(); 
+       List<Person> testPersonList = personDaoTest.getAllPersons();
+       List<Location> testLocationList = locationDaoTest.getAllLocations();
+
+       
         
-        for(Sighting currentSighting : testListOfSightings){
+        for(Sighting currentSighting : testSightingList){
             
             sightingDaoTest.deleteSighting(currentSighting.getSightingId());
+            
+        }
+        
+        for(Superpower currentSuperpower : testSuperpowerList){
+            
+            superpowerDaoTest.deleteSuperpower(currentSuperpower.getSuperpowerId());
+            
+        }
+        
+        for(Person currentPerson : testPersonList){
+            
+            personDaoTest.deletePerson(currentPerson.getPersonId());
+            
+        }
+        
+        
+        for(Location currentLocation : testLocationList){
+            
+            locationDaoTest.deleteLocation(currentLocation.getLocationId());
             
         }
 
@@ -93,7 +117,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         s.setSuperpowerDescription("Can control nature");
         
         // add the superpower to the Superpowers table, otherwise you can't add it to PersonSuperpowers bridge table which will give you an error
-        spDaoTest.createSuperpower(s);
+        superpowerDaoTest.createSuperpower(s);
         
         List<Superpower> superpowerlist = new ArrayList<>();
         superpowerlist.add(s);
@@ -106,7 +130,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         p.setDescriptionOfPerson("Fake description");
         p.setListOfSuperpowers(superpowerlist);
         
-        pDaoTest.createPerson(p);
+        personDaoTest.createPerson(p);
         
         
         Location loc = new Location();
@@ -121,7 +145,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         loc.setLatitude(new BigDecimal(2.22).setScale(2, RoundingMode.HALF_UP));
         loc.setLongitude(BigDecimal.ONE);
         
-        locDaoTest.createLocation(loc);
+        locationDaoTest.createLocation(loc);
         
         
         LocalDate dt = LocalDate.parse("2016-10-31", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -160,7 +184,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         s.setSuperpowerDescription("Can control nature");
         
         // add the superpower to the Superpowers table, otherwise you can't add it to PersonSuperpowers bridge table which will give you an error
-        spDaoTest.createSuperpower(s);
+        superpowerDaoTest.createSuperpower(s);
         
         List<Superpower> superpowerlist = new ArrayList<>();
         superpowerlist.add(s);
@@ -173,7 +197,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         p.setDescriptionOfPerson("Fake description");
         p.setListOfSuperpowers(superpowerlist);
         
-        pDaoTest.createPerson(p);
+        personDaoTest.createPerson(p);
         
         
         Location loc = new Location();
@@ -188,7 +212,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         loc.setLatitude(new BigDecimal(2.22).setScale(2, RoundingMode.HALF_UP));
         loc.setLongitude(BigDecimal.ONE);
         
-        locDaoTest.createLocation(loc);
+        locationDaoTest.createLocation(loc);
         
         
         LocalDate dt = LocalDate.parse("2016-10-31", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -220,7 +244,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         s.setSuperpowerDescription("Can control nature");
         
         // add the superpower to the Superpowers table, otherwise you can't add it to PersonSuperpowers bridge table which will give you an error
-        spDaoTest.createSuperpower(s);
+        superpowerDaoTest.createSuperpower(s);
         
         List<Superpower> superpowerlist = new ArrayList<>();
         superpowerlist.add(s);
@@ -233,7 +257,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         p.setDescriptionOfPerson("Fake description");
         p.setListOfSuperpowers(superpowerlist);
         
-        pDaoTest.createPerson(p);
+        personDaoTest.createPerson(p);
         
         
         Location loc = new Location();
@@ -248,7 +272,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         loc.setLatitude(new BigDecimal(2.22).setScale(2, RoundingMode.HALF_UP));
         loc.setLongitude(BigDecimal.ONE);
         
-        locDaoTest.createLocation(loc);
+        locationDaoTest.createLocation(loc);
         
         
         LocalDate dt = LocalDate.parse("2016-10-31", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -291,7 +315,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         s.setSuperpowerDescription("Can control nature");
         
         // add the superpower to the Superpowers table, otherwise you can't add it to PersonSuperpowers bridge table which will give you an error
-        spDaoTest.createSuperpower(s);
+        superpowerDaoTest.createSuperpower(s);
         
         List<Superpower> superpowerlist = new ArrayList<>();
         superpowerlist.add(s);
@@ -304,7 +328,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         p.setDescriptionOfPerson("Fake description");
         p.setListOfSuperpowers(superpowerlist);
         
-        pDaoTest.createPerson(p);
+        personDaoTest.createPerson(p);
         
         
         Location loc = new Location();
@@ -319,7 +343,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         loc.setLatitude(new BigDecimal(2.22).setScale(2, RoundingMode.HALF_UP));
         loc.setLongitude(BigDecimal.ONE);
         
-        locDaoTest.createLocation(loc);
+        locationDaoTest.createLocation(loc);
         
         
         LocalDate dt = LocalDate.parse("2016-10-31", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -359,7 +383,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         s.setSuperpowerDescription("Can control nature");
         
         // add the superpower to the Superpowers table, otherwise you can't add it to PersonSuperpowers bridge table which will give you an error
-        spDaoTest.createSuperpower(s);
+        superpowerDaoTest.createSuperpower(s);
         
         List<Superpower> superpowerlist = new ArrayList<>();
         superpowerlist.add(s);
@@ -372,7 +396,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         p.setDescriptionOfPerson("Fake description");
         p.setListOfSuperpowers(superpowerlist);
         
-        pDaoTest.createPerson(p);
+        personDaoTest.createPerson(p);
         
         
         Location loc = new Location();
@@ -387,7 +411,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         loc.setLatitude(new BigDecimal(2.22).setScale(2, RoundingMode.HALF_UP));
         loc.setLongitude(BigDecimal.ONE);
         
-        locDaoTest.createLocation(loc);
+        locationDaoTest.createLocation(loc);
         
         
         LocalDate dt = LocalDate.parse("2016-10-31", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -489,7 +513,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         s.setSuperpowerDescription("Can control nature");
         
         // add the superpower to the Superpowers table, otherwise you can't add it to PersonSuperpowers bridge table which will give you an error
-        spDaoTest.createSuperpower(s);
+        superpowerDaoTest.createSuperpower(s);
         
         List<Superpower> superpowerlist = new ArrayList<>();
         superpowerlist.add(s);
@@ -502,7 +526,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         p.setDescriptionOfPerson("Fake description");
         p.setListOfSuperpowers(superpowerlist);
         
-        pDaoTest.createPerson(p);
+        personDaoTest.createPerson(p);
         
         
         Location loc = new Location();
@@ -517,7 +541,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         loc.setLatitude(new BigDecimal(2.22).setScale(2, RoundingMode.HALF_UP));
         loc.setLongitude(BigDecimal.ONE);
         
-        locDaoTest.createLocation(loc);
+        locationDaoTest.createLocation(loc);
         
         
         LocalDate dt = LocalDate.parse("2016-10-31", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -553,7 +577,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         s.setSuperpowerDescription("Can control nature");
         
         // add the superpower to the Superpowers table, otherwise you can't add it to PersonSuperpowers bridge table which will give you an error
-        spDaoTest.createSuperpower(s);
+        superpowerDaoTest.createSuperpower(s);
         
         List<Superpower> superpowerlist = new ArrayList<>();
         superpowerlist.add(s);
@@ -566,7 +590,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         p.setDescriptionOfPerson("Fake description");
         p.setListOfSuperpowers(superpowerlist);
         
-        pDaoTest.createPerson(p);
+        personDaoTest.createPerson(p);
         
         
         Location loc = new Location();
@@ -581,7 +605,7 @@ public class SuperheroSightingsSightingDaoJdbcTemplateImplTest {
         loc.setLatitude(new BigDecimal(2.22).setScale(2, RoundingMode.HALF_UP));
         loc.setLongitude(BigDecimal.ONE);
         
-        locDaoTest.createLocation(loc);
+        locationDaoTest.createLocation(loc);
         
         
         LocalDate dt = LocalDate.parse("2016-10-31", DateTimeFormatter.ofPattern("yyyy-MM-dd"));

@@ -58,24 +58,32 @@ public class UserDaoJdbcTemplateImplTest {
         superpowerDaoTest = ctx.getBean("superpowerDaoTest", SuperheroSightingsSuperpowerDao.class );
 
         
-        List<User> testListOfUsers = userDaoTest.getAllUsers();
+        List<User> testUserList = userDaoTest.getAllUsers();
+        List<Organization> testOrganizationList = organizationDaoTest.getAllOrganizations();
+        List<Person> testPersonList = personDaoTest.getAllPersons();
+        List<Superpower> testSuperpowerList = superpowerDaoTest.getAllSuperpowers();
         
-        for(User u : testListOfUsers){
+        for(User u : testUserList){
             
             userDaoTest.deleteUser(u.getUserName());
         }
         
         
-        List<Organization> organizationList = organizationDaoTest.getAllOrganizations();
         
-        for(Organization currentOrganization : organizationList){
+        for(Organization currentOrganization : testOrganizationList){
             organizationDaoTest.deleteOrganization(currentOrganization.getOrganizationId());
         }
         
+        for(Person p : testPersonList){
+            personDaoTest.deletePerson(p.getPersonId());
+        } 
         
-        List<Person> listOfPersons = personDaoTest.getAllPersons();
         
-        List<Superpower> listOfSuperpowers = superpowerDaoTest.getAllSuperpowers();
+        for(Superpower currentSuperpower : testSuperpowerList){
+            
+            superpowerDaoTest.deleteSuperpower(currentSuperpower.getSuperpowerId());
+            
+        }
         
         
         

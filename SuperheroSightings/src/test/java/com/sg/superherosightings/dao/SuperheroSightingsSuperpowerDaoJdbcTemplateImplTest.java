@@ -58,29 +58,30 @@ public class SuperheroSightingsSuperpowerDaoJdbcTemplateImplTest {
         userDaoTest = ctx.getBean("userDaoTest", SuperheroSightingsUserDao.class);
 
         
-        List<Superpower> testListOfSuperpowers = superpowerDaoTest.getAllSuperpowers();
+        List<Superpower> testSuperpowerList = superpowerDaoTest.getAllSuperpowers();
+        List<Person> testPersonList = personDaoTest.getAllPersons();
+        List<Organization> testOrganizationList = organizationDaoTest.getAllOrganizations();
+        List<User> testUserList = userDaoTest.getAllUsers();
+
         
-        for(Superpower sp : testListOfSuperpowers){
+        
+        for(Superpower sp : testSuperpowerList){
             
             superpowerDaoTest.deleteSuperpower(sp.getSuperpowerId());
         }
         
         
-        List<Person> testListOfPersons = personDaoTest.getAllPersons();
-        
-        for(Person p : testListOfPersons){
+        for(Person p : testPersonList){
             personDaoTest.deletePerson(p.getPersonId());
         }
         
-        List<Organization> organizationList = organizationDaoTest.getAllOrganizations();
 
-        for(Organization currentOrganization : organizationList){
+        for(Organization currentOrganization : testOrganizationList){
             organizationDaoTest.deleteOrganization(currentOrganization.getOrganizationId());
         }
         
-        List<User> testListOfUsers = userDaoTest.getAllUsers();
         
-        for(User u : testListOfUsers){
+        for(User u : testUserList){
             
             userDaoTest.deleteUser(u.getUserName());
         }
@@ -237,10 +238,6 @@ public class SuperheroSightingsSuperpowerDaoJdbcTemplateImplTest {
         
         assertEquals(1, personPowers.size());
         
-//        for(Superpower x : personPowers){
-//            Superpower y = superpowerDaoTest.getSuperpowerById(x.getSuperpowerId());
-//            assertEquals(y,s);
-//        }
         
     }
     
