@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="7" failures="0" name="com.sg.superherosightings.service.SuperheroSightingsOrganizationServiceLayerImplTest" time="0.436" errors="0" skipped="0">
+<testsuite tests="7" failures="0" name="com.sg.superherosightings.service.SuperheroSightingsOrganizationServiceLayerImplTest" time="0.484" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/lib"/>
@@ -65,11 +65,11 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsOrganizationServiceLayerImplTest" name="testDeleteOrganization" time="0.055"/>
-  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsOrganizationServiceLayerImplTest" name="testGetAllOrganizations" time="0.056"/>
-  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsOrganizationServiceLayerImplTest" name="testUpdateOrganization" time="0.059"/>
-  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsOrganizationServiceLayerImplTest" name="testGetOrganizationById" time="0.072"/>
+  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsOrganizationServiceLayerImplTest" name="testDeleteOrganization" time="0.068"/>
+  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsOrganizationServiceLayerImplTest" name="testGetAllOrganizations" time="0.069"/>
+  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsOrganizationServiceLayerImplTest" name="testUpdateOrganization" time="0.066"/>
+  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsOrganizationServiceLayerImplTest" name="testGetOrganizationById" time="0.078"/>
   <testcase classname="com.sg.superherosightings.service.SuperheroSightingsOrganizationServiceLayerImplTest" name="testFindOrganizationsForPerson" time="0.062"/>
-  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsOrganizationServiceLayerImplTest" name="testFindOrganizationsForUser" time="0.051"/>
-  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsOrganizationServiceLayerImplTest" name="testCreateOrganization" time="0.081"/>
+  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsOrganizationServiceLayerImplTest" name="testFindOrganizationsForUser" time="0.067"/>
+  <testcase classname="com.sg.superherosightings.service.SuperheroSightingsOrganizationServiceLayerImplTest" name="testCreateOrganization" time="0.074"/>
 </testsuite>

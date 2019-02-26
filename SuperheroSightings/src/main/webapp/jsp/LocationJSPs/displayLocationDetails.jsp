@@ -20,10 +20,14 @@
     </head>
     <body>
         <div class="container-fluid">
+            <hr/>
+
             <div class="row">
 		<div class="col-md-12">
 			<div class="row">
                             <div class="col-md-7">
+                                
+                                
 					 
                                 <div class="navbar">
                                     <ul class="nav nav-tabs">
@@ -34,7 +38,6 @@
                                         <li role="presentation"><a href="${pageContext.request.contextPath}/locationHome">Locations</a></li>
                                         <li role="presentation"><a href="${pageContext.request.contextPath}/sightingHome">Sightings</a></li>
                                         <li role="presentation"><a href="${pageContext.request.contextPath}/userHome">Users</a></li>
-                      
                                     </ul>
                                 </div>
                                         
@@ -48,47 +51,62 @@
                                     
                                     
                             <div class="col-md-4">
+                                
+                                
 	                          <!--If the user is logged in, (the name is not null) greet them and show the log out link-->
-                    <c:if test="${pageContext.request.userPrincipal.name != null}">
-                        <p>Hello : ${pageContext.request.userPrincipal.name}
-        |                   <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
-                        </p>
-                    </c:if> 
+                                <c:if test="${pageContext.request.userPrincipal.name != null}">
+                                    <p>Hello : ${pageContext.request.userPrincipal.name} |
+                                        <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
+                                    </p>
+                                </c:if> 
+                                    
 		
                             </div>
                                     
 			</div>
                                     
 			<div class="row">
-				<div class="col-md-12">
-                                    <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
                                         
-					<div class="col-md-8">
-                                        </div>
+                                    <div class="col-md-8">
+                                    </div>
                                         
                                         <div class="col-md-4">
+                                            
                                             <a href ="displayEditLocationForm?theIdOfLocation=${locationToDisplay.locationId}" type="button" class="btn btn-success">
                                                 Edit This Location
                                             </a>
+                                                
                                         </div>
                                         
-
-                                        
-                                    </div>
-				</div>
+                                </div>
+                            </div>
 			</div>
+                                                
+                                                
                                     
 			<div class="row">
                             <div class="col-md-12">
+                                
+                                
 				<h3 class = "DtoDisplayLabel">
                                     Location Details for <c:out value ="${locationToDisplay.locationName}"/>
 				</h3>
+                                
+                                
                             </div>
 			</div>
+                                
+                                
                                     
 			<div class="row">
+                            
+                            
 				<div class="col-md-2">
 				</div>
+                            
+                            
 				<div class="col-md-8 outerBoxOnDetailsPage">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -117,27 +135,32 @@
                                                         
 
 
-                                                            <tr>
+                                                        <tr>
                                                                 
-                                                                <td>
-                                                                        <c:out value ="${locationToDisplay.locationName}"/>
-                                                                </td>
+                                                            <td>
+                                                                <c:out value ="${locationToDisplay.locationName}"/>
+                                                            </td>
                                                                 
-                                                                <td>
-                                                                    <c:out value ="${locationToDisplay.locationStreet} ${locationToDisplay.locationCity} ${locationToDisplay.locationState} ${locationToDisplay.locationZipcode} ${locationToDisplay.locationCountry}"/>
-                                                                    <br><br>
-                                                                    <c:out value ="Latitude: ${locationToDisplay.latitude}"/>
-                                                                    <br>
-                                                                    <c:out value ="Longitude: ${locationToDisplay.longitude}"/>
+                                                            
+                                                            <td>
+                                                                <c:out value ="${locationToDisplay.locationStreet} ${locationToDisplay.locationCity} ${locationToDisplay.locationState} ${locationToDisplay.locationZipcode} ${locationToDisplay.locationCountry}"/>
                                                                 
-                                                                </td>
+                                                                <br><br>
+                                                                
+                                                                <c:out value ="Latitude: ${locationToDisplay.latitude}"/>
+                                                                    
+                                                                <br>
+                                                                    
+                                                                <c:out value ="Longitude: ${locationToDisplay.longitude}"/>
+                                                                
+                                                            </td>
                                                                 
                                                                 
-                                                                <td>
-                                                                    <c:out value ="${locationToDisplay.locationDescription}"/>
-                                                                </td>            
+                                                            <td>
+                                                                <c:out value ="${locationToDisplay.locationDescription}"/>
+                                                            </td>            
                                                                 
-                                                            </tr>
+                                                        </tr>
                                                             
 
                                                     </table>   
@@ -148,6 +171,8 @@
                                                 
 						<div class="col-md-2">
 						</div>
+                                                            
+                                                            
                                             </div>
 					</div>
                                     </div>
@@ -157,11 +182,14 @@
 						<div class="col-md-12">
 							<div class="row">
                                                             
+                                                            
                                                             <div class="col-md-2">
                                                             </div>
                                                             
                                                             
                                                             <div class="col-md-8">
+                                                                
+                                                                
 								<h3 class = "miniTableTextAlign">
                                                                    All Sightings At This Location
 								</h3>
@@ -185,9 +213,8 @@
 
                                                                             <td>
                                                                                 <a href="displaySighting?sightingId=${currentSighting.sightingId}">
-                                                                                    
-                                                                                    <c:out value="${currentSighting.justTheSightingDate}"/></a>
-
+                                                                                    <c:out value="${currentSighting.justTheSightingDate}"/>
+                                                                                </a>
                                                                             </td>
                                     
                                     
@@ -232,8 +259,10 @@
 					</div>
 				</div>
 				
+                                                            
                                 <div class="col-md-2">
 				</div>
+                                                            
 			</div>
 		</div>
             </div>
