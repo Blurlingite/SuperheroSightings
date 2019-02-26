@@ -24,6 +24,7 @@ import sg.thecodetasticfour.superherosightingsgroup.dto.Sighting;
  */
 public class LocationDaoJdbcTemplateImpl implements SuperheroSightingsLocationDao {
     
+     
 
     private JdbcTemplate jdbcTemplate;
     

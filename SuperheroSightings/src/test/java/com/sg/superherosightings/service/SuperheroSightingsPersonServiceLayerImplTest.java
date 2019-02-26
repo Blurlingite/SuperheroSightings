@@ -157,19 +157,6 @@ public class SuperheroSightingsPersonServiceLayerImplTest {
     public void testFindPersonForSighting() {
     }
 
-    /**
-     * Test of setGlobalPersonList method, of class SuperheroSightingsPersonServiceLayerImpl.
-     */
-    @Test
-    public void testSetGlobalPersonList() {
-    }
-
-    /**
-     * Test of getGlobalPersonList method, of class SuperheroSightingsPersonServiceLayerImpl.
-     */
-    @Test
-    public void testGetGlobalPersonList() {
-    }
 
     /**
      * Test of findPersonsForOrganization method, of class SuperheroSightingsPersonServiceLayerImpl.

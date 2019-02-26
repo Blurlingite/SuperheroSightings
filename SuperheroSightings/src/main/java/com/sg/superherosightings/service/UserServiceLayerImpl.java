@@ -152,15 +152,5 @@ public class UserServiceLayerImpl implements SuperheroSightingsUserServiceLayer 
         
     }
 
-    @Override
-    public void setGlobalUserList(List<User> userList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<User> getGlobalUserList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     
 }

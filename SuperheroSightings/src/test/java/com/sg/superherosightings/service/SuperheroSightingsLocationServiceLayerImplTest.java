@@ -112,18 +112,5 @@ public class SuperheroSightingsLocationServiceLayerImplTest {
     public void testDeleteLocation() {
     }
 
-    /**
-     * Test of setGlobalLocationList method, of class LocationServiceLayerImpl.
-     */
-    @Test
-    public void testSetGlobalLocationList() {
-    }
-
-    /**
-     * Test of getGlobalLocationList method, of class LocationServiceLayerImpl.
-     */
-    @Test
-    public void testGetGlobalLocationList() {
-    }
     
 }

@@ -104,18 +104,5 @@ public class SuperheroSightingsSuperpowerServiceLayerImplTest {
     public void testDeleteSuperpower() throws Exception {
     }
 
-    /**
-     * Test of setGlobalSuperpower method, of class SuperheroSightingsSuperpowerServiceLayerImpl.
-     */
-    @Test
-    public void testSetGlobalSuperpower() {
-    }
-
-    /**
-     * Test of getGlobalSuperpower method, of class SuperheroSightingsSuperpowerServiceLayerImpl.
-     */
-    @Test
-    public void testGetGlobalSuperpower() {
-    }
     
 }

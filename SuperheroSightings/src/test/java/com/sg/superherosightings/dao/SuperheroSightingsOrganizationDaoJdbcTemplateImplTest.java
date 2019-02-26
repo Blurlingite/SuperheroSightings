@@ -339,10 +339,10 @@ public class SuperheroSightingsOrganizationDaoJdbcTemplateImplTest {
         
         fromDao.setOrganizationAdmins(listOfUsers);
         fromDao.setListOfPersons(listOfPersons);
-        // assert that it is the same organization by their ID
-        assertEquals(o.getOrganizationId(), fromDao.getOrganizationId());
         
-                assertEquals(o, fromDao);
+        // assert that it is the same organization
+        
+        assertEquals(o, fromDao);
 
        
         // assert that the name of the organization is no longer "Test Organization"
