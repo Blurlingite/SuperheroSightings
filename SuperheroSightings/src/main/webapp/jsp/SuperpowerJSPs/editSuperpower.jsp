@@ -51,8 +51,10 @@
                         <div class="col-md-4">
 	                          <!--If the user is logged in, (the name is not null) greet them and show the log out link-->
                     <c:if test="${pageContext.request.userPrincipal.name != null}">
-                        <p>Hello : ${pageContext.request.userPrincipal.name}
-        |                   <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
+                        <p>Hello : ${pageContext.request.userPrincipal.name} |
+                            <a href="<c:url value="/j_spring_security_logout" />" >
+                                Logout
+                            </a>
                         </p>
                     </c:if> 
                         </div>
@@ -117,7 +119,6 @@
                             
                             
                 <div class="col-md-2">
-<!--                    hhhh-->
 		</div>
                             
                             
