@@ -81,8 +81,10 @@ coming to this one first
 
                 <div class = col-md-12>
                         <!--The ROLE_ADMIN is in the database's Authorities table, and gets here in Java through User DTO, DAO and service layer-->
-        <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <div class="col-md-4">
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        
+                        
+                        <div class="col-md-4">
                         
 
                             <h2 class = "addEntityForm">
@@ -240,11 +242,11 @@ coming to this one first
           
                             </form>
 
-        </sec:authorize>
 
-
-
-                    </div>
+                        </div>
+                        
+                        
+                    </sec:authorize>
 
 
 
@@ -313,9 +315,13 @@ coming to this one first
                                         
                                         
                                         <c:out value ="${currentLocation.locationStreet} ${currentLocation.locationCity} ${currentLocation.locationState} ${currentLocation.locationZipcode} ${currentLocation.locationCountry}"/> 
+                                        
                                         <br><br>
+                                        
                                         <c:out value ="Latitude: ${currentLocation.latitude}"/> 
+                                        
                                         <br>
+                                        
                                         <c:out value ="Longitude: ${currentLocation.longitude}"/>
 
                                         
@@ -386,11 +392,10 @@ coming to this one first
             </div>
 	</div>
     </div>
-<!--</div>-->
 
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/scripts.js"></script>
   </body>
 </html>
 

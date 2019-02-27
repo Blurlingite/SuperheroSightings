@@ -77,7 +77,7 @@
 			</div> 
                         
 
-                        <div class="col-md-8" style = "background-color:yellow">
+                        <div class="col-md-8 theEditForms">
 
                             <sf:form class="form-horizontal" role="form" modelAttribute="personToDisplay"
                                      action="editPerson" method="POST">
@@ -87,6 +87,7 @@
                   
                                 <div class="form-group">
                             
+                                    
                                     <label for="add-personFirstName" class="col-md-4 control-label">First Name:</label>
                             
                                     <div class="col-md-8">
@@ -94,12 +95,15 @@
                                         path="firstName" placeholder="First Name"/>
                                         <sf:errors path="firstName" cssclass="error"></sf:errors>
                                     </div>
+                                    
+                                    
                                 </div>
                   
                   
                   
                                 <div class="form-group">
                             
+                                    
                                     <label for="add-personDescription" class="col-md-4 control-label">Last Name:</label>
                             
                                     <div class="col-md-8">
@@ -109,12 +113,15 @@
                     
                                         <sf:hidden path="personId"/>
                                     </div>
+                                    
+                                    
                                 </div>
                   
                   
                   
                                     <div class="form-group">
                             
+                                        
                                         <label for="add-isHero" class="col-md-4 control-label">Person Type</label>
                             
                                         <div class="col-md-8">
@@ -132,6 +139,7 @@
 
                                     <div class="form-group">
                              
+                                        
                                         <label for="add-descriptionOfPerson" class="col-md-4 control-label">Person Description:</label>
                             
                                         <div class="col-md-8">
@@ -139,6 +147,8 @@
                                             path="descriptionOfPerson" placeholder="isHero"/>
                                             <sf:errors path="descriptionOfPerson" cssclass="error"></sf:errors>
                                         </div>
+                                        
+                                        
                                     </div>           
                   
                   
@@ -162,29 +172,33 @@
                     
                                     <div class="form-group">
                     
+                                        
                                         <label for="add-superpowersForPerson" class="col-md-4 control-label">Superpowers:</label>
                     
                                         <div class="col-md-8">
                                             <sf:select path="listOfSuperpowerIdsToPopulateSuperpowerListInPersonDTO">
                                                 <sf:options items="${allPowers}"  itemLabel="superpowerName" itemValue="superpowerId"/>
                                             </sf:select>
-                                        </div> 
+                                        </div>
+                                        
+                                        
                                     </div> 
                   
  
                                     <div class="form-group">
                     
+                                        
                                         <label for="add-organizationsForPerson" class="col-md-4 control-label">Organizations</label>
                     
                                         <div class="col-md-8">
                                             <select name = "organizationsSelectedByUser" multiple ="true">
-                      
                                                 <c:forEach var="currentOrganization" items="${allOrganizations}">
                                                     <option value="${currentOrganization.organizationId}">${currentOrganization.organizationName}</option>
                                                 </c:forEach>
-                      
                                             </select>
                                         </div> 
+                                        
+                                        
                                     </div> 
                   
                   

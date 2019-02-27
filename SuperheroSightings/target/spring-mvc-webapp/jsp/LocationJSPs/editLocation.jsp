@@ -97,7 +97,7 @@
 			</div>
                             
                             
-			<div class="col-md-8 outerBoxOnDetailsPage">  
+			<div class="col-md-8">  
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="row">
@@ -107,7 +107,7 @@
 					</div>
 
 
-                                        <div class="col-md-8">
+                                        <div class="col-md-8 theEditForms">
                                             
                                             <div class="col-md-12">
                                                 <p id="editLocationLabel">Edit Location</p>

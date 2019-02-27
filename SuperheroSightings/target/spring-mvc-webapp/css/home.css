@@ -76,6 +76,10 @@ body{
     background-color: #43d1af;
 }
 
+.theEditForms{
+   background-color:yellow;
+}
+
 #editLocationLabel{
     text-align:center;
     font-size: 25px;

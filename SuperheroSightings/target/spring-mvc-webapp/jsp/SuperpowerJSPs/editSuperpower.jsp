@@ -73,59 +73,58 @@
 				
                  
                         
-                <div class="col-md-8" style = "background-color:yellow">
+                        <div class="col-md-8 theEditForms">
                    
-                    <label for="theEditSightingForm" form="form1">Edit Superpower</label>
+                            <label for="theEditSuperpowerForm" form="form1">Edit Superpower</label>
          
                                     
-                    <sf:form class="form-horizontal" role="form" modelAttribute="getPowerToEdit"
-                            action="editSuperpower" method="POST">
+                                <sf:form class="form-horizontal" role="form" modelAttribute="getPowerToEdit"
+                                     action="editSuperpower" method="POST">
                         
                         
-                        <div class="form-group">
-                            <label for="add-superpowerName" class="col-md-4 control-label">Superpower Name:</label>
-                            <div class="col-md-8">
-                                <sf:input type="text" class="form-control" id="add-superpowerName"
-                                        path="superpowerName" placeholder="Superpower Name"/>
-                                <sf:errors path="superpowerName" cssclass="error"></sf:errors>
-                            </div>
-                        </div>
+                                    <div class="form-group">
+                                        <label for="add-superpowerName" class="col-md-4 control-label">Superpower Name:</label>
+                                        <div class="col-md-8">
+                                            <sf:input type="text" class="form-control" id="add-superpowerName"
+                                                path="superpowerName" placeholder="Superpower Name"/>
+                                            <sf:errors path="superpowerName" cssclass="error"></sf:errors>
+                                        </div>
+                                    </div>
                             
                             
-                        <div class="form-group">
-                            <label for="add-superpower-Description" class="col-md-4 control-label">Superpower Description</label>
-                            <div class="col-md-8">
-                                <sf:input type="text" class="form-control" id="add-superpower-Description"
-                                          path="superpowerDescription" placeholder="Superpower Description"/>
-                                <sf:errors path="superpowerDescription" cssclass="error"></sf:errors>
+                                    <div class="form-group">
+                                        <label for="add-superpower-Description" class="col-md-4 control-label">Superpower Description</label>
+                                        <div class="col-md-8">
+                                            <sf:input type="text" class="form-control" id="add-superpower-Description"
+                                                path="superpowerDescription" placeholder="Superpower Description"/>
+                                            <sf:errors path="superpowerDescription" cssclass="error"></sf:errors>
                     
-                                <sf:hidden path="superpowerId"/>
-                            </div>
-                        </div>
+                                            <sf:hidden path="superpowerId"/>
+                                        </div>
+                                    </div>
  
 
-                        <div class="form-group">
-                            <div class="col-md-offset-4 col-md-8">
-                                <input type="submit" class="btn btn-default" value="Update Superpower"/>
-                            </div>
-                        </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-4 col-md-8">
+                                            <input type="submit" class="btn btn-default" value="Update Superpower"/>
+                                        </div>
+                                    </div>
                                 
                                 
-                    </sf:form>    
+                                </sf:form>    
                     
                     
                                     
-		</div>
+                        </div>
                             
                             
-                <div class="col-md-2">
-		</div>
+                        <div class="col-md-2">
+                        </div>
                             
                             
                     </div>
                 </div>
 
-		<!--</div>-->
             </div>
         </div>
         

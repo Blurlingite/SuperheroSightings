@@ -14,7 +14,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Edit Organization</title>
-                <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">     
+        
+        <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">     
         <link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet">    
     </head>
     <body>
@@ -75,7 +76,7 @@
 			</div> 
                         
 
-                        <div class="col-md-8" style = "background-color:yellow">       
+                        <div class="col-md-8 theEditForms">       
 
         
         
@@ -198,11 +199,9 @@
                                     <label for="add-organizationCountry" class="col-md-4 control-label">Organization Country:</label>
                     
                                      <div class="col-md-8">
-                                
                                         <sf:input type="text" class="form-control" id="add-organizationCountry"
                                           path="organizationCountry" placeholder="Organization Country:"/>
                                         <sf:errors path="organizationCountry" cssclass="error"></sf:errors>
-                            
                                     </div>
                                 
                                 
@@ -216,12 +215,10 @@
                                     <label for="add-isItAHeroOrganization" class="col-md-4 control-label">Is It A Hero Organization?:</label>
                         
                                     <div class="col-md-8">
-                        
                                         <sf:radiobutton path="isItAHeroOrganization" value="true"/>Yes 
                                         <sf:radiobutton path="isItAHeroOrganization" value="false"/>No 
                     
                                         <sf:errors path="isItAHeroOrganization" cssclass="error"></sf:errors>
-                                
                                     </div>
                                 
                                 
@@ -235,17 +232,11 @@
                                     <label for="add-personsForOrganization" class="col-md-4 control-label">Persons:</label>
                     
                                     <div class="col-md-8">
-                
                                         <select name = "personsSelectedByUserOnEditPage" multiple ="true">
-                      
                                             <c:forEach var="currentPerson" items="${allPersons}">
-                                        
                                                 <option value="${currentPerson.personId}">${currentPerson.firstName} ${currentPerson.lastName}</option>
-                                    
                                             </c:forEach>
-                      
                                         </select>
-                                
                                     </div> 
                             
                             
@@ -254,20 +245,15 @@
                                                 
                                 <div class="form-group">
                     
-                            
+                                        
                                     <label for="add-adminsForOrganization" class="col-md-4 control-label">Users:</label>
                                         
+                                    <div class="col-md-8">
                                         <select name = "adminsSelectedByUserOnEditPage" multiple ="true">
-
                                             <c:forEach var="currentUser" items="${allUsers}">
-                                        
                                                 <option value="${currentUser.userName}">${currentUser.userName}</option>
-                                    
                                             </c:forEach>
                                         </select>
-
-                    
-                                    <div class="col-md-8">
                                     </div> 
                            
                             
