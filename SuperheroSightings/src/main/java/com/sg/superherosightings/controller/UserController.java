@@ -32,11 +32,11 @@ public class UserController {
     
 // Create a private PasswordEncoder class variable. Make sure you import the org.springframework.security.crypto.password.PasswordEncoder. 
 // There is another PasswordEncoder interface in the Spring Security library but it has been deprecated and you will get a weird variable with a strikethrough in it
-   private PasswordEncoder encoder;
    
    
     SuperheroSightingsUserServiceLayer userService;
     SuperheroSightingsOrganizationServiceLayer organizationService;
+    private PasswordEncoder encoder;
 
     // Have Spring use auto-wired constructor injection to hand our class an instance of the PasswordEncoder.
     // The BCryptPasswordEncoder spring-security.xml bean entry that we created in the last step will be handed to us at 
@@ -45,10 +45,10 @@ public class UserController {
     
     // if service layer can't be injected, the program will fail to start, check ur beans
     @Inject
-    public UserController(PasswordEncoder encoder, SuperheroSightingsUserServiceLayer userService, SuperheroSightingsOrganizationServiceLayer organizationService) {
-        this.encoder = encoder;
+    public UserController(SuperheroSightingsUserServiceLayer userService, SuperheroSightingsOrganizationServiceLayer organizationService, PasswordEncoder encoder) {
         this.userService = userService;
         this.organizationService = organizationService;
+        this.encoder = encoder;
     }
     
     //the homepage  for Superpowers. The superpowers will be listed after this method is executed to superpower.jsp
@@ -74,7 +74,7 @@ public class UserController {
 
     
     @RequestMapping(value="/addUser", method=RequestMethod.POST)
-    public String addUser(HttpServletRequest request, String userName, String userPassword, String firstName, String lastName, String email, Boolean isEnabled, Model model) throws EntityNotFoundException{
+    public String addUser(HttpServletRequest request, String userName, String userPassword, String firstName, String lastName, String email, String isAdmin, Model model) throws EntityNotFoundException{
         
         String[] organizationsChosenByUser = request.getParameterValues("organizationsSelectedByUser");
         List<Organization> allOrganizationsFromUser = new ArrayList<>();
@@ -99,7 +99,7 @@ public class UserController {
         u.setFirstName(firstName);
         u.setLastName(lastName);
         u.setEmail(email);
-        u.setIsEnabled(isEnabled);
+        u.setIsAdmin(Boolean.parseBoolean(isAdmin));
         u.setUserOrganizations(allOrganizationsFromUser);
         
          // All users have ROLE_USER, only add ROLE_ADMIN if the is an Admin 
@@ -107,13 +107,9 @@ public class UserController {
         u.addAuthority("ROLE_USER");
 
         
-        if (true == isEnabled) {
-
+        // if user hit the admin checkbox, add the admin role to this user
+        if (null != request.getParameter("isAdmin")) {
             u.addAuthority("ROLE_ADMIN");
-        }else if(false == isEnabled){
-
-            u.addAuthority("ROLE_USER");
-            u.setIsEnabled(true);
         }
 
 
@@ -180,8 +176,20 @@ public class UserController {
     @RequestMapping(value="/editUser", method=RequestMethod.POST)
     public String editUser(HttpServletRequest request, @ModelAttribute("userToDisplay") User user, Model model) throws EntityNotFoundException, SuperheroSightingsPersistenceException{
 
-       String hashTheEditedPassword = encoder.encode(user.getUserPassword());
-       user.setUserPassword(hashTheEditedPassword);
+//        // If they edit the user, and they decide to change that user from admin to a regular user, remove the admin role, ROLE_ADMIN from that user
+//        if(user.getIsAdmin() == false){
+//            user.removeAuthority("ROLE_ADMIN");
+//        }
+        
+
+        // if the password was not changed (still has a "$", do not hash it, otherwise, you will hash a hashed password and you won't be able to login
+        // Otherwise, if the password was changed, hash it so you can use the new password to login
+        if(user.getUserPassword().contains("$")){
+            
+        }else{
+            String hashTheEditedPassword = encoder.encode(user.getUserPassword());
+            user.setUserPassword(hashTheEditedPassword);  
+        }
        
         List<Integer> organizationIds = user.getAllOrganizationIdsToPopulateOrganizationListInUserDTO();
         List<Organization> organizationsToSetToUser = new ArrayList<>();
@@ -193,13 +201,7 @@ public class UserController {
         }
         
         
-        
-        if(user.getIsEnabled() == true){
-            user.addAuthority("ROLE_ADMIN");
-            user.addAuthority("ROLE_USER");
-        }else{
-            user.addAuthority("ROLE_USER");
-        }
+  
         
 
         

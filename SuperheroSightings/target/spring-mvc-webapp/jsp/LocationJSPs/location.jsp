@@ -51,7 +51,6 @@ coming to this one first
                                 <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/locationHome">Locations</a></li>
                                 <li role="presentation"><a href="${pageContext.request.contextPath}/sightingHome">Sightings</a></li>
                                 <li role="presentation"><a href="${pageContext.request.contextPath}/userHome">Users</a></li>
-    
                             </ul>
                         </div>
                          
@@ -67,12 +66,17 @@ coming to this one first
 
 
                     <div class="col-md-4">
-                        <!--If the user is logged in, (the name is not null) greet them and show the log out link-->             
+                        
+                        
                         <c:if test="${pageContext.request.userPrincipal.name != null}">
-                            <p>Hello : ${pageContext.request.userPrincipal.name} |                      
-                                <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
+                            <p>Hello : ${pageContext.request.userPrincipal.name} | 
+                                <a href="<c:url value="/j_spring_security_logout" />" >
+                                    Logout
+                                </a>
                             </p>
                         </c:if>
+                            
+                            
                     </div>
                                 
                                 
@@ -81,9 +85,9 @@ coming to this one first
 
                 <div class = col-md-12>
                         <!--The ROLE_ADMIN is in the database's Authorities table, and gets here in Java through User DTO, DAO and service layer-->
+                        
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
-                        
-                        
+      
                         <div class="col-md-4">
                         
 
@@ -245,8 +249,7 @@ coming to this one first
 
                         </div>
                         
-                        
-                    </sec:authorize>
+                    </sec:authorize> 
 
 
 
@@ -350,29 +353,29 @@ coming to this one first
                                     This is the pattern you should use for edit functionality, because edit functionality always needs two controller endpoints:  
                                     one to display the edit form (that's what we're doing here) and one to process the data submitted in the edit form (editLocation in Location Controller).
                                     -->
-
+                                    
                                     <sec:authorize access="hasRole('ROLE_ADMIN')">
+
 
                                         <a  class="tableLinks" href="displayEditLocationForm?theIdOfLocation=${currentLocation.locationId}">
                                             Edit
                                         </a>
                                             
                                     </sec:authorize>
-
                                 
                                     </td>
             
             
                                     <td>
                                         
-                                        
                                         <sec:authorize access="hasRole('ROLE_ADMIN')">
-  
+ 
                                             <a  class="tableLinks" href="deleteLocation?theLocationId=${currentLocation.locationId}">
                                                 Delete
                                             </a>
+                                                
+                                        </sec:authorize>         
                                             
-                                        </sec:authorize>
 
                                         
                                     </td>

@@ -3,6 +3,7 @@
     Created on : Dec 29, 2018, 6:26:32 PM
     Author     : vishnukdawah
 --%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
@@ -35,13 +36,9 @@
                                         <li role="presentation"><a href="${pageContext.request.contextPath}/organizationHome">Organizations</a></li>
                                         <li role="presentation"><a href="${pageContext.request.contextPath}/locationHome">Locations</a></li>
                                         <li role="presentation"><a href="${pageContext.request.contextPath}/sightingHome">Sightings</a></li>
-                                        <li role="presentation"><a href="${pageContext.request.contextPath}/userHome">Users</a></li>
-                      
+                                        <li role="presentation"><a href="${pageContext.request.contextPath}/userHome">Users</a></li>                 
                                     </ul>
                                 </div>
-                                        
-                                        
-  
                                         
                                         
                             </div>
@@ -52,13 +49,17 @@
                                     
                                     
                             <div class="col-md-4">
-                          <!--If the user is logged in, (the name is not null) greet them and show the log out link-->
-                    <c:if test="${pageContext.request.userPrincipal.name != null}">
-                        <p>Hello : ${pageContext.request.userPrincipal.name}
-        |                   <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
-                        </p>
-                    </c:if>  
-		
+                        
+                                
+                                <c:if test="${pageContext.request.userPrincipal.name != null}">
+                                    <p>Hello : ${pageContext.request.userPrincipal.name} | 
+                                        <a href="<c:url value="/j_spring_security_logout" />" >
+                                            Logout
+                                        </a>
+                                    </p>
+                                </c:if>
+                                    
+                                    
                             </div>
                                     
 			</div>
@@ -69,16 +70,21 @@
                                         
 					<div class="col-md-8">
                                         </div>
-                                        
+               
+                                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+
 					<div class="col-md-4">
                                             <a href ="displayEditPersonForm?personId=${personDetails.personId}" type="button" class="btn btn-success">
                                                 Edit This Person
                                             </a>
 					</div>
+                                                
+                                    </sec:authorize>
                                         
                                     </div>
 				</div>
 			</div>
+                                                
                                     
 			<div class="row">
                             <div class="col-md-12">
@@ -87,6 +93,7 @@
 				</h3>
                             </div>
 			</div>
+                                
                                     
 			<div class="row">
 				<div class="col-md-2">

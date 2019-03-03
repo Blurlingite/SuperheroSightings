@@ -43,8 +43,7 @@
                                 <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/organizationHome">Organizations</a></li>
                                 <li role="presentation"><a href="${pageContext.request.contextPath}/locationHome">Locations</a></li>
                                 <li role="presentation"><a href="${pageContext.request.contextPath}/sightingHome">Sightings</a></li>
-                                <li role="presentation"><a href="${pageContext.request.contextPath}/userHome">Users</a></li>
-                       
+                                <li role="presentation"><a href="${pageContext.request.contextPath}/userHome">Users</a></li>                    
                             </ul>
                         </div>
                                 
@@ -61,16 +60,16 @@
 
                     <div class="col-md-4">
                         
-                        <!--If the user is logged in, (the name is not null) greet them and show the log out link-->                           
+                        
                         <c:if test="${pageContext.request.userPrincipal.name != null}">
+                            <p>Hello : ${pageContext.request.userPrincipal.name} | 
+                                <a href="<c:url value="/j_spring_security_logout" />" >
+                                    Logout
+                                </a>
+                            </p>
+                        </c:if>    
                             
-                        <p>Hello : ${pageContext.request.userPrincipal.name} |                  
-                            <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
-        
-                        </p>
-                        
-                        </c:if>
-                        
+                            
                     </div>
                                 
                                 
@@ -296,12 +295,11 @@
                                 </form>
 
 
-                        </sec:authorize>
                                 
 
-                        </div>
+                            </div>
 
-
+                        </sec:authorize>
 
 
 
@@ -405,22 +403,24 @@
                                             <a class="tableLinks" href="displayEditOrganizationForm?theIdOfOrganization=${currentOrganization.organizationId}">
                                                  Edit
                                             </a>
+                                                 
                                         </sec:authorize>
                                         
                                     </td>
         
                                     <td>
                     
+
                                         <sec:authorize access="hasRole('ROLE_ADMIN')">
 
-            
                                             <a class="tableLinks" href="deleteOrganization?theOrganizantionId=${currentOrganization.organizationId}">
             
                                                 Delete
             
                                             </a>
-                    
+                                            
                                         </sec:authorize>
+                    
         
                                     </td>
     

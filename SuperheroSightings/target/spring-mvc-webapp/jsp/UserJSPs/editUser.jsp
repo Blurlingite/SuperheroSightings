@@ -3,6 +3,7 @@
     Created on : Jan 22, 2019, 5:48:22 PM
     Author     : vishnukdawah
 --%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
@@ -51,14 +52,13 @@
                         <div class="col-md-4">        
                                 
         
-                            <!--If the user is logged in, (the name is not null) greet them and show the log out link-->
                             <c:if test="${pageContext.request.userPrincipal.name != null}">
-                                <p>Hello : ${pageContext.request.userPrincipal.name} |
+                                <p>Hello : ${pageContext.request.userPrincipal.name} | 
                                     <a href="<c:url value="/j_spring_security_logout" />" >
                                         Logout
                                     </a>
                                 </p>
-                            </c:if> 
+                            </c:if>
                                 
                                 
                         </div>
@@ -176,10 +176,10 @@
                                     <label for="add-isEnabled" class="col-md-4 control-label">Are they an Admin?</label>
                                     
                                     <div class="col-md-8">
-                                        <sf:radiobutton path="isEnabled" value="true"/>Yes 
-                                        <sf:radiobutton path="isEnabled" value="false"/>No 
+                                        <sf:radiobutton path="isAdmin" value="true"/>Yes 
+                                        <sf:radiobutton path="isAdmin" value="false"/>No 
 
-                                        <sf:errors path="isEnabled" cssclass="error"></sf:errors>
+                                        <sf:errors path="isAdmin" cssclass="error"></sf:errors>
                                     </div>
                                     
                                     

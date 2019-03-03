@@ -5,57 +5,19 @@
  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
  http://www.springframework.org/schema/security
  http://www.springframework.org/schema/security/spring-security-3.2.xsd">
-    
-    <!--This file was created with the XML Document option when you go to make a new file-->
 
-   <!--Lets us use Spring Security tag libraries in JSPs via the annotations at the top of the JSPs-->
     <beans:bean id="webexpressionHandler"
                 class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/> 
     
-    
-<!--We need to make two changes to our spring-security.xml file. First, we will define a bean for our BCryptPasswordEncoder and then we will
-                modify our authentication-provider configuration so that it will use the BCryptPasswordEncoder when checking login credentials.
-                Modify your spring-security.xml by adding the following bean definition just after the bean definition for 
-                the webexpressionHandler-->
-    
     <beans:bean id="encoder"
-            class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-               
-    <!--We set security="none" for the login and error pages and all of the resource folders in our application. 
-                These need to be available to all users, all the time
-                The /** means everything in that folder
+                class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
                 
-                --> 
     <http pattern="/login" security="none" />
     <http pattern="/error" security="none" />
     <http pattern="/css/**" security="none" />
     <http pattern="/js/**" security="none" />
     <http pattern="/img/**" security="none" />
 
-<!--    The login configuration for this application is identical that one used in Hello Security. 
- We provide a custom form and integrate with the default Spring Security login and log out URLs. 
-
-URL Protection:
-We allow all users to see the home page.  Using access="IS_AUTHENTICATED_ANONYMOUSLY" allows us to still use Spring Security tags on the home page.
-
-All of the URLs that allow changes to contact information (add, edit, delete) require ROLE_ADMIN.
-
-All of the REST endpoints require ROLE_ADMIN.  This means that users of the REST API must be logged into the system.
-A
-ny URL not explicitly listed in the above rules requires ROLE_USER.
-
-jdbc-user-service:
-
-This allows us to store our user information in a relational database.
-
-The data-source-ref uses the data source we defined in the spring-persistence.xml configuration file. 
- All of the Spring configuration files can access the entries in the other files.
-
-We supply two SQL queries that tell Spring Security how to get users by username and how to get the
- authorities (i.e. roles) associated with a given user.
-
-    -->
- 
     <http auto-config="true" use-expressions="false">
         <form-login login-processing-url="/j_spring_security_check"
                     login-page="/login"
@@ -66,120 +28,104 @@ We supply two SQL queries that tell Spring Security how to get users by username
         <intercept-url pattern="/index.jsp" 
                        access="IS_AUTHENTICATED_ANONYMOUSLY" />
         
-        
-        
-        <!--Superpower
-         Note: Because you put SuperpowerJSPs in the Superpower Controller's global Request Mapping value (at the top of the controller),
-        you need that in your file path here in each endpoint                       -->
-        <intercept-url pattern="/SuperpowerJSPs/superpowerHome" 
-                       access="ROLE_USER, ROLE_ADMIN" />
-        <intercept-url pattern="/SuperpowerJSPs/addSuperpower" 
-                       access="ROLE_ADMIN" />
-        <intercept-url pattern="/SuperpowerJSPs/deleteSuperpower" 
-                       access="ROLE_ADMIN" />
-        <intercept-url pattern="/SuperpowerJSPs/displayEditPowerForm" 
-                       access="ROLE_ADMIN" />
-        <intercept-url pattern="/SuperpowerJSPs/editSuperpower" 
-                       access="ROLE_ADMIN" /> 
-        <intercept-url pattern="/SuperpowerJSPs/displaySuperpowerDetails" 
-                       access="ROLE_USER, ROLE_ADMIN" /> 
-        
-        
-        <!--Person-->
-        
         <intercept-url pattern="/personHome" 
-                       access="ROLE_USER, ROLE_ADMIN" />
+                       access="ROLE_ADMIN, ROLE_USER" />
         <intercept-url pattern="/addPerson" 
+                       access="ROLE_ADMIN" />
+        <intercept-url pattern="/displayPersonDetails" 
+                       access="ROLE_ADMIN, ROLE_USER" />
+        <intercept-url pattern="/displayEditPersonForm" 
+                       access="ROLE_ADMIN" /> 
+        <intercept-url pattern="/editPerson" 
                        access="ROLE_ADMIN" />
         <intercept-url pattern="/deletePerson" 
                        access="ROLE_ADMIN" />
-        <intercept-url pattern="/displayEditPersonForm" 
+        <intercept-url pattern="/handlePersonExceptions" 
+                       access="ROLE_ADMIN, ROLE_USER" />
+
+<!--For superpower, we put /SuperpowerJSPs as the request mapping at the top of the controller, so we have to include it here as well-->
+        
+        <intercept-url pattern="/SuperpowerJSPs/superpowerHome" 
+                       access="ROLE_ADMIN, ROLE_USER" />
+        <intercept-url pattern="/SuperpowerJSPs/addSuperpower" 
                        access="ROLE_ADMIN" />
-        <intercept-url pattern="/editPerson" 
-                       access="ROLE_ADMIN" /> 
-        <intercept-url pattern="/displayPersonDetails" 
-                       access="ROLE_USER, ROLE_ADMIN" /> 
+        <intercept-url pattern="/SuperpowerJSPs/displaySuperpowerDetails" 
+                       access="ROLE_ADMIN, ROLE_USER" />  
+        <intercept-url pattern="/SuperpowerJSPs/displayEditPowerForm" 
+                       access="ROLE_ADMIN" />
+        <intercept-url pattern="/SuperpowerJSPs/editSuperpower" 
+                       access="ROLE_ADMIN" />     
+        <intercept-url pattern="/SuperpowerJSPs/deleteSuperpower" 
+                       access="ROLE_ADMIN" />
+        <intercept-url pattern="/SuperpowerJSPs/handleSuperpowerExceptions" 
+                       access="ROLE_ADMIN, ROLE_USER" />
         
-        
-        
-        <!--Organization-->
         
         <intercept-url pattern="/organizationHome" 
-                       access="ROLE_USER, ROLE_ADMIN" />
+                       access="ROLE_ADMIN, ROLE_USER" />
+        
         <intercept-url pattern="/addOrganization" 
+                       access="ROLE_ADMIN" />
+        <intercept-url pattern="/displayOrganizationDetails" 
+                       access="ROLE_ADMIN, ROLE_USER" />
+        <intercept-url pattern="/displayEditOrganizationForm" 
+                       access="ROLE_ADMIN" /> 
+        <intercept-url pattern="/editOrganization" 
                        access="ROLE_ADMIN" />
         <intercept-url pattern="/deleteOrganization" 
                        access="ROLE_ADMIN" />
-        <intercept-url pattern="/displayEditOrganizationForm" 
-                       access="ROLE_ADMIN" />
-        <intercept-url pattern="/editOrganization" 
-                       access="ROLE_ADMIN" /> 
-        <intercept-url pattern="/displayOrganizationDetails" 
-                       access="ROLE_USER, ROLE_ADMIN" /> 
+
+
         
-        
-        
-        
-        <!--Location-->
         <intercept-url pattern="/locationHome" 
-                       access="ROLE_USER, ROLE_ADMIN" />
+                       access="ROLE_ADMIN, ROLE_USER" />
+        
+        
         <intercept-url pattern="/addLocation" 
+                       access="ROLE_ADMIN" />
+        <intercept-url pattern="/displayLocationDetails" 
+                       access="ROLE_ADMIN, ROLE_USER" />
+        <intercept-url pattern="/displayEditLocationForm" 
+                       access="ROLE_ADMIN" /> 
+        <intercept-url pattern="/editLocation" 
                        access="ROLE_ADMIN" />
         <intercept-url pattern="/deleteLocation" 
                        access="ROLE_ADMIN" />
-        <intercept-url pattern="/displayEditLocationForm" 
-                       access="ROLE_ADMIN" />
-        <intercept-url pattern="/editLocation" 
-                       access="ROLE_ADMIN" /> 
-        <intercept-url pattern="/displayLocationDetails" 
-                       access="ROLE_USER, ROLE_ADMIN" /> 
         
         
-        
-        <!--Sighting-->
+         
         <intercept-url pattern="/sightingHome" 
-                       access="ROLE_USER, ROLE_ADMIN" />
-        <intercept-url pattern="/addSighting" 
                        access="ROLE_ADMIN, ROLE_USER" />
+        
+        <intercept-url pattern="/addSighting" 
+                       access="ROLE_ADMIN" />
+        <intercept-url pattern="/displaySighting" 
+                       access="ROLE_ADMIN, ROLE_USER" />
+        <intercept-url pattern="/displayEditSightingForm" 
+                       access="ROLE_ADMIN" /> 
+        <intercept-url pattern="/editSighting" 
+                       access="ROLE_ADMIN" />
         <intercept-url pattern="/deleteSighting" 
                        access="ROLE_ADMIN" />
-        <intercept-url pattern="/displayEditSightingForm" 
-                       access="ROLE_ADMIN" />
-        <intercept-url pattern="/editSighting" 
-                       access="ROLE_ADMIN" /> 
-        <intercept-url pattern="/displaySighting" 
-                       access="ROLE_USER, ROLE_ADMIN" /> 
+        <intercept-url pattern="/getAllSightingsByLocation" 
+                       access="ROLE_ADMIN, ROLE_USER" />
         
         
-        
-        <!--User-->
         <intercept-url pattern="/userHome" 
-                       access="ROLE_USER, ROLE_ADMIN" />
+                       access="ROLE_ADMIN, ROLE_USER" />  
+        
         <intercept-url pattern="/addUser" 
                        access="ROLE_ADMIN" />
-        <intercept-url pattern="/deleteUser" 
-                       access="ROLE_ADMIN" />
-        <intercept-url pattern="/displayEditUserForm" 
-                       access="ROLE_ADMIN" />
-        <intercept-url pattern="/editUser" 
-                       access="ROLE_ADMIN" /> 
         <intercept-url pattern="/displayUserDetails" 
-                       access="ROLE_USER, ROLE_ADMIN" /> 
-        
-        
-        
-        
-        
-               
-<!--        For REST endpoints, which we are not using in this project
-        <intercept-url pattern="/contact/**" 
+                       access="ROLE_ADMIN, ROLE_USER" />
+        <intercept-url pattern="/displayEditUserForm" 
+                       access="ROLE_ADMIN" /> 
+        <intercept-url pattern="/editUser" 
                        access="ROLE_ADMIN" />
-        <intercept-url pattern="/contacts" 
-                       access="ROLE_ADMIN" />
-        <intercept-url pattern="/contact" 
-                       access="ROLE_ADMIN" />-->
-        <intercept-url pattern="/**" 
-                       access="ROLE_USER" />
+        <intercept-url pattern="/deleteUser" 
+                       access="ROLE_ADMIN" />     
+        
+    
     </http>
     <authentication-manager>
         <authentication-provider>
@@ -187,91 +133,28 @@ We supply two SQL queries that tell Spring Security how to get users by username
             <jdbc-user-service id="userService"
                                data-source-ref="dataSource"
                                users-by-username-query=
- "select Username, UserPassword, isEnabled from Users where Username=?"
-                               authorities-by-username-query=
- "select Username, Authority from Authorities where Username=?" />
-        </authentication-provider>
-        
-        
-<!--        Now modify your authentication-manager entry so it looks like this:-->
-
-
-        <authentication-provider>
-            <password-encoder ref="encoder"/>
-            <jdbc-user-service id="userService"
-                               data-source-ref="dataSource"
-                               users-by-username-query=
- "select Username, UserPassword, isEnabled from Users where Username=?"
+ "select 
+Username, UserPassword, Enabled from Users where Username=?"
                                authorities-by-username-query=
  "select Username, Authority from Authorities where Username=?" />
         </authentication-provider>
     </authentication-manager>
 </beans:beans>
 
-<!--All Spring Security specific configuration information will be contained in spring-security.xml. 
-We registered this file with Spring in the web.xml file above, telling Spring that it will be located in the WEB-INF folder-->
 
+<!--Code Analysis
+We include an entry for the webexpressionHandler so we can use the Spring Security tag libraries.
 
+We set security="none" for the login and error pages and all of the resource folders in our application.  These need to be available to all users, all the time.
 
-<!--Database Changes
+The login configuration for this application is identical that one used in Hello Security.  We provide a custom form and integrate with the default Spring Security login and log out URLs.
 
-We have to create tables to hold the users and authorities information in a structure compatible with the SQL queries we just 
-configured in the spring-security.xml file. Run the following script against your contact_list database.
-This script will create two new tables and populate them with test information
-
-
-
-
-
-
-CREATE TABLE IF NOT EXISTS `users` (
- `user_id` int(11) NOT NULL AUTO_INCREMENT,
- `username` varchar(20) NOT NULL,
- `password` varchar(100) NOT NULL,
- `enabled` tinyint(1) NOT NULL,
- PRIMARY KEY (`user_id`),
- KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
- Dumping data for table `users`
-
-INSERT INTO `users` (`user_id`, `username`, `password`, `enabled`) VALUES
-(1, 'admin', 'password', 1),
-(2, 'user', 'password', 1);
-
- Table structure for table `authorities`
-
-CREATE TABLE IF NOT EXISTS `authorities` (
- `username` varchar(20) NOT NULL,
- `authority` varchar(20) NOT NULL,
- KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
- Dumping data for table `authorities`
-
-INSERT INTO `authorities` (`username`, `authority`) VALUES
-('admin', 'ROLE_ADMIN'),
-('admin', 'ROLE_USER'),
-('user', 'ROLE_USER');
-
- Constraints for table `authorities`
-
-ALTER TABLE `authorities`
- ADD CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`);
-
-
-
-Code Analysis
-We create two tables: users and authorities with a foreign key relationship.
-We populate the tables with two users: admin and user.
-
-
-
-
--->
-
-
-
-
-
-
+URL Protection:
+We allow all users to see the home page.  Using access="IS_AUTHENTICATED_ANONYMOUSLY" allows us to still use Spring Security tags on the home page.
+All of the URLs that allow changes to contact information (add, edit, delete) require ROLE_ADMIN.
+All of the REST endpoints require ROLE_ADMIN.  This means that users of the REST API must be logged into the system.
+Any URL not explicitly listed in the above rules requires ROLE_USER.
+jdbc-user-service:
+This allows us to store our user information in a relational database.
+The data-source-ref uses the data source we defined in the spring-persistence.xml configuration file.  All of the Spring configuration files can access the entries in the other files.
+We supply two SQL queries that tell Spring Security how to get users by username and how to get the authorities (i.e. roles) associated with a given user.-->

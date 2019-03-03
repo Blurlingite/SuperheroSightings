@@ -44,7 +44,6 @@
                                 <li role="presentation"><a href="${pageContext.request.contextPath}/locationHome">Locations</a></li>
                                 <li role="presentation" class="active"><a href="${pageContext.request.contextPath}/sightingHome">Sightings</a></li>
                                 <li role="presentation"><a href="${pageContext.request.contextPath}/userHome">Users</a></li>
-
                             </ul>
                         </div>
              
@@ -60,17 +59,25 @@
                             
                             
                     <div class="col-md-4">
-                 <!--If the user is logged in, (the name is not null) greet them and show the log out link-->             
-                    <c:if test="${pageContext.request.userPrincipal.name != null}">
-                        <p>Hello : ${pageContext.request.userPrincipal.name} |              
-                            <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
-                        </p>
-                    </c:if> 
+                        
+                        
+                        <c:if test="${pageContext.request.userPrincipal.name != null}">
+                            <p>Hello : ${pageContext.request.userPrincipal.name} | 
+                                <a href="<c:url value="/j_spring_security_logout" />" >
+                                    Logout
+                                </a>
+                            </p>
+                        </c:if>
+                            
+                            
                     </div>
 		</div>
 
 
                 <div class = col-md-12>
+                    
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+  
                     <div class="col-md-4">
 
                         <h2 class = "addEntityForm">
@@ -90,10 +97,7 @@
                                 <div class="col-md-4">
                                     <label for="add-isHeroSighting" class="col-md-4 control-label">Sighting Type</label>
                                 </div>
-                                
-<!--                                <div class="col-md-8">
-                                    <input type="text" class="form-control" name="isHeroSighting" placeholder="isHeroSighting"/>
-                                </div>-->
+
                                 
                                 <div class="col-md-8">
                     
@@ -169,7 +173,7 @@
 
                     </div>
 
-
+                </sec:authorize>
 
 
 
@@ -266,20 +270,27 @@
                                     one to display the edit form (that's what we're doing here) and one to process the data submitted in the edit form (editLocation in Location Controller).
                                     -->
 
-        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                    <sec:authorize access="hasRole('ROLE_ADMIN')">
 
                                         <a class="tableLinks" href="displayEditSightingForm?sightingId=${currentSighting.sightingId}">
                                             Edit
                                         </a>
-        </sec:authorize>
+                                            
+                                    </sec:authorize>
+                                    
                                     </td>
+                                    
+                                    
                                     <td>
-                                                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                        
+                                    <sec:authorize access="hasRole('ROLE_ADMIN')">
 
                                         <a class="tableLinks" href="deleteSighting?sightingIdToDelete=${currentSighting.sightingId}">
                                             Delete
                                         </a>
-                                                </sec:authorize>
+                                            
+                                    </sec:authorize>
+                                        
                                     </td>
                                 </tr>
                             </c:forEach>

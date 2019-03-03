@@ -3,6 +3,8 @@
     Created on : Jan 14, 2019, 4:15:39 PM
     Author     : vishnukdawah
 --%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -17,7 +19,7 @@
         <link href="${pageContext.request.contextPath}/css/home.css" rel="stylesheet">
     </head>
     <body>
-        
+       
         <div class="container-fluid relativeContainer">
             <hr/>
             <div class="row">
@@ -37,7 +39,6 @@
                                         <li role="presentation"><a href="${pageContext.request.contextPath}/locationHome">Locations</a></li>
                                         <li role="presentation"><a href="${pageContext.request.contextPath}/sightingHome">Sightings</a></li>
                                         <li role="presentation"><a href="${pageContext.request.contextPath}/userHome">Users</a></li>
- 
                                     </ul>
                                 </div>
                                         
@@ -50,12 +51,17 @@
                             
                             
                             <div class="col-md-4">
-                                <!--If the user is logged in, (the name is not null) greet them and show the log out link-->
+                        
+                                
                                 <c:if test="${pageContext.request.userPrincipal.name != null}">
-                                    <p>Hello : ${pageContext.request.userPrincipal.name}|                  
-                                        <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
+                                    <p>Hello : ${pageContext.request.userPrincipal.name} | 
+                                        <a href="<c:url value="/j_spring_security_logout" />" >
+                                            Logout
+                                        </a>
                                     </p>
-                                </c:if>  
+                                </c:if>
+                                    
+                                    
                             </div>
                             
                             

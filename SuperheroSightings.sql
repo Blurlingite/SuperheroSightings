@@ -88,7 +88,8 @@ UserPassword VARCHAR(100) NOT NULL,
 FirstName VARCHAR(45) NOT NULL,
 LastName VARCHAR(45) NOT NULL,
 Email VARCHAR(100) NOT NULL,
-isEnabled BOOLEAN NOT NULL,
+isAdmin BOOLEAN NOT NULL,
+Enabled TINYINT(1) NOT NULL DEFAULT 1,
 PRIMARY KEY(UserID),
  KEY Username (Username)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -99,10 +100,8 @@ PRIMARY KEY(UserID),
 
 CREATE TABLE IF NOT EXISTS Authorities(
 
-AuthorityID INT NOT NULL AUTO_INCREMENT,
 Username VARCHAR(45) NOT NULL,
 Authority VARCHAR(45) NOT NULL,
-PRIMARY KEY(AuthorityID),
  KEY Username (Username)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -244,13 +243,13 @@ VALUES(TRUE, 1, 1,  '2016-11-05 10:12:33'),
 
 
 
-INSERT INTO Users(Username, UserPassword, FirstName, LastName, Email, isEnabled)
-VALUES('jbonds', 'OceanSpy', 'James', 'Bond', 'jbonds@gmail.com', TRUE),
-('jkennedy', 'jackie06', 'Jackie', 'Kennedy', 'jkennedy@gmail.com', TRUE),
-('swilliams', 'sasha11', 'Sasha', 'Williams', 'swilliams@gmail.com', TRUE),
-('dsmith', 'dante09', 'Dante', 'Smith', 'dsmith@gmail.com', FALSE),
-('admin', 'admin', 'Admin', 'Admin', 'admin@gmail.com', TRUE),
-('user', 'user', 'User', 'User', 'user@gmail.com', TRUE);
+INSERT INTO Users(Username, UserPassword, FirstName, LastName, Email, isAdmin, Enabled)
+VALUES('jbonds', 'OceanSpy', 'James', 'Bond', 'jbonds@gmail.com', TRUE, 1),
+('jkennedy', 'jackie06', 'Jackie', 'Kennedy', 'jkennedy@gmail.com', TRUE, 1),
+('swilliams', 'sasha11', 'Sasha', 'Williams', 'swilliams@gmail.com', TRUE, 1),
+('dsmith', 'dante09', 'Dante', 'Smith', 'dsmith@gmail.com', TRUE, 1),
+('admin', 'admin', 'Admin', 'Admin', 'admin@gmail.com', TRUE, 1),
+('user', 'user', 'User', 'User', 'user@gmail.com', FALSE, 1);
 
 
 

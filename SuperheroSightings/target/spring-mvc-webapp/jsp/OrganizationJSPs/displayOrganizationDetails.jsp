@@ -3,6 +3,7 @@
     Created on : Dec 30, 2018, 6:14:33 PM
     Author     : vishnukdawah
 --%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
@@ -52,17 +53,16 @@
                                     
                                     
                             <div class="col-md-4">
+                        
                                 
-                                
-                                <!--If the user is logged in, (the name is not null) greet them and show the log out link-->
                                 <c:if test="${pageContext.request.userPrincipal.name != null}">
-                                    
-                                    <p>Hello : ${pageContext.request.userPrincipal.name}|                   
-                                        <a href="<c:url value="/j_spring_security_logout" />" > Logout</a>
+                                    <p>Hello : ${pageContext.request.userPrincipal.name} | 
+                                        <a href="<c:url value="/j_spring_security_logout" />" >
+                                            Logout
+                                        </a>
                                     </p>
+                                </c:if>
                                     
-                                </c:if>  
-		
                                     
                             </div>
                               
@@ -77,12 +77,16 @@
                                         
 					<div class="col-md-8">
                                         </div>
-                                        
+                
+                                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+    
 					<div class="col-md-4">
                                             <a href ="displayEditOrganizationForm?theIdOfOrganization=${organizationToDisplay.organizationId}" type="button" class="btn btn-success">
                                                 Edit This Organization
                                             </a>
 					</div>
+                                                
+                                    </sec:authorize>
                                         
                                     </div>
 				</div>

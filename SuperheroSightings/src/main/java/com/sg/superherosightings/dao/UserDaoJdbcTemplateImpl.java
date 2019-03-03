@@ -25,7 +25,7 @@ public class UserDaoJdbcTemplateImpl implements SuperheroSightingsUserDao {
     private JdbcTemplate jdbcTemplate;
     
 
-    private static final String SQL_INSERT_USER = "INSERT INTO Users(Username, UserPassword, FirstName, LastName, Email, isEnabled) VALUES(?,?,?,?,?,?);";
+    private static final String SQL_INSERT_USER = "INSERT INTO Users(Username, UserPassword, FirstName, LastName, Email, isAdmin) VALUES(?,?,?,?,?,?);";
 
     private static final String SQL_INSERT_AUTHORITY = "INSERT INTO Authorities (username, authority) VALUES (?, ?)";
     
@@ -42,7 +42,7 @@ public class UserDaoJdbcTemplateImpl implements SuperheroSightingsUserDao {
     private static final String SQL_DELETE_USER_BY_ID = "DELETE FROM Users WHERE Username = ?;";
 
     private static final String SQL_UPDATE_USER = 
-            "UPDATE Users SET Username = ?, UserPassword = ?, FirstName = ?, LastName = ?, Email = ?, isEnabled = ? WHERE UserID = ?;";
+            "UPDATE Users SET Username = ?, UserPassword = ?, FirstName = ?, LastName = ?, Email = ?, isAdmin = ? WHERE UserID = ?;";
 
     private static final String SQL_SELECT_USERS_BY_ORGANIZATION_ID = 
         "SELECT u.* "
@@ -64,11 +64,10 @@ public class UserDaoJdbcTemplateImpl implements SuperheroSightingsUserDao {
     @Override
     public User createUser(User user) throws SuperheroSightingsPersistenceException {
 
-        user.setIsEnabled(true);
 
         
         jdbcTemplate.update(SQL_INSERT_USER, user.getUserName(), user.getUserPassword(), user.getFirstName(), 
-                user.getLastName(), user.getEmail(), user.getIsEnabled());
+                user.getLastName(), user.getEmail(), user.getIsAdmin());
         
         int userId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
         
@@ -134,9 +133,32 @@ public class UserDaoJdbcTemplateImpl implements SuperheroSightingsUserDao {
     @Override
     public void updateUser(User user) throws SuperheroSightingsPersistenceException {
         
-        user.setIsEnabled(true);
+        // delete the user's authorities
+        jdbcTemplate.update(SQL_DELETE_AUTHORITIES, user.getUserName());
+        
+        
+        user.addAuthority("ROLE_USER");
+
+        
+        // If they edit the user, and they decide to change that user from user to admin, add the admin role, ROLE_ADMIN to that user
+        if(user.getIsAdmin() == true){
+            user.addAuthority("ROLE_ADMIN");
+        }
+
+        
         jdbcTemplate.update(SQL_UPDATE_USER, user.getUserName(), user.getUserPassword(), 
-                user.getFirstName(), user.getLastName(), user.getEmail(), user.getIsEnabled(), user.getUserId());
+                user.getFirstName(), user.getLastName(), user.getEmail(), user.getIsAdmin(), user.getUserId());
+        
+        // now add the user's username and all their authorities to the Authorities table
+        for (String authority : user.getAuthorities()) {
+            
+            jdbcTemplate.update(SQL_INSERT_AUTHORITY, 
+                    user.getUserName(), 
+                    authority);
+        
+        
+        }
+        
         
     }
 
@@ -176,12 +198,12 @@ public class UserDaoJdbcTemplateImpl implements SuperheroSightingsUserDao {
                 User u = new User();
           
                 u.setUserId(rs.getInt("UserID"));
-                u.setIsEnabled(rs.getBoolean("isEnabled"));
                 u.setUserName(rs.getString("Username"));
                 u.setUserPassword(rs.getString("UserPassword"));
                 u.setFirstName(rs.getString("FirstName"));
                 u.setLastName(rs.getString("LastName"));
                 u.setEmail(rs.getString("Email"));
+                u.setIsAdmin(rs.getBoolean("isAdmin"));
 
                 return u;
             
