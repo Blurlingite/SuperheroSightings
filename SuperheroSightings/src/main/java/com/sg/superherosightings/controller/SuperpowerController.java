@@ -108,6 +108,14 @@ public class SuperpowerController {
     @RequestMapping(value = "/editSuperpower", method = RequestMethod.POST)
     public String editSuperpower(@Valid @ModelAttribute("getPowerToEdit") Superpower superpower, BindingResult result) {
         
+        // If there is an error (with form validation annotations specified in the DTO of Superpower, like entering a 
+        // Superpower Name that is over 45 characters, you will go back to the edit form (shown by the return statement) to print out an error message
+        // the sf error tag in the JSP will allow you to print out this error message you put in the Superpower DTO
+        if (result.hasErrors()) {
+            return "/SuperpowerJSPs/editSuperpower";
+        }
+        
+        
         superpowerService.updateSuperpower(superpower);
 
         return "redirect:superpowerHome";

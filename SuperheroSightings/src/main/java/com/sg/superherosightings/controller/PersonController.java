@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -197,7 +199,8 @@ public class PersonController {
     
     
     @RequestMapping(value="/editPerson", method=RequestMethod.POST)
-    public String editPerson(HttpServletRequest request, @ModelAttribute("personToDisplay") Person person) throws EntityNotFoundException, SuperheroSightingsPersistenceException{
+    public String editPerson(HttpServletRequest request, @Valid @ModelAttribute("personToDisplay") Person person, BindingResult result) throws EntityNotFoundException, SuperheroSightingsPersistenceException{
+
 
         String[] organizationIdsSelectedFromDropDownMenu = request.getParameterValues("organizationsSelectedByUser");
 
@@ -219,9 +222,16 @@ public class PersonController {
             listOfSuperpowersToGetFromListOfInts.add(superpowerToAddToPersonDTO);
         
         }
+        
+        
+        
+
     
         person.setListOfSuperpowers(listOfSuperpowersToGetFromListOfInts);
         person.setListOfOrganizations(organizationsToAddToPerson);
+        
+        
+     
 
         personService.updatePerson(person);
 
