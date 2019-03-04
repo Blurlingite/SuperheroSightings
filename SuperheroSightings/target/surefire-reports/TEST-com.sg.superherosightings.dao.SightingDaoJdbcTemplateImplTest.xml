@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="8" failures="0" name="com.sg.superherosightings.dao.SightingDaoJdbcTemplateImplTest" time="0.948" errors="0" skipped="0">
+<testsuite tests="8" failures="0" name="com.sg.superherosightings.dao.SightingDaoJdbcTemplateImplTest" time="0.995" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/lib"/>
@@ -65,12 +65,12 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.sg.superherosightings.dao.SightingDaoJdbcTemplateImplTest" name="getLatestTenSightings" time="0.134"/>
-  <testcase classname="com.sg.superherosightings.dao.SightingDaoJdbcTemplateImplTest" name="testGetAllSightings" time="0.14"/>
-  <testcase classname="com.sg.superherosightings.dao.SightingDaoJdbcTemplateImplTest" name="testUpdateSighting" time="0.114"/>
-  <testcase classname="com.sg.superherosightings.dao.SightingDaoJdbcTemplateImplTest" name="getAllSightingsByDate" time="0.112"/>
-  <testcase classname="com.sg.superherosightings.dao.SightingDaoJdbcTemplateImplTest" name="getAllSightingsByLocation" time="0.114"/>
-  <testcase classname="com.sg.superherosightings.dao.SightingDaoJdbcTemplateImplTest" name="testCreateGetSighting" time="0.119"/>
-  <testcase classname="com.sg.superherosightings.dao.SightingDaoJdbcTemplateImplTest" name="testDeleteSighting" time="0.115"/>
-  <testcase classname="com.sg.superherosightings.dao.SightingDaoJdbcTemplateImplTest" name="testSetJdbcTemplate" time="0.1"/>
+  <testcase classname="com.sg.superherosightings.dao.SightingDaoJdbcTemplateImplTest" name="getLatestTenSightings" time="0.149"/>
+  <testcase classname="com.sg.superherosightings.dao.SightingDaoJdbcTemplateImplTest" name="testGetAllSightings" time="0.141"/>
+  <testcase classname="com.sg.superherosightings.dao.SightingDaoJdbcTemplateImplTest" name="testUpdateSighting" time="0.13"/>
+  <testcase classname="com.sg.superherosightings.dao.SightingDaoJdbcTemplateImplTest" name="getAllSightingsByDate" time="0.116"/>
+  <testcase classname="com.sg.superherosightings.dao.SightingDaoJdbcTemplateImplTest" name="getAllSightingsByLocation" time="0.118"/>
+  <testcase classname="com.sg.superherosightings.dao.SightingDaoJdbcTemplateImplTest" name="testCreateGetSighting" time="0.12"/>
+  <testcase classname="com.sg.superherosightings.dao.SightingDaoJdbcTemplateImplTest" name="testDeleteSighting" time="0.113"/>
+  <testcase classname="com.sg.superherosightings.dao.SightingDaoJdbcTemplateImplTest" name="testSetJdbcTemplate" time="0.108"/>
 </testsuite>

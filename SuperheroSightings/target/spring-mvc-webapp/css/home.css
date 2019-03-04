@@ -86,3 +86,24 @@ body{
 
 }
 
+.vv{
+   background-color:yellow;
+}
+
+.xx{
+       background-color:red;
+
+}
+
+#signInPanelBackground{
+           background-color:dodgerblue;
+
+}
+
+.loginLabels{
+    text-align:center;
+}
+
+#loginTitle{
+        text-align:center;
+}

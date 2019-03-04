@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="8" failures="0" name="com.sg.superherosightings.dao.PersonDaoJdbcTemplateImplTest" time="2" errors="0" skipped="0">
+<testsuite tests="8" failures="0" name="com.sg.superherosightings.dao.PersonDaoJdbcTemplateImplTest" time="1.97" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/lib"/>
@@ -65,12 +65,12 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.sg.superherosightings.dao.PersonDaoJdbcTemplateImplTest" name="testGetAllPersons" time="1.032"/>
-  <testcase classname="com.sg.superherosightings.dao.PersonDaoJdbcTemplateImplTest" name="testCreateGetPerson" time="0.132"/>
-  <testcase classname="com.sg.superherosightings.dao.PersonDaoJdbcTemplateImplTest" name="testGetAllPersonsSightedAtLocation" time="0.144"/>
-  <testcase classname="com.sg.superherosightings.dao.PersonDaoJdbcTemplateImplTest" name="testUpdatePerson" time="0.139"/>
-  <testcase classname="com.sg.superherosightings.dao.PersonDaoJdbcTemplateImplTest" name="findPersonsForOrganization" time="0.158"/>
-  <testcase classname="com.sg.superherosightings.dao.PersonDaoJdbcTemplateImplTest" name="testDeletePerson" time="0.12"/>
-  <testcase classname="com.sg.superherosightings.dao.PersonDaoJdbcTemplateImplTest" name="findPersonForSighting" time="0.161"/>
+  <testcase classname="com.sg.superherosightings.dao.PersonDaoJdbcTemplateImplTest" name="testGetAllPersons" time="1.036"/>
+  <testcase classname="com.sg.superherosightings.dao.PersonDaoJdbcTemplateImplTest" name="testCreateGetPerson" time="0.127"/>
+  <testcase classname="com.sg.superherosightings.dao.PersonDaoJdbcTemplateImplTest" name="testGetAllPersonsSightedAtLocation" time="0.15"/>
+  <testcase classname="com.sg.superherosightings.dao.PersonDaoJdbcTemplateImplTest" name="testUpdatePerson" time="0.137"/>
+  <testcase classname="com.sg.superherosightings.dao.PersonDaoJdbcTemplateImplTest" name="findPersonsForOrganization" time="0.126"/>
+  <testcase classname="com.sg.superherosightings.dao.PersonDaoJdbcTemplateImplTest" name="testDeletePerson" time="0.126"/>
+  <testcase classname="com.sg.superherosightings.dao.PersonDaoJdbcTemplateImplTest" name="findPersonForSighting" time="0.154"/>
   <testcase classname="com.sg.superherosightings.dao.PersonDaoJdbcTemplateImplTest" name="testSetJdbcTemplate" time="0.114"/>
 </testsuite>

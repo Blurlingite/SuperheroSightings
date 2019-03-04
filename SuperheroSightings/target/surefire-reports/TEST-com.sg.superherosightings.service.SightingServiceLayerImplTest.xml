@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="8" failures="0" name="com.sg.superherosightings.service.SightingServiceLayerImplTest" time="0.615" errors="0" skipped="0">
+<testsuite tests="8" failures="0" name="com.sg.superherosightings.service.SightingServiceLayerImplTest" time="0.565" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/lib"/>
@@ -65,12 +65,12 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.sg.superherosightings.service.SightingServiceLayerImplTest" name="testGetLatestTenSightings" time="0.07"/>
-  <testcase classname="com.sg.superherosightings.service.SightingServiceLayerImplTest" name="testGetAllSightings" time="0.069"/>
-  <testcase classname="com.sg.superherosightings.service.SightingServiceLayerImplTest" name="testGetSightingById" time="0.1"/>
-  <testcase classname="com.sg.superherosightings.service.SightingServiceLayerImplTest" name="testGetAllSightingsByLocation" time="0.077"/>
-  <testcase classname="com.sg.superherosightings.service.SightingServiceLayerImplTest" name="testUpdateSighting" time="0.086"/>
-  <testcase classname="com.sg.superherosightings.service.SightingServiceLayerImplTest" name="testCreateSighting" time="0.078"/>
-  <testcase classname="com.sg.superherosightings.service.SightingServiceLayerImplTest" name="testGetAllSightingsByDate" time="0.07"/>
-  <testcase classname="com.sg.superherosightings.service.SightingServiceLayerImplTest" name="testDeleteSighting" time="0.065"/>
+  <testcase classname="com.sg.superherosightings.service.SightingServiceLayerImplTest" name="testGetLatestTenSightings" time="0.073"/>
+  <testcase classname="com.sg.superherosightings.service.SightingServiceLayerImplTest" name="testGetAllSightings" time="0.076"/>
+  <testcase classname="com.sg.superherosightings.service.SightingServiceLayerImplTest" name="testGetSightingById" time="0.069"/>
+  <testcase classname="com.sg.superherosightings.service.SightingServiceLayerImplTest" name="testGetAllSightingsByLocation" time="0.062"/>
+  <testcase classname="com.sg.superherosightings.service.SightingServiceLayerImplTest" name="testUpdateSighting" time="0.082"/>
+  <testcase classname="com.sg.superherosightings.service.SightingServiceLayerImplTest" name="testCreateSighting" time="0.07"/>
+  <testcase classname="com.sg.superherosightings.service.SightingServiceLayerImplTest" name="testGetAllSightingsByDate" time="0.065"/>
+  <testcase classname="com.sg.superherosightings.service.SightingServiceLayerImplTest" name="testDeleteSighting" time="0.068"/>
 </testsuite>
