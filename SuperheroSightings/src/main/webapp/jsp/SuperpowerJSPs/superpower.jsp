@@ -38,6 +38,13 @@ Customized the rendering of views based on the user that is logged into the appl
    <body>
 
     <div class="container-fluid">
+        
+        <div class="row">
+            <div class="col-md-12">
+               <h1>Superhero Sightings</h1>
+            </div>
+        </div>
+        
         <hr/>
 	<div class="row">
             <div class="col-md-12">
