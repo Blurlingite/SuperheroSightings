@@ -7,6 +7,9 @@ package sg.thecodetasticfour.superherosightingsgroup.dto;
 
 import java.util.List;
 import java.util.Objects;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -15,9 +18,16 @@ import java.util.Objects;
 public class Person {
     
     private int personId;
+   @NotEmpty(message = "You must supply a value for First Name.")
+   @Length(max = 100, message = "First Name must be no more than 100 characters in length.")
     private String firstName;
+   @NotEmpty(message = "You must supply a value for Last Name.")
+   @Length(max = 100, message = "Last Name must be no more than 100 characters in length.")
     private String lastName;
+   @NotNull(message = "You must choose either Superhero or Super-Villain.")
     private Boolean isHero;
+   @NotEmpty(message = "You must supply a value for Person Description.")
+   @Length(max = 100, message = "Person Description must be no more than 100 characters in length.")
     private String descriptionOfPerson;     // I created this variable to replace String Description because web page was not able to read this field -Vishnu
     private List<Superpower> listOfSuperpowers;
     private List<Organization> listOfOrganizations;

@@ -15,7 +15,7 @@ import java.util.Objects;
  */
 public class User {
     private int userId;
-    private Boolean isEnabled;
+    private Boolean isAdmin;
     private String userName;
     private String userPassword;
     private String firstName;
@@ -25,8 +25,6 @@ public class User {
     private List<String> authorities = new ArrayList<>();
 
     private List<Integer> allOrganizationIdsToPopulateOrganizationListInUserDTO;
-    
-    private Boolean isAdmin;
 
     public int getUserId() {
         return userId;
@@ -36,12 +34,12 @@ public class User {
         this.userId = userId;
     }
 
-    public Boolean getIsEnabled() {
-        return isEnabled;
+    public Boolean getIsAdmin() {
+        return isAdmin;
     }
 
-    public void setIsEnabled(Boolean isEnabled) {
-        this.isEnabled = isEnabled;
+    public void setIsAdmin(Boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
     public String getUserName() {
@@ -112,32 +110,24 @@ public class User {
     public void addAuthority(String authority) {
         authorities.add(authority);
     }
-
-    public Boolean getIsAdmin() {
-        return isAdmin;
-    }
-
-    public void setIsAdmin(Boolean isAdmin) {
-        this.isAdmin = isAdmin;
-    }
-
-
     
-    
-    
+//    public void removeAuthority(String authority) {
+//        authorities.remove(authority);
+//    }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + this.userId;
-        hash = 89 * hash + Objects.hashCode(this.isEnabled);
-        hash = 89 * hash + Objects.hashCode(this.userName);
-        hash = 89 * hash + Objects.hashCode(this.userPassword);
-        hash = 89 * hash + Objects.hashCode(this.firstName);
-        hash = 89 * hash + Objects.hashCode(this.lastName);
-        hash = 89 * hash + Objects.hashCode(this.email);
-        hash = 89 * hash + Objects.hashCode(this.userOrganizations);
-        hash = 89 * hash + Objects.hashCode(this.authorities);
+        int hash = 3;
+        hash = 59 * hash + this.userId;
+        hash = 59 * hash + Objects.hashCode(this.isAdmin);
+        hash = 59 * hash + Objects.hashCode(this.userName);
+        hash = 59 * hash + Objects.hashCode(this.userPassword);
+        hash = 59 * hash + Objects.hashCode(this.firstName);
+        hash = 59 * hash + Objects.hashCode(this.lastName);
+        hash = 59 * hash + Objects.hashCode(this.email);
+        hash = 59 * hash + Objects.hashCode(this.userOrganizations);
+        hash = 59 * hash + Objects.hashCode(this.authorities);
+        hash = 59 * hash + Objects.hashCode(this.allOrganizationIdsToPopulateOrganizationListInUserDTO);
         return hash;
     }
 
@@ -171,7 +161,7 @@ public class User {
         if (!Objects.equals(this.email, other.email)) {
             return false;
         }
-        if (!Objects.equals(this.isEnabled, other.isEnabled)) {
+        if (!Objects.equals(this.isAdmin, other.isAdmin)) {
             return false;
         }
         if (!Objects.equals(this.userOrganizations, other.userOrganizations)) {
@@ -180,9 +170,14 @@ public class User {
         if (!Objects.equals(this.authorities, other.authorities)) {
             return false;
         }
+        if (!Objects.equals(this.allOrganizationIdsToPopulateOrganizationListInUserDTO, other.allOrganizationIdsToPopulateOrganizationListInUserDTO)) {
+            return false;
+        }
         return true;
     }
+    
 
+ 
 
 
 

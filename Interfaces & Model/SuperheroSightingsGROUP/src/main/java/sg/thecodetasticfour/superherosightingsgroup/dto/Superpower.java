@@ -17,10 +17,10 @@ public class Superpower {
    private int superpowerId;
    
    @NotEmpty(message = "You must supply a value for Superpower Name.")
-   @Length(max = 50, message = "Superpower Name must be no more than 50 characters in length.")
+   @Length(max = 45, message = "Superpower Name must be no more than 45 characters in length.")
    private String superpowerName;
-   @NotEmpty(message = "You must supply a value for Superpower Name.")
-   @Length(max = 50, message = "Superpower Name must be no more than 50 characters in length.")
+   @NotEmpty(message = "You must supply a value for Superpower Description.")
+   @Length(max = 200, message = "Superpower Description must be no more than 200 characters in length.")
    private String superpowerDescription;
 
     public int getSuperpowerId() {
